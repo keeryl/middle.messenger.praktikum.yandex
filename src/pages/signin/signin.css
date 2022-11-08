@@ -1,0 +1,9 @@
+.signin {
+  display: flex;
+  flex-direction: column;
+  background-color: brown;
+}
+.signin__form {
+  display: flex;
+  flex-direction: column;
+}
