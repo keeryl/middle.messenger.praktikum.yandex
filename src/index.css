@@ -1,4 +1,5 @@
-/* @import url(./pages/signin/signin.css); */
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts.css);
 
 
 #app, html, body {
@@ -7,9 +8,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: blue;
+  justify-content: center;
+  background-color: fff;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   border: 0;
+}
+
+:root {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
 }

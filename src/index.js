@@ -1,9 +1,9 @@
-import chatTemplate from './pages/chat/chat.hbs';
-import page_404Template from './pages/page_404/page_404.hbs';
-import page_500Template from './pages/page_500/page_500.hbs';
-import profileTemplate from './pages/profile/profile.hbs';
+import chatTemplate from './pages/chat/chat.js';
+import page_404Template from './pages/page_404/page_404.js';
+import page_500Template from './pages/page_500/page_500.js';
+import profileTemplate from './pages/profile/profile.js';
 import signinTemplate from './pages/signin/signin.js';
-import signupTemplate from './pages/signup/signup.hbs';
+import signupTemplate from './pages/signup/signup.js';
 
 
 const PAGES = {
@@ -18,7 +18,7 @@ const PAGES = {
 function renderPage(name) {
   const root = document.querySelector('#app');
   const template = PAGES[name];
-  const html = template();
+  const html = template;
   root.innerHTML = html;
 }
 
@@ -26,6 +26,6 @@ window.renderPage = renderPage;
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('#app');
-  const html = signinTemplate;
+  const html = chatTemplate;
   root.innerHTML = html;
 });

@@ -1,0 +1,25 @@
+.chat {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  background-color: crimson;
+}
+
+.chat__left-window {
+  background: #FBFBFB;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 25vw;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.chat__profile-btn {
+
+}
+
+.chat__right-window {
+
+}

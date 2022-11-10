@@ -1,10 +1,18 @@
 
-<main classname="{{styles.signin}}">
-  <form classname="{{styles.signin__form}}">
-    <fieldset>
-      <h1>Войти</h1>
-      <input>
+<main class="{{styles.signin}}">
+  <form class="{{styles.signin__form}}">
+    <h1 class="{{styles.signin__title}}">Войти</h1>
+    <fieldset class="{{styles.signin__inputs}}">
+      <label class="{{styles.signin__input-label}}">
+        Логин
+        <input class="{{styles.signin__input}}">
+      </label>
+      <label class="{{styles.signin__input-label}}">
+        Пароль
+        <input class="{{styles.signin__input}}" type="password">
+      </label>
     </fieldset>
-    <button>Войти</button>
+    <button class="{{styles.signin__submit-btn}}">Авторизоваться</button>
+    <p onclick="renderPage('signup')" class="{{styles.signin__register-btn}}">Нет аккаунта?</p>
   </form>
 </main>

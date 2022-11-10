@@ -1,9 +1,37 @@
-<main classname="signin">
-  <form classname="signin__form">
-    <fieldset>
-      <h1>Зарегистрироваться</h1>
-      <input>
+<main class="{{styles.signup}}">
+  <form class="{{styles.signup__form}}">
+    <h1 class="{{styles.signup__title}}">Регистрация</h1>
+    <fieldset class="{{styles.signup__inputs}}">
+      <label class="{{styles.signup__input-label}}">
+        Почта
+        <input class="{{styles.signup__input}}">
+      </label>
+      <label class="{{styles.signup__input-label}}">
+        Логин
+        <input class="{{styles.signup__input}}">
+      </label>
+            <label class="{{styles.signup__input-label}}">
+        Имя
+        <input class="{{styles.signup__input}}">
+      </label>
+      <label class="{{styles.signup__input-label}}">
+        Фамилия
+        <input class="{{styles.signup__input}}">
+      </label>
+      <label class="{{styles.signup__input-label}}">
+        Телефон
+        <input class="{{styles.signup__input}}">
+      </label>
+      <label class="{{styles.signup__input-label}}">
+        Пароль
+        <input class="{{styles.signup__input}}" type="password">
+      </label>
+      <label class="{{styles.signup__input-label}}">
+        Пароль (еще раз)
+        <input class="{{styles.signup__input}}" type="password">
+      </label>
     </fieldset>
-    <button>Зарегистрироваться</button>
+    <button class="{{styles.signup__submit-btn}}">Зарегистрироваться</button>
+    <p onclick="renderPage('signin')" class="{{styles.signup__register-btn}}">Войти</p>
   </form>
 </main>
