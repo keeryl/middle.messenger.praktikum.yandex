@@ -541,16 +541,16 @@ var _page500Hbs = require("./pages/page_500/page_500.hbs");
 var _page500HbsDefault = parcelHelpers.interopDefault(_page500Hbs);
 var _profileHbs = require("./pages/profile/profile.hbs");
 var _profileHbsDefault = parcelHelpers.interopDefault(_profileHbs);
-var _signinHbs = require("./pages/signin/signin.hbs");
-var _signinHbsDefault = parcelHelpers.interopDefault(_signinHbs);
+var _signinJs = require("./pages/signin/signin.js");
+var _signinJsDefault = parcelHelpers.interopDefault(_signinJs);
 var _signupHbs = require("./pages/signup/signup.hbs");
 var _signupHbsDefault = parcelHelpers.interopDefault(_signupHbs);
 const PAGES = {
     "chat": (0, _chatHbsDefault.default),
     "page_404": (0, _page404HbsDefault.default),
     "page_500": (0, _page500HbsDefault.default),
-    "profie": (0, _profileHbsDefault.default),
-    "signin": (0, _signinHbsDefault.default),
+    "profile": (0, _profileHbsDefault.default),
+    "signin": (0, _signinJsDefault.default),
     "signup": (0, _signupHbsDefault.default)
 };
 function renderPage(name) {
@@ -562,11 +562,11 @@ function renderPage(name) {
 window.renderPage = renderPage;
 document.addEventListener("DOMContentLoaded", ()=>{
     const root = document.querySelector("#app");
-    const html = (0, _signinHbsDefault.default)();
+    const html = (0, _signinJsDefault.default);
     root.innerHTML = html;
 });
 
-},{"./pages/chat/chat.hbs":"dcbfM","./pages/page_404/page_404.hbs":"gGWa0","./pages/page_500/page_500.hbs":"7yJNP","./pages/profile/profile.hbs":"hpzTq","./pages/signin/signin.hbs":"e8tP1","./pages/signup/signup.hbs":"kgcIO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dcbfM":[function(require,module,exports) {
+},{"./pages/chat/chat.hbs":"dcbfM","./pages/page_404/page_404.hbs":"gGWa0","./pages/page_500/page_500.hbs":"7yJNP","./pages/profile/profile.hbs":"hpzTq","./pages/signup/signup.hbs":"kgcIO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./pages/signin/signin.js":"ikAs5"}],"dcbfM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebarsRuntime = require("handlebars/dist/handlebars.runtime");
@@ -1879,23 +1879,6 @@ const templateFunction = (0, _handlebarsRuntimeDefault.default).template({
 });
 exports.default = templateFunction;
 
-},{"handlebars/dist/handlebars.runtime":"b7ZpO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"e8tP1":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _handlebarsRuntime = require("handlebars/dist/handlebars.runtime");
-var _handlebarsRuntimeDefault = parcelHelpers.interopDefault(_handlebarsRuntime);
-const templateFunction = (0, _handlebarsRuntimeDefault.default).template({
-    "compiler": [
-        8,
-        ">= 4.3.0"
-    ],
-    "main": function(container, depth0, helpers, partials, data) {
-        return '<main classname="signup">\n  <form classname="signup__form">\n    <fieldset>\n      <h1>Войти</h1>\n      <input>\n    </fieldset>\n    <button>Войти</button>\n  </form>\n</main>\n';
-    },
-    "useData": true
-});
-exports.default = templateFunction;
-
 },{"handlebars/dist/handlebars.runtime":"b7ZpO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kgcIO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -1908,6 +1891,42 @@ const templateFunction = (0, _handlebarsRuntimeDefault.default).template({
     ],
     "main": function(container, depth0, helpers, partials, data) {
         return '<main classname="signin">\n  <form classname="signin__form">\n    <fieldset>\n      <h1>Зарегистрироваться</h1>\n      <input>\n    </fieldset>\n    <button>Зарегистрироваться</button>\n  </form>\n</main>\n';
+    },
+    "useData": true
+});
+exports.default = templateFunction;
+
+},{"handlebars/dist/handlebars.runtime":"b7ZpO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ikAs5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _signinModuleCss = require("./signin.module.css");
+var _signinHbs = require("./signin.hbs");
+var _signinHbsDefault = parcelHelpers.interopDefault(_signinHbs);
+const signinTemplate = (0, _signinHbsDefault.default)({
+    styles: _signinModuleCss
+});
+exports.default = signinTemplate;
+
+},{"./signin.module.css":"4TvSc","./signin.hbs":"e8tP1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4TvSc":[function(require,module,exports) {
+module.exports["signin"] = `jcbeWW_signin`;
+module.exports["signin__form"] = `jcbeWW_signin__form`;
+
+},{}],"e8tP1":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebarsRuntime = require("handlebars/dist/handlebars.runtime");
+var _handlebarsRuntimeDefault = parcelHelpers.interopDefault(_handlebarsRuntime);
+const templateFunction = (0, _handlebarsRuntimeDefault.default).template({
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        var stack1, alias1 = container.lambda, alias2 = container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '\n<main classname="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "signin") : stack1, depth0)) + '">\n  <form classname="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "signin__form") : stack1, depth0)) + '">\n    <fieldset>\n      <h1>Войти</h1>\n      <input>\n    </fieldset>\n    <button>Войти</button>\n  </form>\n</main>\n';
     },
     "useData": true
 });

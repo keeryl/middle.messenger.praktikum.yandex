@@ -1,0 +1,12 @@
+.jcbeWW_signin {
+  background-color: brown;
+  flex-direction: column;
+  display: flex;
+}
+
+.jcbeWW_signin__form {
+  flex-direction: column;
+  display: flex;
+}
+
+/*# sourceMappingURL=index.851da2a1.css.map */

@@ -1,0 +1,1 @@
+{"mappings":"AAAA;;;;;;AAKA","sources":["src/pages/signin/signin.module.css"],"sourcesContent":[".signin {\n  display: flex;\n  flex-direction: column;\n  background-color: brown;\n}\n.signin__form {\n  display: flex;\n  flex-direction: column;\n}\n"],"names":[],"version":3,"file":"index.851da2a1.css.map","sourceRoot":"/__parcel_source_root/"}
