@@ -2022,7 +2022,50 @@ const templateFunction = (0, _handlebarsRuntimeDefault.default).template({
 exports.default = templateFunction;
 
 },{"handlebars/dist/handlebars.runtime":"b7ZpO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d8Zom":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _profileModuleCss = require("./profile.module.css");
+var _profileHbs = require("./profile.hbs");
+var _profileHbsDefault = parcelHelpers.interopDefault(_profileHbs);
+const profileTemplate = (0, _profileHbsDefault.default)({
+    styles: _profileModuleCss
+});
+exports.default = profileTemplate;
 
-},{}]},["ShInH","8lqZg"], "8lqZg", "parcelRequire40a5")
+},{"./profile.module.css":"a7ryd","./profile.hbs":"hpzTq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"a7ryd":[function(require,module,exports) {
+module.exports["back-btn__arrow"] = `FJIXfq_back-btn__arrow`;
+module.exports["profile__form"] = `FJIXfq_profile__form`;
+module.exports["back-btn"] = `FJIXfq_back-btn`;
+module.exports["profile-window"] = `FJIXfq_profile-window`;
+module.exports["profile__user-img"] = `FJIXfq_profile__user-img`;
+module.exports["profile"] = `FJIXfq_profile`;
+module.exports["profile__input-label"] = `FJIXfq_profile__input-label`;
+module.exports["profile__input"] = `FJIXfq_profile__input`;
+module.exports["profile__user-name"] = `FJIXfq_profile__user-name`;
+module.exports["profile__btn"] = `FJIXfq_profile__btn`;
+module.exports["profile__user-info"] = `FJIXfq_profile__user-info`;
+
+},{}],"hpzTq":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _handlebarsRuntime = require("handlebars/dist/handlebars.runtime");
+var _handlebarsRuntimeDefault = parcelHelpers.interopDefault(_handlebarsRuntime);
+const templateFunction = (0, _handlebarsRuntimeDefault.default).template({
+    "compiler": [
+        8,
+        ">= 4.3.0"
+    ],
+    "main": function(container, depth0, helpers, partials, data) {
+        var stack1, alias1 = container.lambda, alias2 = container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+            if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
+            return undefined;
+        };
+        return '<main class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile-window") : stack1, depth0)) + '">\n  <button class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "back-btn") : stack1, depth0)) + '">\n    <div class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "back-btn__arrow") : stack1, depth0)) + '"></div>\n  </button>\n  <section class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile") : stack1, depth0)) + '">\n    <form class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__form") : stack1, depth0)) + '">\n      <div class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__user-img") : stack1, depth0)) + '"></div>\n      <h1 class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__user-name") : stack1, depth0)) + '">Кирилл</h1>\n      <fieldset class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__user-info") : stack1, depth0)) + '">\n        <label class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input-label") : stack1, depth0)) + '">\n          Почта\n          <input class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input") : stack1, depth0)) + '" value="user@yandex.ru" type="email">\n        </label>\n        <label class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input-label") : stack1, depth0)) + '">\n          Логин\n          <input class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input") : stack1, depth0)) + '" value="keeryl">\n        </label>\n        <label class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input-label") : stack1, depth0)) + '">\n          Имя\n          <input class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input") : stack1, depth0)) + '" value="Кирилл">\n        </label>\n        <label class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input-label") : stack1, depth0)) + '">\n          Фамилия\n          <input class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input") : stack1, depth0)) + '" value="Иванов">\n        </label>\n        <label class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input-label") : stack1, depth0)) + '">\n          Имя в чате\n          <input class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input") : stack1, depth0)) + '" value="Кирилл">\n        </label>\n        <label class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input-label") : stack1, depth0)) + '">\n          Телефон\n          <input class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__input") : stack1, depth0)) + '" value="+7 (926) 453-23-23">\n        </label>\n      </fieldset>\n      <button class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__btn") : stack1, depth0)) + '">Изменить данные</button>\n      <button class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__btn") : stack1, depth0)) + '">Изменить пароль</button>\n      <button class="' + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "profile__btn") : stack1, depth0)) + '">Выйти</button>\n    </form>\n  </section>\n</main>\n';
+    },
+    "useData": true
+});
+exports.default = templateFunction;
+
+},{"handlebars/dist/handlebars.runtime":"b7ZpO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["ShInH","8lqZg"], "8lqZg", "parcelRequire40a5")
 
 //# sourceMappingURL=index.975ef6c8.js.map
