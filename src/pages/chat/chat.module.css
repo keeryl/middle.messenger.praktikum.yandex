@@ -83,6 +83,8 @@
   padding: 0;
   list-style: none;
   border-top: 1px solid #EAEAEA;
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
 .chat__chat-item {
