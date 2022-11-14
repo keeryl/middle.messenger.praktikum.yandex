@@ -7,30 +7,12 @@
       <div class="{{styles.profile__user-img}}"></div>
       <h1 class="{{styles.profile__user-name}}">Кирилл</h1>
       <fieldset class="{{styles.profile__user-info}}">
-        <label class="{{styles.profile__input-label}}">
-          Почта
-          <input class="{{styles.profile__input}}" value="user@yandex.ru" type="email">
-        </label>
-        <label class="{{styles.profile__input-label}}">
-          Логин
-          <input class="{{styles.profile__input}}" value="keeryl">
-        </label>
-        <label class="{{styles.profile__input-label}}">
-          Имя
-          <input class="{{styles.profile__input}}" value="Кирилл">
-        </label>
-        <label class="{{styles.profile__input-label}}">
-          Фамилия
-          <input class="{{styles.profile__input}}" value="Иванов">
-        </label>
-        <label class="{{styles.profile__input-label}}">
-          Имя в чате
-          <input class="{{styles.profile__input}}" value="Кирилл">
-        </label>
-        <label class="{{styles.profile__input-label}}">
-          Телефон
-          <input class="{{styles.profile__input}}" value="+7 (926) 453-23-23">
-        </label>
+        {{> profileInput label="Почта" name="email" value="user@yandex.ru" type="email"}}
+        {{> profileInput label="Логин" name="login" value="keeryl" type="text"}}
+        {{> profileInput label="Имя" name="first_name" value="Кирилл" type="text"}}
+        {{> profileInput label="Фамилия" name="second_name" value="Иванов" type="text"}}
+        {{> profileInput label="Имя в чате" name="display_name" value="Кирилл" type="text"}}
+        {{> profileInput label="Телефон" name="phone" value="+7 (926) 453-23-23" type="tel"}}
       </fieldset>
       <button class="{{styles.profile__btn}}">Изменить данные</button>
       <button class="{{styles.profile__btn}}">Изменить пароль</button>

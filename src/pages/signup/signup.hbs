@@ -2,36 +2,15 @@
   <form class="{{styles.signup__form}}">
     <h1 class="{{styles.signup__title}}">Регистрация</h1>
     <fieldset class="{{styles.signup__inputs}}">
-      <label class="{{styles.signup__input-label}}">
-        Почта
-        <input class="{{styles.signup__input}}">
-      </label>
-      <label class="{{styles.signup__input-label}}">
-        Логин
-        <input class="{{styles.signup__input}}">
-      </label>
-            <label class="{{styles.signup__input-label}}">
-        Имя
-        <input class="{{styles.signup__input}}">
-      </label>
-      <label class="{{styles.signup__input-label}}">
-        Фамилия
-        <input class="{{styles.signup__input}}">
-      </label>
-      <label class="{{styles.signup__input-label}}">
-        Телефон
-        <input class="{{styles.signup__input}}">
-      </label>
-      <label class="{{styles.signup__input-label}}">
-        Пароль
-        <input class="{{styles.signup__input}}" type="password">
-      </label>
-      <label class="{{styles.signup__input-label}}">
-        Пароль (еще раз)
-        <input class="{{styles.signup__input}}" type="password">
-      </label>
+      {{> authInput label="Почта" name="email" type="email"}}
+      {{> authInput label="Логин" name="login" type="text"}}
+      {{> authInput label="Имя" name="first_name" type="text"}}
+      {{> authInput label="Фамилия" name="second_name" type="text"}}
+      {{> authInput label="Телефон" name="phone" type="tel"}}
+      {{> authInput label="Пароль" name="password" type="password"}}
+      {{> authInput label="Пароль (ещё раз)" name="password" type="password"}}
     </fieldset>
-    <button class="{{styles.signup__submit-btn}}">Зарегистрироваться</button>
+    {{> button buttonText="Зарегистрироваться"}}
     <p onclick="renderPage('signin')" class="{{styles.signup__register-btn}}">Войти</p>
   </form>
 </main>

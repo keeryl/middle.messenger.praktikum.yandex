@@ -1,9 +1,15 @@
+import './markup/partials/AuthButton/AuthButton.js';
+import './markup/partials/AuthInput/AuthInput.js';
+import './markup/partials/ChatItem/ChatItem.js';
+import './markup/partials/ProfileInput/ProfileInput.js';
+
 import chatTemplate from './pages/chat/chat.js';
 import page_404Template from './pages/page_404/page_404.js';
 import page_500Template from './pages/page_500/page_500.js';
 import profileTemplate from './pages/profile/profile.js';
 import signinTemplate from './pages/signin/signin.js';
 import signupTemplate from './pages/signup/signup.js';
+
 
 
 const PAGES = {

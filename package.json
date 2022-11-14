@@ -4,7 +4,7 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel ./src/index.html",
+    "dev": "parcel ./src/index.html --open",
     "build": "parcel build ./src/index.html --no-cache",
     "start": "parcel build ./src/index.html --no-cache && node ./server.js"
   },
@@ -12,20 +12,19 @@
     "type": "git",
     "url": "git+https://github.com/keeryl/middle.messenger.praktikum.yandex.git"
   },
-  "author": "",
+  "author": "Keeryl",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/keeryl/middle.messenger.praktikum.yandex/issues"
   },
   "homepage": "https://github.com/keeryl/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
-    "express": "^4.18.2",
-    "npm": "^9.1.1",
-    "parcel": "^2.7.0"
+    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
+    "parcel": "2.7.0"
   },
   "dependencies": {
-    "handlebars": "^4.7.7"
+    "handlebars": "4.7.7",
+    "express": "4.18.2"
   },
   "engines": {
     "node": ">= 12.0"

@@ -97,7 +97,7 @@
   border: none;
 }
 
-.profile__input-label {
+/* .profile__input-label {
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -132,7 +132,7 @@
 
 .profile__input:focus {
   outline: none;
-}
+} */
 
 .profile__btn {
   width: 100%;

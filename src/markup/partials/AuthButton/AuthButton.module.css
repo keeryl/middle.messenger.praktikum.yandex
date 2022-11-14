@@ -1,0 +1,30 @@
+.submit-btn {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+  color: #fff;
+  background: #3369F3;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  width: 280px;
+  height: 37px;
+  opacity: 1;
+  transition: opacity .2s linear;
+}
+
+.submit-btn:hover {
+  opacity: .8;
+}
+
+.submit-btn:active {
+  border: none;
+}
+
+.submit-btn:disabled {
+  border: none;
+  cursor: default;
+  opacity: 1;
+  background: #F8F8F8;
+  color: #C2C2C2;
+}

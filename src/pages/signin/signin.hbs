@@ -3,16 +3,10 @@
   <form class="{{styles.signin__form}}">
     <h1 class="{{styles.signin__title}}">Войти</h1>
     <fieldset class="{{styles.signin__inputs}}">
-      <label class="{{styles.signin__input-label}}">
-        Логин
-        <input class="{{styles.signin__input}}">
-      </label>
-      <label class="{{styles.signin__input-label}}">
-        Пароль
-        <input class="{{styles.signin__input}}" type="password">
-      </label>
+      {{> authInput label="Логин" name="login" type="text"}}
+      {{> authInput label="Пароль" name="password" type="password"}}
     </fieldset>
-    <button class="{{styles.signin__submit-btn}}">Авторизоваться</button>
+    {{> button buttonText="Авторизоваться"}}
     <p onclick="renderPage('signup')" class="{{styles.signin__register-btn}}">Нет аккаунта?</p>
   </form>
 </main>
