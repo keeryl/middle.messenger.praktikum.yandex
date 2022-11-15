@@ -1,0 +1,16 @@
+<main class="{{styles.signup}}">
+  <form class="{{styles.signup__form}}">
+    <h1 class="{{styles.signup__title}}">Регистрация</h1>
+    <fieldset class="{{styles.signup__inputs}}">
+      {{> authInput label="Почта" name="email" type="email"}}
+      {{> authInput label="Логин" name="login" type="text"}}
+      {{> authInput label="Имя" name="first_name" type="text"}}
+      {{> authInput label="Фамилия" name="second_name" type="text"}}
+      {{> authInput label="Телефон" name="phone" type="tel"}}
+      {{> authInput label="Пароль" name="password" type="password"}}
+      {{> authInput label="Пароль (ещё раз)" name="password" type="password"}}
+    </fieldset>
+    {{> button buttonText="Зарегистрироваться"}}
+    <p onclick="renderPage('signin')" class="{{styles.signup__register-btn}}">Войти</p>
+  </form>
+</main>
