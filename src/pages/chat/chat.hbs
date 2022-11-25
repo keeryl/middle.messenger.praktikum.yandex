@@ -20,7 +20,24 @@
     </ul>
   </section>
   <section class="{{styles.chat__right-window}}">
-    <p class="{{styles.chat__message}}">Выберите чат чтобы отправить сообщение</p>
+    <div class="{{styles.chat__header}}">
+      <div class="{{styles.chat__info}}">
+        <div class="{{styles.chat__image}}"></div>
+        <h2 class="{{styles.chat__title}}"></h2>
+      </div>
+      <button class="{{styles.chat__settings-btn}}"></button>
+    </div>
+
+    <div class="{{styles.chat__messages}}">
+      <article class="{{styles.chat__message}}"></article>
+    </div>
+
+    <div class="{{styles.message__input}}">
+      <button class="{{styles.typer__settings-btn}}"></button>
+      <input class="{{styles.typer__input}}">
+      <button class="{{styles.typer__submit-btn}}"></button>
+    </div>
+    {{!-- <p class="{{styles.chat__message}}">Выберите чат чтобы отправить сообщение</p>
     <nav class="{{styles.chat__temporary-nav}}">
       <ul class="{{styles.chat__temporary-nav__items}}">
         <li class="{{styles.chat__temporary-nav__item}}">
@@ -36,6 +53,6 @@
           <p onclick="renderPage('signup')" class="{{styles.temporary-nav__link}}">Регистрация</p>
         </li>
       </ul>
-    </nav>
+    </nav> --}}
   </section>
 </main>
