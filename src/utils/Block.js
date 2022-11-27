@@ -11,8 +11,9 @@ export class Block {
     FLOW_RENDER: "flow:render"
   };
 
-  constructor(propsWithChildren) {
-    this._element = null;
+   _element = null;
+
+  constructor(propsWithChildren = {}) {
     this.id = nanoid(6);
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
     this.children = children;
@@ -24,7 +25,7 @@ export class Block {
   }
 
   init() {
-    this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   componentDidMount() {}
@@ -55,8 +56,9 @@ export class Block {
   _render() {
     const template = this.render();
     const fragment = this.compile(template, {...this.props, children: this.children});
+    console.log(this._element)
     const newElement = fragment.firstElementChild;
-    this._element.replaceWith(newElement);
+    this._element?.replaceWith(newElement);
     this._element = newElement;
 
     this._addEvents();
@@ -64,17 +66,16 @@ export class Block {
 
   compile(template, context) {
     const contextAndStubs = { ...context };
-    // Object.entries(this.children).forEach(([name, component]) => {
-    //   contextAndStubs[name] = `<div data-id="${component.id}"></div`;
-    // });
     const compiled = Handlebars.compile(template);
+    console.log(contextAndStubs)
     const temp = document.createElement('template');
     temp.innerHTML = compiled(contextAndStubs);
-    Object.entries(this.children).forEach(([name, component]) => {
-      const stub = temp .querySelector(`[data-id=${component.id}]`);
+    Object.entries(this.children).forEach(([_, component]) => {
+      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
       if(!stub) {
         return;
       }
+      component.getContent().append(...Array.from(stub.childNodes));
       stub.replaceWith(component.getContent());
     });
     return temp.content;
@@ -139,6 +140,10 @@ export class Block {
   }
 
   getContent() {
+    return this.element;
+  }
+
+  get element() {
     return this._element;
   }
 
