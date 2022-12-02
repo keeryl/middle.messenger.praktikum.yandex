@@ -13,18 +13,22 @@ export class Block {
 
    _element = null;
 
-  constructor(propsWithChildren = {}) {
+  constructor(propsWithChildren) {
     this.id = nanoid(6);
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
+    // console.log(props)
     this.children = children;
+    this.props = this._makePropsProxy(props);
     const eventBus = new EventBus();
     this.eventBus = () => eventBus;
-    this.props = this._makePropsProxy(props);
     this._registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  init() {
+  init() {}
+
+  _init() {
+    this.init()
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
@@ -56,7 +60,7 @@ export class Block {
   _render() {
     const template = this.render();
     const fragment = this.compile(template, {...this.props, children: this.children});
-    console.log(this._element)
+    // console.log(this._element)
     const newElement = fragment.firstElementChild;
     this._element?.replaceWith(newElement);
     this._element = newElement;
@@ -67,7 +71,7 @@ export class Block {
   compile(template, context) {
     const contextAndStubs = { ...context };
     const compiled = Handlebars.compile(template);
-    console.log(contextAndStubs)
+    // console.log(contextAndStubs)
     const temp = document.createElement('template');
     temp.innerHTML = compiled(contextAndStubs);
     Object.entries(this.children).forEach(([_, component]) => {
@@ -82,7 +86,7 @@ export class Block {
   }
 
   _registerEvents(eventBus) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
@@ -104,10 +108,11 @@ export class Block {
     const children = {};
     Object.entries(childrenAndProps).forEach(([key, value]) => {
       if (value instanceof Block) {
-         children[key] = valuel;
+         children[key] = value;
       } else {
         props[key] = value;       }
     });
+    // console.log(props)
     return { props, children };
   }
 

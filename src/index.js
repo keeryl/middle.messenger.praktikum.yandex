@@ -1,39 +1,39 @@
-// import './markup/partials/AuthButton/AuthButton.js';
-// import './markup/partials/AuthInput/AuthInput.js';
-// import './markup/partials/ChatItem/ChatItem.js';
-// import './markup/partials/ProfileInput/ProfileInput.js';
 
-import Chat from './pages/chat/chat.js';
+import Chat from './pages/Chat/Chat.js';
+import Page_404 from './pages/Page_404/Page_404.js';
+import Page_500 from './pages/Page_500/Page_500.js';
+import Profile from './pages/Profile/Profile.js';
+import Signin from './pages/Signin/Signin.js';
+import Signup from './pages/Signup/Signup.js';
 
-// import page_404Template from './pages/page_404/page_404.js';
-// import page_500Template from './pages/page_500/page_500.js';
-// import profileTemplate from './pages/profile/profile.js';
-// import signinTemplate from './pages/signin/signin.js';
-// import signupTemplate from './pages/signup/signup.js';
+const PAGES = {
+  'chat': Chat,
+  'page_404': Page_404,
+  'page_500': Page_500,
+  'profile': Profile,
+  'signin': Signin,
+  'signup': Signup,
+}
 
-// const PAGES = {
-//   'chat': chatTemplate,
-//   'page_404': page_404Template,
-//   'page_500': page_500Template,
-//   'profile': profileTemplate,
-//   'signin': signinTemplate,
-//   'signup': signupTemplate,
-// }
+const chatData = {
+  userName:'Андрей',
+  lastMessage: "last message",
+  counter: 3,
+  time: "12:05"
+}
 
-// function renderPage(name) {
-//   const root = document.querySelector('#app');
-//   const template = PAGES[name];
-//   const html = template;
-//   root.innerHTML = html;
-// }
+function renderPage(name) {
+  const root = document.querySelector('#app');
+  const component = PAGES[name];
+  const page = new component(chatData);
+  root.innerHTML = '';
+  root.append(page.getContent());
+}
 
-// window.renderPage = renderPage;
+window.renderPage = renderPage;
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('#app');
   const chat = new Chat();
-  console.log(chat);
   root.append(chat.getContent());
-  // const html = chatTemplate;
-  // root.innerHTML = html;
 });
