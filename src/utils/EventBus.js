@@ -5,6 +5,7 @@ export class EventBus {
   }
 
   on(event, callback) {
+    // console.log(event, callback);
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -12,6 +13,7 @@ export class EventBus {
   }
 
   off(event, callback) {
+    // console.log(event, callback);
     if (!this.listeners[event]) {
       throw new Error(`Нет события ${event}`)
     }
@@ -21,6 +23,8 @@ export class EventBus {
   }
 
   emit(event, ...args) {
+    // console.log(event);
+    // console.log(...args)
     if (!this.listeners[event]) {
       throw new Error(`Нет события ${event}`)
     }

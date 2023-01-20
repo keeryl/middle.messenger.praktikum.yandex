@@ -4,13 +4,27 @@ import registerComponent from '../../utils/registerComponent.js';
 
 class AuthButton extends Block {
   constructor(props) {
-    super({styles, props});
+    super({
+      styles,
+      ...props,
+    });
   }
+
+  componentDidUpdate(oldProps, newProps) {
+    if (oldProps.isButtonDisabled === newProps.isButtonDisabled) {
+      return false;
+    }
+    return true;
+  }
+
 
   render() {
     return `
-      <button class="{{styles.button}}">
-        {{props.buttonText}}
+      <button
+        class="{{styles.button}}"
+       {{isButtonDisabled}}
+      >
+        {{buttonText}}
       </button>
     `
   }

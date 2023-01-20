@@ -2,10 +2,10 @@ import { Block } from './Block.js';
 import Handlebars from 'handlebars';
 
 function registerComponent(name, Component) {
-  Handlebars.registerHelper(name, function({ data, fn, hash }) {
-
     // console.log(Component);
     // console.log(name);
+  Handlebars.registerHelper(name, function({ data, fn, hash }) {
+
     // console.log(data);
     // console.log(fn);
     // console.log(hash);

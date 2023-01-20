@@ -16,7 +16,6 @@ export class Block {
   constructor(propsWithChildren) {
     this.id = nanoid(6);
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
-    // console.log(props)
     this.children = children;
     this.props = this._makePropsProxy(props);
     const eventBus = new EventBus();
@@ -45,7 +44,7 @@ export class Block {
   componentDidUpdate(oldProps, newProps) {
     return true;
   }
-  _componentDidUpdate() {
+  _componentDidUpdate(oldProps, newProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -60,18 +59,17 @@ export class Block {
   _render() {
     const template = this.render();
     const fragment = this.compile(template, {...this.props, children: this.children});
-    // console.log(this._element)
     const newElement = fragment.firstElementChild;
     this._element?.replaceWith(newElement);
     this._element = newElement;
-
     this._addEvents();
   }
 
   compile(template, context) {
+    //console.log(`method compile; template: ${template}}`);
+    //console.log(context);
     const contextAndStubs = { ...context };
     const compiled = Handlebars.compile(template);
-    // console.log(contextAndStubs)
     const temp = document.createElement('template');
     temp.innerHTML = compiled(contextAndStubs);
     Object.entries(this.children).forEach(([_, component]) => {
@@ -81,6 +79,7 @@ export class Block {
       }
       component.getContent().append(...Array.from(stub.childNodes));
       stub.replaceWith(component.getContent());
+      component.dispatchComponentDidMount();
     });
     return temp.content;
   }
@@ -112,7 +111,6 @@ export class Block {
       } else {
         props[key] = value;       }
     });
-    // console.log(props)
     return { props, children };
   }
 
@@ -125,6 +123,8 @@ export class Block {
 
   _makePropsProxy(props) {
 
+    const self = this;
+
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop];
@@ -134,7 +134,7 @@ export class Block {
       set(target, prop, value) {
         const oldTarget = {...target}
         target[prop] = value;
-        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...oldTarget }, { ...target });
         return true;
       },
 

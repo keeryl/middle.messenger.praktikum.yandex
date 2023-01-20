@@ -15,7 +15,7 @@ class ChatInput extends Block {
 
       <section class="{{styles.chatInput}}">
         <button class="{{styles.settingsBtn}}"></button>
-        <input class="{{styles.messageInput}}">
+        <input name="message" class="{{styles.messageInput}}">
         <button class="{{styles.submitBtn}}"></button>
       </section>
 
