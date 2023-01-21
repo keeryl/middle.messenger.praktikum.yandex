@@ -11,15 +11,28 @@ class Signup extends Block {
       ...props,
       error: '',
       styles,
-      isFormInvalid: true,
+      isEmailInvalid: () => Object.values(this.props.errors.email).some(v => v === false),
+      isLoginInvalid: () => Object.values(this.props.errors.login).some(v => v === false),
+      isFirstNameInValid: () => Object.values(this.props.errors.first_name).some(v => v === false),
+      isSecondNameInvalid: () => Object.values(this.props.errors.second_name).some(v => v === false),
+      isPhoneInvalid: () => Object.values(this.props.errors.phone).some(v => v === false),
+      isPasswordInvalid: () => Object.values(this.props.errors.password).some(v => v === false),
+      isPasswordCheckInvalid: () => Object.values(this.props.errors.passwordCheck).some(v => v === false),
+      isFormInvalid: () =>
+        this.props.isEmailInvalid() ||
+        this.props.isLoginInvalid() ||
+        this.props.isFirstNameInValid() ||
+        this.props.isSecondNameInvalid() ||
+        this.props.isPhoneInvalid() ||
+        this.props.isPasswordInvalid() ||
+        this.props.isPasswordCheckInvalid(),
       isButtonDisabled: 'disabled',
       onFocusout: (e) => this.handleFocusout(e),
       onChange: (e) => this.handleChange(e),
       events: {
-        submit: (e) => this.onSubmit(e)
+        submit: (e) => this.handleSubmit(e)
       },
     });
-    this.formValues = {}
     this.isMatch = () => this.checkPassword()
   }
 
@@ -29,10 +42,17 @@ class Signup extends Block {
   }
 
   checkPassword() {
-    return this.formValues.password === this.formValues.passwordCheck
+    return this.props.formValues.password === this.props.formValues.passwordCheck
   }
 
   handleFocusout(event) {
+    this.setProps({
+      error: this.isMatch() ? '' : 'Пароли не совпадают'
+    })
+  }
+
+  handleChange(event) {
+    console.log('onchange')
     const { name, value } = event.target;
     this.setProps({
       formValues: {
@@ -41,31 +61,14 @@ class Signup extends Block {
       }
     });
     this.setProps({
-      error: this.isMatch() ? '' : 'Пароли не совпадают'
-    })
-  }
-
-  handleChange(event) {
-    const { name, value } = event.target;
-    this.formValues = {...this.formValues, [name]: value}
-    this.setProps({
       errors: {
         ...this.props.errors,
         [name]: this.props.validateInput(name, value)
       }
     });
-    this.setProps({
-      isFormInvalid: this.props.validateForm(
-        ['email','login','first_name','second_name','phone','password','passwordCheck'],
-        this.props.errors
-      ),
-
-    });
 
     this.setProps({
-      isButtonDisabled: !this.props.validateForm(
-        ['email','login','first_name','second_name','phone','password','passwordCheck'],
-        this.props.errors) && this.isMatch() ? '' : 'disabled',
+      isButtonDisabled: !this.props.isFormInvalid() && this.isMatch() ? '' : 'disabled',
     })
 
     this.setProps({

@@ -41,11 +41,7 @@ class AuthInput extends Block {
         });
       }
     });
-
-    if (oldProps.value === newProps.value) {
-      return false;
-    }
-    return true;
+    return false;
   }
 
   init() {}

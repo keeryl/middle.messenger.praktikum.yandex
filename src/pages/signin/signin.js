@@ -9,7 +9,9 @@ class Signin extends Block {
     super({
       ...props,
       styles,
-      isFormInvalid: true,
+      isLoginInvalid: () => Object.values(this.props.errors.login).some(v => v === false),
+      isPasswordInvalid: () => Object.values(this.props.errors.password).some(v => v === false),
+      isFormInvalid: () => this.props.isLoginInvalid() || this.props.isPasswordInvalid(),
       isButtonDisabled: 'disabled',
       onFocusout: (e) => this.handleFocusout(e),
       onChange: (e) => this.handleChange(e),
@@ -17,9 +19,13 @@ class Signin extends Block {
         submit: (e) => this.handleSubmit(e)
       }
     });
+
   }
 
-  handleFocusout(event) {
+  handleFocusout(event) {}
+
+  handleChange(event) {
+
     const { name, value } = event.target;
     this.setProps({
       formValues: {
@@ -27,10 +33,6 @@ class Signin extends Block {
         [name]: value
       }
     });
-  }
-
-  handleChange(event) {
-    const { name, value } = event.target;
     this.setProps({
       errors: {
         ...this.props.errors,
@@ -38,8 +40,7 @@ class Signin extends Block {
       }
     });
     this.setProps({
-      isFormInvalid: this.props.validateForm(['login', 'password'], this.props.errors),
-      isButtonDisabled: !this.props.validateForm(['login', 'password'], this.props.errors) ? '' : 'disabled'
+      isButtonDisabled: !this.props.isFormInvalid() ? '' : 'disabled'
     });
   }
 

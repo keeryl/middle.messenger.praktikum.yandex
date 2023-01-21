@@ -50,11 +50,11 @@ const useInputValidation = () => {
   const validators = {
     email: {
       required: (value) => value !== '',
-      format: (value) => /^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,})$/i.test(value),
+      format: (value) => /^[^-_](?!.*_-)(?!.*-_)(?!.*--)(?!.*__)((?!-_)[(\d\w)|-]+)@([a-z]+)\.([a-z]{2,})$/gmi.test(value),
     },
     login: {
       required: (value) => value !== '',
-      format: (value) => /^[a-z0-9_-]{3,16}$/.test(value),
+      format: (value) => /^(?!.*_-)(?!.*-_)(?!.*--)(?!.*__)([(\d\w)|-]{3,16})(?<!-|_)$/gm.test(value),
     },
     first_name: {
       required: (value) => value !== '',
