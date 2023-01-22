@@ -42,7 +42,7 @@ const useInputValidation = () => {
       format: false,
     },
     message: {
-      required: true,
+      required: false,
     }
   }
 
@@ -50,7 +50,7 @@ const useInputValidation = () => {
   const validators = {
     email: {
       required: (value) => value !== '',
-      format: (value) => /^[^-_](?!.*_-)(?!.*-_)(?!.*--)(?!.*__)((?!-_)[(\d\w)|-]+)@([a-z]+)\.([a-z]{2,})$/gmi.test(value),
+      format: (value) => /^[^-_\W](?!.*_-)(?!.*-_)(?!.*--)(?!.*__)((?!-_)[(\d\w)|-]+)@([a-z]+)\.([a-z]{2,})$/gmi.test(value),
     },
     login: {
       required: (value) => value !== '',
@@ -58,23 +58,26 @@ const useInputValidation = () => {
     },
     first_name: {
       required: (value) => value !== '',
-      format: (value) => /^[a-z0-9_-]{3,16}$/.test(value),
+      format: (value) => /^[A-ZА-ЯЁ]{1}[a-zа-яё]{2,15}$/.test(value),
     },
     second_name: {
       required: (value) => value !== '',
-      format: (value) => /^[a-z0-9_-]{3,16}$/.test(value),
+      format: (value) => /^[A-ZА-ЯЁ]{1}[a-zа-яё]{2,15}$/.test(value),
     },
     phone: {
       required: (value) => value !== '',
-      format: (value) => /^[0-9]{10,15}$/.test(value),
+      format: (value) => /\+?[\d]{10,15}$/.test(value),
     },
     password: {
       required: (value) => value !== '',
-      format: (value) => /^[a-z0-9]{8,40}$/.test(value),
+      format: (value) => /^(?=.*?[0-9])(?=.*?[A-Z])[\S]{8,40}$/.test(value),
     },
     passwordCheck: {
       required: (value) => value !== '',
-      format: (value) => /^[a-z0-9]{8,40}$/.test(value),
+      format: (value) => /^(?=.*?[0-9])(?=.*?[A-Z])[\S]{8,40}$/.test(value),
+    },
+    message: {
+      required: (value) => value !== '',
     }
   }
 

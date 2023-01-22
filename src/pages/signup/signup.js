@@ -52,7 +52,6 @@ class Signup extends Block {
   }
 
   handleChange(event) {
-    console.log('onchange')
     const { name, value } = event.target;
     this.setProps({
       formValues: {
@@ -135,7 +134,7 @@ class Signup extends Block {
               label="Имя"
               name="first_name"
               type="text"
-              errorMessage="Введите имя. Первая буква должна быть заглавной, без пробелов, без цифр, без спецсимволов"
+              errorMessage="Введите имя. Первая буква заглавная, без пробелов, без цифр, без спецсимволов"
               value=formValues.first_name
               errors=errors.first_name
               onFocusout=onFocusout
@@ -145,7 +144,7 @@ class Signup extends Block {
               label="Фамилия"
               name="second_name"
               type="text"
-              errorMessage="Введите фамилию. Первая буква должна быть заглавной, без пробелов, без цифр, без спецсимволов"
+              errorMessage="Введите фамилию. Первая буква заглавная, без пробелов, без цифр, без спецсимволов"
               value=formValues.second_name
               errors=errors.second_name
               onFocusout=onFocusout

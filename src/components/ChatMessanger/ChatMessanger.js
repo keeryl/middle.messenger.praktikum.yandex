@@ -9,8 +9,20 @@ class ChatMessanger extends Block {
   constructor(props) {
     super({
       styles,
-      props
+      ...props
     });
+  }
+
+  componentDidUpdate(oldProps, newProps) {
+    Object.values(this.children).forEach(component => {
+      if (component instanceof ChatInput) {
+        component.setProps({
+          message: newProps.message,
+          buttonState: newProps.buttonState,
+        });
+      }
+    });
+    return false;
   }
 
   render() {
@@ -19,7 +31,11 @@ class ChatMessanger extends Block {
 
         {{{ ChatHeader }}}
         {{{ ChatMessages }}}
-        {{{ ChatInput }}}
+        {{{ ChatInput
+          message=message
+          onMessageInput=onMessageInput
+          buttonState=buttonState
+        }}}
 
       </section>
     `
