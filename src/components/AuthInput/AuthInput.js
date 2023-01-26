@@ -30,7 +30,6 @@ class AuthInput extends Block {
     this.setProps({
       error: this.props.isValid() ? '' : this.props.errorMessage
     });
-
   }
 
   componentDidUpdate(oldProps, newProps) {

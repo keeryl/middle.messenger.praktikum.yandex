@@ -6,8 +6,10 @@ const useInputValidation = () => {
     login: '',
     first_name: '',
     second_name: '',
+    display_name: '',
     phone: '',
     password: '',
+    newPassword: '',
     passwordCheck: '',
     message: ''
   }
@@ -29,11 +31,19 @@ const useInputValidation = () => {
       required: false,
       format: false,
     },
+    display_name: {
+      required: false,
+      format: false
+    },
     phone: {
       required: false,
       format: false,
     },
     password: {
+      required: false,
+      format: false
+    },
+    newPassword: {
       required: false,
       format: false
     },
@@ -64,11 +74,19 @@ const useInputValidation = () => {
       required: (value) => value !== '',
       format: (value) => /^[A-ZА-ЯЁ]{1}[a-zа-яё]{2,15}$/.test(value),
     },
+    display_name: {
+      required: (value) => value !== '',
+      format: (value) => /^[A-ZА-ЯЁ]{1}[a-zа-яё]{2,15}$/.test(value),
+    },
     phone: {
       required: (value) => value !== '',
       format: (value) => /\+?[\d]{10,15}$/.test(value),
     },
     password: {
+      required: (value) => value !== '',
+      format: (value) => /^(?=.*?[0-9])(?=.*?[A-Z])[\S]{8,40}$/.test(value),
+    },
+    newPassword: {
       required: (value) => value !== '',
       format: (value) => /^(?=.*?[0-9])(?=.*?[A-Z])[\S]{8,40}$/.test(value),
     },

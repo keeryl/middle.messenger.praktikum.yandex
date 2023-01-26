@@ -36,7 +36,7 @@ class ChatInput extends Block {
     return `
 
       <form class="{{styles.chatInput}}">
-        <button class="{{styles.settingsBtn}}"></button>
+        <button class="{{styles.settingsBtn}}" type="button"></button>
         <input name="message" class="{{styles.messageInput}}" value="{{message}}">
         {{{ ChatInputButton buttonState=buttonState }}}
       </form>

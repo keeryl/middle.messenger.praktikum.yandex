@@ -31,6 +31,6 @@ window.renderPage = renderPage;
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('#app');
-  const chat = new Chat({formValues, errors, validateInput, validateForm});
-  root.append(chat.getContent());
+  const profile = new Profile({formValues, errors, validateInput, validateForm});
+  root.append(profile.getContent());
 });
