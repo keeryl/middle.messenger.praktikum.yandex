@@ -1,16 +1,15 @@
-import { Block } from '../../utils/Block.js';
-import ProfileInput from '../../components/ProfileInput/ProfileInput.js';
-import ProfileChangeDataBtn from '../../components/ProfileChangeDataBtn/ProfileChangeDataBtn.js';
-import Button from '../../components/Button/Button.js';
-import ProfileChangePasswordPopup from '../../components/ProfileChangePasswordPopup/ProfileChangePasswordPopup.js';
+import { Block } from '../../utils/Block';
+import ProfileInput from '../../components/ProfileInput/ProfileInput';
+import ProfileChangeDataBtn from '../../components/ProfileChangeDataBtn/ProfileChangeDataBtn';
+import Button from '../../components/Button/Button';
+import ProfileChangePasswordPopup from '../../components/ProfileChangePasswordPopup/ProfileChangePasswordPopup';
 import * as styles from './Profile.module.css';
-import registerComponent from '../../utils/registerComponent.js';
-
+import registerComponent from '../../utils/registerComponent';
 import * as popup from '../../components/ProfileChangePasswordPopup/ProfileChangePasswordPopup.module.css';
 
 
 class Profile extends Block {
-  constructor(props) {
+  constructor(props: any) {
     super({
       styles,
       ...props,
@@ -26,15 +25,13 @@ class Profile extends Block {
       passwordPopupIsOpened: false,
       handlePasswordPopup: () => this.handlePasswordPopup(),
       onDataChange: () => this.handleChangeData(),
-      onChange: (e) => this.handleInputChange(e),
-      onFocusout: (e) => this.handleFocusout(e),
+      onChange: (e: Event) => this.handleInputChange(e),
+      onFocusout: (e: Event) => this.handleFocusout(e),
       isButtonDisabled: 'disabled',
       events: {
         reset: () => this.handleLogout()
       }
     });
-    // this.props.error = () => (this.props.formValues.newPassword !== this.props.formValues.passwordCheck) ? 'Пароли не совпадают' : '';
-    // this.props.samePasswordError = () => (this.props.formValues.password !== this.props.formValues.newPassword) ? '' : 'Новый пароль совпадает с предыдущим';
   }
 
   checkFormValidity () {
@@ -62,7 +59,7 @@ class Profile extends Block {
   }
 
   getPasswordValidityError () {
-    const samePasswordError = this.props.formValues.password === this.props.formValues.newPassword ? 'Новый пароль не введен или совпадает с предыдущим.' : '';
+    const samePasswordError = this.props.formValues.password === this.props.formValues.newPassword ? 'Новый пароль совпадает с предыдущим.' : '';
     const passwordMatchError = this.props.formValues.newPassword !== this.props.formValues.passwordCheck ? 'Пароли не совпадают' : '';
     return `${samePasswordError} ${passwordMatchError}`
   }
@@ -105,16 +102,14 @@ class Profile extends Block {
     console.log('LOGOUT');
   }
 
-  handleFocusout(event) {
-    const { name, value } = event.target;
+  handleFocusout(event: Event) {
     this.setProps({
       isButtonDisabled: this.checkFormValidity() ? '' : 'disabled',
-      error: this.getPasswordValidityError(),
     });
   }
 
-  handleInputChange(event) {
-    const { name, value } = event.target;
+  handleInputChange(event: Event) {
+    const { name, value } = event.target as HTMLInputElement;
     this.setProps({
       formValues: {
         ...this.props.formValues,
@@ -169,24 +164,12 @@ class Profile extends Block {
         phone: {
           required: true,
           format: true,
-        },
-        // password: {
-        //   required: true,
-        //   format: true,
-        // },
-        // newPassword: {
-        //   required: true,
-        //   format: true
-        // },
-        // passwordCheck: {
-        //   required: true,
-        //   format: true,
-        // }
+        }
       }
     });
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
       if (component instanceof ProfileInput) {
         component.setProps({
@@ -308,6 +291,5 @@ class Profile extends Block {
 }
 
 registerComponent('Profile', Profile);
-
 
 export default Profile;

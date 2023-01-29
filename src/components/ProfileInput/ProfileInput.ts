@@ -1,40 +1,39 @@
 import * as styles from './ProfileInput.module.css';
-import { Block } from '../../utils/Block.js';
-import registerComponent from '../../utils/registerComponent.js';
-import InputErrorMessage from '../../components/InputErrorMessage/InputErrorMessage.js';
+import { Block } from '../../utils/Block';
+import registerComponent from '../../utils/registerComponent';
+import InputErrorMessage from '../InputErrorMessage/InputErrorMessage';
 
 
 class ProfileInput extends Block {
 
-  constructor(props) {
+  constructor(props: any) {
     super({
       styles,
       ...props,
       error: '',
       isValid: () => (this.props.errors.required && this.props.errors.format),
       events: {
-        input: (event) => this.handleInputChange(event),
-        focusout: (event) => this.handleFocusout(event)
+        input: (event: Event) => this.handleInputChange(event),
+        focusout: (event: Event) => this.handleFocusout(event)
       },
      });
-    // console.log(this.props);
   }
 
-  handleFocusout(event) {
+  handleFocusout(event: Event) {
     this.props.onFocusout(event);
     this.setProps({
       error: this.props.isValid() ? '' : this.props.errorMessage
     });
   }
 
-  handleInputChange (event) {
+  handleInputChange (event: Event) {
     this.props.onChange(event);
     this.setProps({
       error: this.props.isValid() ? '' : this.props.errorMessage
     });
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
       if (component instanceof InputErrorMessage) {
         component.setProps({

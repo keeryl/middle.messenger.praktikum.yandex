@@ -1,24 +1,24 @@
-import { Block } from '../../utils/Block.js';
-import AuthButton from '../../components/AuthButton/AuthButton.js';
-import AuthInput from '../../components/AuthInput/AuthInput.js';
-import InputErrorMessage from '../../components/InputErrorMessage/InputErrorMessage.js';
+import { Block } from '../../utils/Block';
+import AuthButton from '../../components/AuthButton/AuthButton';
+import AuthInput from '../../components/AuthInput/AuthInput';
+import InputErrorMessage from '../../components/InputErrorMessage/InputErrorMessage';
 import * as styles from './Signup.module.css';
 
 class Signup extends Block {
-
-  constructor(props) {
+  isMatch: Function
+  constructor(props: any) {
     super({
       ...props,
       error: '',
       styles,
-      isEmailInvalid: () => Object.values(this.props.errors.email).some(v => v === false),
-      isLoginInvalid: () => Object.values(this.props.errors.login).some(v => v === false),
-      isFirstNameInValid: () => Object.values(this.props.errors.first_name).some(v => v === false),
-      isSecondNameInvalid: () => Object.values(this.props.errors.second_name).some(v => v === false),
-      isPhoneInvalid: () => Object.values(this.props.errors.phone).some(v => v === false),
-      isPasswordInvalid: () => Object.values(this.props.errors.password).some(v => v === false),
-      isPasswordCheckInvalid: () => Object.values(this.props.errors.passwordCheck).some(v => v === false),
-      isFormInvalid: () =>
+      isEmailInvalid: (): boolean => Object.values(this.props.errors.email).some(v => v === false),
+      isLoginInvalid: (): boolean => Object.values(this.props.errors.login).some(v => v === false),
+      isFirstNameInValid: (): boolean => Object.values(this.props.errors.first_name).some(v => v === false),
+      isSecondNameInvalid: (): boolean => Object.values(this.props.errors.second_name).some(v => v === false),
+      isPhoneInvalid: (): boolean => Object.values(this.props.errors.phone).some(v => v === false),
+      isPasswordInvalid: (): boolean => Object.values(this.props.errors.password).some(v => v === false),
+      isPasswordCheckInvalid: (): boolean => Object.values(this.props.errors.passwordCheck).some(v => v === false),
+      isFormInvalid: (): boolean =>
         this.props.isEmailInvalid() ||
         this.props.isLoginInvalid() ||
         this.props.isFirstNameInValid() ||
@@ -27,16 +27,16 @@ class Signup extends Block {
         this.props.isPasswordInvalid() ||
         this.props.isPasswordCheckInvalid(),
       isButtonDisabled: 'disabled',
-      onFocusout: (e) => this.handleFocusout(e),
-      onChange: (e) => this.handleChange(e),
+      onFocusout: () => this.handleFocusout(),
+      onChange: (e: Event) => this.handleChange(e),
       events: {
-        submit: (e) => this.handleSubmit(e)
+        submit: (e: Event) => this.handleSubmit(e)
       },
     });
     this.isMatch = () => this.checkPassword()
   }
 
-  handleSubmit(event) {
+  handleSubmit(event: Event) {
     event.preventDefault();
     console.log('SUBMIT', this.props.formValues);
   }
@@ -45,14 +45,14 @@ class Signup extends Block {
     return this.props.formValues.password === this.props.formValues.passwordCheck
   }
 
-  handleFocusout(event) {
+  handleFocusout() {
     this.setProps({
       error: this.isMatch() ? '' : 'Пароли не совпадают'
     })
   }
 
-  handleChange(event) {
-    const { name, value } = event.target;
+  handleChange(event: Event) {
+    const { name, value } = event.target as HTMLInputElement;
     this.setProps({
       formValues: {
         ...this.props.formValues,
@@ -79,7 +79,7 @@ class Signup extends Block {
   init() {}
 
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
       if (component instanceof AuthInput) {
         component.setProps({
@@ -197,4 +197,3 @@ class Signup extends Block {
 }
 
 export default Signup;
-

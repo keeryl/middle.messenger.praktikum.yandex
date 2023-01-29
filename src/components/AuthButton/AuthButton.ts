@@ -1,16 +1,16 @@
-import { Block } from '../../utils/Block.js';
+import { Block } from '../../utils/Block';
 import * as styles from './AuthButton.module.css';
-import registerComponent from '../../utils/registerComponent.js';
+import registerComponent from '../../utils/registerComponent';
 
 class AuthButton extends Block {
-  constructor(props) {
+  constructor(props: any) {
     super({
       styles,
       ...props,
     });
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: any, newProps: any) {
     if (oldProps.isButtonDisabled === newProps.isButtonDisabled) {
       return false;
     }

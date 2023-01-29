@@ -1,11 +1,11 @@
-import { Block } from '../../utils/Block.js';
-import AuthButton from '../../components/AuthButton/AuthButton.js';
-import AuthInput from '../../components/AuthInput/AuthInput.js';
+import { Block } from '../../utils/Block';
+import AuthButton from '../../components/AuthButton/AuthButton';
+import AuthInput from '../../components/AuthInput/AuthInput';
 import * as styles from './signin.module.css';
 
 
 class Signin extends Block {
-  constructor(props) {
+  constructor(props: any) {
     super({
       ...props,
       styles,
@@ -13,20 +13,16 @@ class Signin extends Block {
       isPasswordInvalid: () => Object.values(this.props.errors.password).some(v => v === false),
       isFormInvalid: () => this.props.isLoginInvalid() || this.props.isPasswordInvalid(),
       isButtonDisabled: 'disabled',
-      onFocusout: (e) => this.handleFocusout(e),
-      onChange: (e) => this.handleChange(e),
+      onChange: (e: Event) => this.handleChange(e),
       events: {
-        submit: (e) => this.handleSubmit(e)
+        submit: (e: Event) => this.handleSubmit(e)
       }
     });
 
   }
 
-  handleFocusout(event) {}
-
-  handleChange(event) {
-
-    const { name, value } = event.target;
+  handleChange(event: Event) {
+    const { name, value } = event.target as HTMLInputElement;
     this.setProps({
       formValues: {
         ...this.props.formValues,
@@ -44,13 +40,13 @@ class Signin extends Block {
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit(event: Event) {
     event.preventDefault();
     const {login, password} = this.props.formValues
     console.log('SUBMIT', {login: login, password: password});
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
       if (component instanceof AuthInput) {
         component.setProps({

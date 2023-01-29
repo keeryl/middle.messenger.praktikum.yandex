@@ -1,17 +1,13 @@
-import { Block } from '../../utils/Block.js';
+import { Block } from '../../utils/Block';
 import * as styles from './ChatHeader.module.css';
-import registerComponent from '../../utils/registerComponent.js';
+import registerComponent from '../../utils/registerComponent';
 
 class ChatHeader extends Block {
-  constructor(props) {
+  constructor(props: any) {
     super({
       styles,
       ...props
     });
-  }
-
-  handleSettingClick () {
-    console.log('click')
   }
 
   render() {
@@ -24,11 +20,6 @@ class ChatHeader extends Block {
         <button class="{{styles.chatSettings}}" type="button"></button>
       </section>
     `
-
-    // <div class="{{styles.settingsTooltip}}">
-    //   <button class="{{styles.tooltipBtn}}" type="button">Добавить пользователя</button>
-    //   <button class="{{styles.tooltipBtn}}" type="button">Удалить пользователя</button>
-    // </div>
   }
 }
 

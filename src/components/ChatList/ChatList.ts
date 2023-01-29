@@ -1,15 +1,15 @@
-import { Block } from '../../utils/Block.js';
+import { Block } from '../../utils/Block';
 import * as styles from './ChatList.module.css';
-import ChatItem from '../ChatItem/ChatItem.js';
-import registerComponent from '../../utils/registerComponent.js';
+import ChatItem from '../ChatItem/ChatItem';
+import registerComponent from '../../utils/registerComponent';
 
 class ChatList extends Block {
 
-  constructor(props) {
-    super({ styles, props });
+  constructor(props: any) {
+    super({ styles, ...props });
   }
 
-  render() {
+  render(): string {
     return `
       <section class="{{styles.chatList}}">
         <button

@@ -1,38 +1,38 @@
-import { Block } from '../../utils/Block.js';
+import { Block } from '../../utils/Block';
 import * as styles from './AuthInput.module.css';
-import InputErrorMessage from '../../components/InputErrorMessage/InputErrorMessage.js';
-import registerComponent from '../../utils/registerComponent.js';
+import InputErrorMessage from '../InputErrorMessage/InputErrorMessage';
+import registerComponent from '../../utils/registerComponent';
 
 class AuthInput extends Block {
-  constructor(props) {
+  constructor(props: any) {
     super({
       styles,
       ...props,
       error: '',
       isValid: () => (this.props.errors.required && this.props.errors.format),
       events: {
-        focusout: (event) => this.onFocusout(event),
-        input: (event) => this.onInputChange(event),
+        focusout: (event: Event) => this.onFocusout(event),
+        input: (event: Event) => this.onInputChange(event),
       },
     });
 
   }
 
-  onFocusout(event) {
+  onFocusout(event: Event) {
     this.props.onFocusout(event);
     this.setProps({
       error: this.props.isValid() ? '' : this.props.errorMessage
     });
   }
 
-  onInputChange(event) {
+  onInputChange(event: Event) {
     this.props.onChange(event);
     this.setProps({
       error: this.props.isValid() ? '' : this.props.errorMessage
     });
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
       if (component instanceof InputErrorMessage) {
         component.setProps({

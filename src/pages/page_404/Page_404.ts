@@ -1,9 +1,9 @@
 import * as styles from './Page_404.module.css';
-import { Block } from '../../utils/Block.js';
+import { Block } from '../../utils/Block';
 
 class Page_404 extends Block {
-  constructor(props) {
-    super({styles, props});
+  constructor(props: any) {
+    super({styles, ...props});
   }
 
   render() {

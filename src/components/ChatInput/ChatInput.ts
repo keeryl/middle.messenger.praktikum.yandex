@@ -1,15 +1,15 @@
-import { Block } from '../../utils/Block.js';
+import { Block } from '../../utils/Block';
 import * as styles from './ChatInput.module.css';
-import registerComponent from '../../utils/registerComponent.js';
-import ChatInputButton from '../ChatInputButton/ChatInputButton.js';
+import registerComponent from '../../utils/registerComponent';
+import ChatInputButton from '../ChatInputButton/ChatInputButton';
 
 class ChatInput extends Block {
-  constructor(props) {
+  constructor(props: any) {
     super({
       ...props,
       styles,
       events: {
-        input: (event) => this.onInputChange(event),
+        input: (event: Event) => this.onInputChange(event),
       }
     });
   }
@@ -17,11 +17,11 @@ class ChatInput extends Block {
   checkInputValidity () {
   }
 
-  onInputChange(event) {
+  onInputChange(event: Event) {
     this.props.onMessageInput(event);
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
       if (component instanceof ChatInputButton) {
         component.setProps({
@@ -34,13 +34,11 @@ class ChatInput extends Block {
 
   render() {
     return `
-
       <form class="{{styles.chatInput}}">
         <button class="{{styles.settingsBtn}}" type="button"></button>
         <input name="message" class="{{styles.messageInput}}" value="{{message}}">
         {{{ ChatInputButton buttonState=buttonState }}}
       </form>
-
     `
   }
 }
@@ -48,6 +46,5 @@ class ChatInput extends Block {
 registerComponent('ChatInput', ChatInput);
 
 export default ChatInput;
-
 
 

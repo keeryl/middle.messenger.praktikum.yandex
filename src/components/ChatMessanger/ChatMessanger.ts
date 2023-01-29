@@ -1,19 +1,19 @@
-import { Block } from '../../utils/Block.js';
+import { Block } from '../../utils/Block';
 import * as styles from './ChatMessanger.module.css';
-import ChatHeader from '../ChatHeader/ChatHeader.js';
-import ChatMessages from '../ChatMessages/ChatMessages.js';
-import ChatInput from '../ChatInput/ChatInput.js';
-import registerComponent from '../../utils/registerComponent.js';
+import ChatHeader from '../ChatHeader/ChatHeader';
+import ChatMessages from '../ChatMessages/ChatMessages';
+import ChatInput from '../ChatInput/ChatInput';
+import registerComponent from '../../utils/registerComponent';
 
 class ChatMessanger extends Block {
-  constructor(props) {
+  constructor(props: any) {
     super({
       styles,
       ...props
     });
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
       if (component instanceof ChatInput) {
         component.setProps({
@@ -45,8 +45,3 @@ class ChatMessanger extends Block {
 registerComponent('ChatMessanger', ChatMessanger);
 
 export default ChatMessanger;
-
-
-{/* <p class="{{styles.defaultMessage}}">
-Выберите чат чтобы отправить сообщение
-</p> */}

@@ -1,24 +1,25 @@
-import { Block } from '../../utils/Block.js';
-import ChatList from '../../components/ChatList/ChatList.js';
-import ChatMessanger from '../../components/ChatMessanger/ChatMessanger.js'
+import { Block } from '../../utils/Block';
+import ChatList from '../../components/ChatList/ChatList';
+import ChatMessanger from '../../components/ChatMessanger/ChatMessanger'
 import * as styles from './Chat.module.css';
 
+
 class Chat extends Block {
-  constructor(props) {
+  constructor(props: any) {
     super({
       styles,
       ...props,
       isMessageInvalid: () => Object.values(this.props.errors.message).some(v => v === false),
       buttonState: 'disabled',
-      onMessageInput: (e) => this.handleMessageInput(e),
+      onMessageInput: (e: Event) => this.handleMessageInput(e),
       events: {
-        submit: (e) => this.handleMessageSubmit(e)
+        submit: (e: Event) => this.handleMessageSubmit(e)
       }
     });
   }
 
-  handleMessageInput (event) {
-    const { name, value } = event.target;
+  handleMessageInput (event: Event) {
+    const { name, value } = event.target as HTMLInputElement;
     this.setProps({
       formValues: {
         ...this.props.formValues,
@@ -36,13 +37,13 @@ class Chat extends Block {
     });
   }
 
-  handleMessageSubmit (event) {
+  handleMessageSubmit (event: Event) {
     event.preventDefault();
     const { message } = this.props.formValues
     console.log('SUBMIT', {message: message});
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
       if (component instanceof ChatMessanger) {
         component.setProps({
@@ -56,7 +57,6 @@ class Chat extends Block {
 
   render() {
     return `
-
       <main class="{{styles.chat}}">
         {{{ ChatList }}}
         {{{
@@ -66,7 +66,6 @@ class Chat extends Block {
             buttonState=buttonState
         }}}
       </main>
-
     `
   }
 }

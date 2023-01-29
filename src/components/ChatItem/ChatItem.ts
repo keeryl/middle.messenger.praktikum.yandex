@@ -1,12 +1,12 @@
 
-import { Block } from '../../utils/Block.js';
+import { Block } from '../../utils/Block';
 import * as styles from './ChatItem.module.css';
-import registerComponent from '../../utils/registerComponent.js';
+import registerComponent from '../../utils/registerComponent';
 
 class ChatItem extends Block {
 
-  constructor(props) {
-    super({ styles, props });
+  constructor(props: any) {
+    super({ styles, ...props });
   }
 
   render() {

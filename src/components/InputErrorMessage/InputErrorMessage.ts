@@ -1,16 +1,16 @@
-import { Block } from '../../utils/Block.js';
+import { Block } from '../../utils/Block';
 import * as styles from './InputErrorMessage.module.css';
-import registerComponent from '../../utils/registerComponent.js';
+import registerComponent from '../../utils/registerComponent';
 
 class InputErrorMessage extends Block {
-  constructor(props) {
+  constructor(props: any) {
     super({
       styles,
       ...props,
     });
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: any, newProps: any) {
     if (oldProps.error === newProps.error) {
       return false;
     }

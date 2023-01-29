@@ -1,21 +1,21 @@
-import { Block } from '../../utils/Block.js';
+import { Block } from '../../utils/Block';
 import * as styles from './ProfileChangeDataBtn.module.css';
-import registerComponent from '../../utils/registerComponent.js';
+import registerComponent from '../../utils/registerComponent';
 
 class ProfileChangeDataBtn extends Block {
-  constructor(props) {
+  constructor(props: any) {
     super({
       styles,
       ...props,
       events: {
-        click: (event) => this.handleClick(event),
+        click: (event: Event) => this.handleClick(event),
       },
     });
 
   }
 
-  handleClick(event) {
-    this.props.onDataChange();
+  handleClick(event: Event) {
+    this.props.onDataChange(event);
   }
 
   render() {

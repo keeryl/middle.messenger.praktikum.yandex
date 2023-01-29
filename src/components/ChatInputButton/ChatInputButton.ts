@@ -1,9 +1,9 @@
-import { Block } from '../../utils/Block.js';
+import { Block } from '../../utils/Block';
 import * as styles from './ChatInputButton.module.css';
-import registerComponent from '../../utils/registerComponent.js';
+import registerComponent from '../../utils/registerComponent';
 
 class ChatInputButton extends Block {
-  constructor(props) {
+  constructor(props: any) {
     super({
       styles,
       ...props,

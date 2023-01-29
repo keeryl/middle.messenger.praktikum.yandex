@@ -1,31 +1,31 @@
 import * as styles from './ProfileChangePasswordPopup.module.css';
-import { Block } from '../../utils/Block.js';
-import registerComponent from '../../utils/registerComponent.js';
-import ProfileInput from '../../components/ProfileInput/ProfileInput.js';
-import AuthButton from '../../components/AuthButton/AuthButton.js';
-import Button from '../../components/Button/Button.js';
-import InputErrorMessage from '../../components/InputErrorMessage/InputErrorMessage.js';
+import { Block } from '../../utils/Block';
+import registerComponent from '../../utils/registerComponent';
+import ProfileInput from '../ProfileInput/ProfileInput';
+import AuthButton from '../AuthButton/AuthButton';
+import Button from '../Button/Button';
+import InputErrorMessage from '../InputErrorMessage/InputErrorMessage';
 
 class ProfileChangePasswordPopup extends Block {
 
-  constructor(props) {
+  constructor(props: any) {
     super({
       ...props,
       styles,
       isButtonDisabled: 'disabled',
       events: {
-        submit: (e) => this.handleSubmit(e)
+        submit: (e: Event) => this.handleSubmit(e)
       }
      });
      this.props.state = () => this.props.passwordPopupIsOpened ? this.props.styles.popup_opened : '';
     }
 
-  handlePopup(e) {
+  handlePopup(e: Event) {
     e.stopPropagation();
     this.props.onClick(e);
   }
 
-  handleSubmit(e) {
+  handleSubmit(e: Event) {
     e.preventDefault();
     const { password, newPassword, passwordCheck } = this.props.formValues;
     console.log('SUBMIT POPUP', {
@@ -33,10 +33,6 @@ class ProfileChangePasswordPopup extends Block {
       newPassword: newPassword,
       passwordCheck: passwordCheck
     })
-  }
-
-  handleInputChange (event) {
-
   }
 
   checkFormValidity () {
@@ -49,7 +45,7 @@ class ProfileChangePasswordPopup extends Block {
     return !isPasswordNotDifferent && !isFormInvalid;
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
       if (component instanceof ProfileInput) {
         component.setProps({
@@ -114,7 +110,7 @@ class ProfileChangePasswordPopup extends Block {
       {{{ InputErrorMessage error=error }}}
 
       {{{ AuthButton isButtonDisabled=isButtonDisabled buttonText="Сохранить" }}}
-      {{{Button type="button" value="Назад" class=styles.btn onClick=onClick}}}
+      {{{ Button type="button" value="Назад" class=styles.btn onClick=onClick }}}
       </form>
     </div>
     `
