@@ -2,7 +2,7 @@ import { Block } from '../../utils/Block';
 import ChatList from '../../components/ChatList/ChatList';
 import ChatMessanger from '../../components/ChatMessanger/ChatMessanger'
 import * as styles from './Chat.module.css';
-
+ChatList
 
 class Chat extends Block {
   constructor(props: any) {

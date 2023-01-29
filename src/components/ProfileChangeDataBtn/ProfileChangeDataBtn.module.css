@@ -4,19 +4,19 @@
   margin: 0;
   text-align: left;
   border: none;
-  border-bottom: 1px solid #EAEAEA;
+  border-bottom: 1px solid #eaeaea;
   background-color: #fff;
   font-weight: 500;
   font-size: 13px;
   line-height: 13px;
-  color: #3369F3;
+  color: #3369f3;
   cursor: pointer;
   opacity: 1;
-  transition: opacity .2s linear;
+  transition: opacity 0.2s linear;
 }
 
 .btn:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .btn:active {
@@ -25,7 +25,8 @@
 
 .btn:disabled {
   border: none;
-  border-bottom: 1px solid #EAEAEA;
+  border-bottom: 1px solid #eaeaea;
   cursor: default;
   opacity: 1;
-  color: #C2C2C2;}
+  color: #c2c2c2;
+}

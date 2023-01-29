@@ -3,18 +3,18 @@
   font-size: 13px;
   line-height: 13px;
   color: #fff;
-  background: #3369F3;
+  background: #3369f3;
   border-radius: 8px;
   cursor: pointer;
   border: none;
   width: 280px;
   height: 37px;
   opacity: 1;
-  transition: opacity .2s linear;
+  transition: opacity 0.2s linear;
 }
 
 .button:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .button:active {
@@ -25,6 +25,6 @@
   border: none;
   cursor: default;
   opacity: 1;
-  background: #F8F8F8;
-  color: #C2C2C2;
+  background: #f8f8f8;
+  color: #c2c2c2;
 }

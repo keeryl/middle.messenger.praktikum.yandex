@@ -2,6 +2,7 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatList.module.css';
 import ChatItem from '../ChatItem/ChatItem';
 import registerComponent from '../../utils/registerComponent';
+ChatItem
 
 class ChatList extends Block {
 

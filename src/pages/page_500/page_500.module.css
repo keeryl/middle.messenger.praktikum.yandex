@@ -10,7 +10,7 @@
   font-weight: 500;
   font-size: 40px;
   line-height: 40px;
-  color: #1E1E1E;
+  color: #1e1e1e;
   margin: 0;
 }
 
@@ -18,7 +18,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
-  color: #1E1E1E;
+  color: #1e1e1e;
   margin: 0;
 }
 
@@ -26,13 +26,13 @@
   font-weight: 500;
   font-size: 11px;
   line-height: 11px;
-  color: #3369F3;
+  color: #3369f3;
   cursor: pointer;
   opacity: 1;
-  transition: opacity .2s linear;
-  margin: 40px 0 0 0;
+  transition: opacity 0.2s linear;
+  margin: 40px 0 0;
 }
 
 .btn:hover {
-  opacity: .7;
+  opacity: 0.7;
 }

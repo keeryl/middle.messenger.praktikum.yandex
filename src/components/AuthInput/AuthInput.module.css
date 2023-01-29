@@ -12,9 +12,9 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 13px;
-  color: #1E1E1E;
+  color: #1e1e1e;
   border: 0;
-  border-bottom: 1px solid #3369F3;
+  border-bottom: 1px solid #3369f3;
   border-radius: none;
   padding: 7px 0;
   margin: 0;
@@ -23,14 +23,14 @@
 
 .input:focus {
   outline: none;
-  border-bottom: 2px solid #3369F3;
+  border-bottom: 2px solid #3369f3;
 }
 
 .error {
   font-weight: 400;
   font-size: 8px;
   line-height: 8px;
-  color: #FF2F2F;
+  color: #ff2f2f;
   padding: 0;
   margin: 0;
 }

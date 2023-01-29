@@ -6,7 +6,8 @@ import ProfileChangePasswordPopup from '../../components/ProfileChangePasswordPo
 import * as styles from './Profile.module.css';
 import registerComponent from '../../utils/registerComponent';
 import * as popup from '../../components/ProfileChangePasswordPopup/ProfileChangePasswordPopup.module.css';
-
+Button
+popup
 
 class Profile extends Block {
   constructor(props: any) {

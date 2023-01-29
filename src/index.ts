@@ -33,6 +33,6 @@ function renderPage(name: string): void {
 (window as any).renderPage = renderPage;
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('#app');
-  const profile = new Profile({formValues, errors, validateInput, validateForm});
-  root!.append(profile.getContent());
+  const chat = new Chat({formValues, errors, validateInput, validateForm});
+  root!.append(chat.getContent());
 });

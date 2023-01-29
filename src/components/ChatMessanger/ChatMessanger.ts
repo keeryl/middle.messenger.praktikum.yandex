@@ -4,6 +4,8 @@ import ChatHeader from '../ChatHeader/ChatHeader';
 import ChatMessages from '../ChatMessages/ChatMessages';
 import ChatInput from '../ChatInput/ChatInput';
 import registerComponent from '../../utils/registerComponent';
+ChatHeader
+ChatMessages
 
 class ChatMessanger extends Block {
   constructor(props: any) {

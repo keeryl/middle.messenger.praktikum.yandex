@@ -1,4 +1,3 @@
-
 import { Block } from '../../utils/Block';
 import * as styles from './ChatItem.module.css';
 import registerComponent from '../../utils/registerComponent';

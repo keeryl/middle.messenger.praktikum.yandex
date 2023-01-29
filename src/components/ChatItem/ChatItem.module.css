@@ -5,22 +5,22 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  border-bottom: 1px solid #EAEAEA;
+  border-bottom: 1px solid #eaeaea;
   padding: 12px 0;
   gap: 10px;
   cursor: pointer;
   opacity: 1;
-  transition: opacity .2s linear;
+  transition: opacity 0.2s linear;
 }
 
 .chatItem:hover {
-  opacity: .7
+  opacity: 0.7;
 }
 
 .img {
   min-width: 47px;
   min-height: 47px;
-  background: #EFEFEF;
+  background: #efefef;
   border-radius: 50px;
 }
 
@@ -42,7 +42,7 @@
   font-weight: 600;
   font-size: 13px;
   line-height: 13px;
-  color: #1E1E1E;
+  color: #1e1e1e;
   margin: 0;
   padding: 0;
 }
@@ -51,7 +51,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
-  color: #999999;
+  color: #999;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -70,7 +70,7 @@
   font-weight: 500;
   font-size: 9px;
   line-height: 13px;
-  color: #999999;
+  color: #999;
   margin: 0;
   padding: 0;
 }
@@ -78,9 +78,9 @@
 .counter {
   width: 20px;
   height: 20px;
-  background: #3369F3;
+  background: #3369f3;
   border-radius: 30px;
-  color: #FFFFFF;
+  color: #fff;
   font-weight: 500;
   font-size: 11px;
   line-height: 12px;

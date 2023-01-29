@@ -20,7 +20,7 @@
   align-items: flex-end;
   padding: 10px;
   margin: 0;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   border: none;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
@@ -28,16 +28,18 @@
 }
 
 .message_type_self {
-  background-color: #E4EDFD;
+  background-color: #e4edfd;
   align-self: flex-end;
-  border-bottom-left-radius: 15px;
+
+  /* border-bottom-left-radius: 15px;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
-  border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0; */
+  border-radius: 15px 15px 0;
 }
 
 .messageText {
-  color: #1E1E1E;
+  color: #1e1e1e;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
@@ -84,12 +86,12 @@
   font-weight: 500;
   font-size: 9px;
   line-height: 9px;
-  color: #999999;
+  color: #999;
   padding: 0;
   margin: 0;
   justify-self: flex-end;
 }
 
 .messageTime_type_self {
-  color: #3369F3;
+  color: #3369f3;
 }
