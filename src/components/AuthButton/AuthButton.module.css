@@ -2,8 +2,8 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 13px;
-  color: #fff;
-  background: #3369f3;
+  color: var(--white);
+  background: var(--blue-btn);
   border-radius: 8px;
   cursor: pointer;
   border: none;
@@ -25,6 +25,6 @@
   border: none;
   cursor: default;
   opacity: 1;
-  background: #f8f8f8;
-  color: #c2c2c2;
+  background: var(--btn-disabled-bg);
+  color: var(--btn-disabled-color);
 }

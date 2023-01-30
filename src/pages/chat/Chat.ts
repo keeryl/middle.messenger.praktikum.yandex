@@ -4,8 +4,12 @@ import ChatMessanger from '../../components/ChatMessanger/ChatMessanger'
 import * as styles from './Chat.module.css';
 ChatList
 
+type Props = {
+  [key: string]: unknown
+}
+
 class Chat extends Block {
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       styles,
       ...props,

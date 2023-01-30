@@ -2,8 +2,12 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatMessages.module.css';
 import registerComponent from '../../utils/registerComponent';
 
+type Props = {
+  [key: string]: unknown
+}
+
 class ChatMessages extends Block {
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       styles,
       ...props
@@ -14,14 +18,16 @@ class ChatMessages extends Block {
     return `
       <section class="{{styles.messages}}">
         <article class="{{styles.message}}">
+        <nav>
           <p onclick="renderPage('page_404')"
-            class="{{styles.messageText}}"
+            class="{{styles.messageText}} {{styles.messageText_type_link}}"
           >
             Страница 404
           </p>
-          <p onclick="renderPage('page_500')" class="{{styles.messageText}}">Страница 500</p>
-          <p onclick="renderPage('signin')" class="{{styles.messageText}}">Авторизация</p>
-          <p onclick="renderPage('signup')" class="{{styles.messageText}}">Регистрация</p>
+          <p onclick="renderPage('page_500')" class="{{styles.messageText}} {{styles.messageText_type_link}}">Страница 500</p>
+          <p onclick="renderPage('signin')" class="{{styles.messageText}} {{styles.messageText_type_link}}">Авторизация</p>
+          <p onclick="renderPage('signup')" class="{{styles.messageText}} {{styles.messageText_type_link}}">Регистрация</p>
+        </nav>
           <div class="{{styles.messageInfo}}">
             <span class="{{styles.messageTime}}">12:15</span>
           </div>

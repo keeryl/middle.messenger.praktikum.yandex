@@ -9,8 +9,12 @@ import * as popup from '../../components/ProfileChangePasswordPopup/ProfileChang
 Button
 popup
 
+type Props = {
+  [key: string]: unknown
+}
+
 class Profile extends Block {
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       styles,
       ...props,

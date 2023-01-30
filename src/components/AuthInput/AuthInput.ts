@@ -3,8 +3,12 @@ import * as styles from './AuthInput.module.css';
 import InputErrorMessage from '../InputErrorMessage/InputErrorMessage';
 import registerComponent from '../../utils/registerComponent';
 
+type Props = {
+  [key: string]: unknown
+}
+
 class AuthInput extends Block {
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       styles,
       ...props,

@@ -75,6 +75,7 @@ export class Block<P extends Record<string, unknown> = any> {
     const newElement = fragment.firstElementChild;
     this._element?.replaceWith(newElement);
     this._element = newElement;
+    this._removeEvents();
     this._addEvents();
   }
 
@@ -107,6 +108,15 @@ export class Block<P extends Record<string, unknown> = any> {
     Object.keys(events).forEach(eventName => {
       this._element.addEventListener(eventName, events[eventName]);
     });
+  }
+
+  private _removeEvents() {
+    const { events } = this.props;
+    if (!!this.props.events) {
+      Object.keys(events).forEach(eventName => {
+        this._element.removeEventListener(eventName, events[eventName]);
+      });
+    }
   }
 
   private _getChildrenAndProps(childrenAndProps: Props<P>): {props: Props<P>, children: Record<string, Block>} {

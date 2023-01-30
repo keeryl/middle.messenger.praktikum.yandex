@@ -2,8 +2,12 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatHeader.module.css';
 import registerComponent from '../../utils/registerComponent';
 
+type Props = {
+  [key: string]: unknown
+}
+
 class ChatHeader extends Block {
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       styles,
       ...props

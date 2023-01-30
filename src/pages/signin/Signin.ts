@@ -3,9 +3,12 @@ import AuthButton from '../../components/AuthButton/AuthButton';
 import AuthInput from '../../components/AuthInput/AuthInput';
 import * as styles from './signin.module.css';
 
+type Props = {
+  [key: string]: unknown
+}
 
 class Signin extends Block {
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       ...props,
       styles,

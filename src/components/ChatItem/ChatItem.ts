@@ -2,9 +2,13 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatItem.module.css';
 import registerComponent from '../../utils/registerComponent';
 
+type Props = {
+  [key: string]: unknown
+}
+
 class ChatItem extends Block {
 
-  constructor(props: any) {
+  constructor(props: Props) {
     super({ styles, ...props });
   }
 

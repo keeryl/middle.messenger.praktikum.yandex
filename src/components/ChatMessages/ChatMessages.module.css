@@ -20,7 +20,7 @@
   align-items: flex-end;
   padding: 10px;
   margin: 0;
-  background-color: #f8f8f8;
+  background-color: var(--message-bg);
   border: none;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
@@ -28,24 +28,26 @@
 }
 
 .message_type_self {
-  background-color: #e4edfd;
+  background-color: var(--message-self-bg);
   align-self: flex-end;
-
-  /* border-bottom-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-  border-bottom-right-radius: 0; */
   border-radius: 15px 15px 0;
 }
 
 .messageText {
-  color: #1e1e1e;
+  color: var(--black);
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
   margin: 0;
   padding: 0;
   text-align: justify;
+}
+
+.messageText_type_link {
+  color: yellow;
+  cursor: pointer;
+  background-color: red;
+  margin: 5px;
 }
 
 .messageInfo {
@@ -86,12 +88,12 @@
   font-weight: 500;
   font-size: 9px;
   line-height: 9px;
-  color: #999;
+  color: var(--grey-time);
   padding: 0;
   margin: 0;
   justify-self: flex-end;
 }
 
 .messageTime_type_self {
-  color: #3369f3;
+  color: var(--blue-time);
 }

@@ -1,5 +1,5 @@
 .chatMessanger {
-  background: #fff;
+  background: var(--white);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,5 +16,5 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 12px;
-  color: #999;
+  color: var(--grey);
 }

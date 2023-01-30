@@ -1,8 +1,12 @@
 import { Block } from '../../utils/Block';
 import registerComponent from '../../utils/registerComponent';
 
+type Props = {
+  [key: string]: unknown
+}
+
 class Button extends Block {
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       ...props,
       events: {

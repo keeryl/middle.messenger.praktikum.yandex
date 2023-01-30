@@ -1,5 +1,5 @@
 .chatList {
-  background: #fbfbfb;
+  background: var(--lightest-grey);
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -7,7 +7,7 @@
   width: 25vw;
   box-sizing: border-box;
   padding: 21px 10px 0;
-  border-right: 1px solid #eaeaea;
+  border-right: 1px solid var(--light-grey);
 }
 
 .navButton {
@@ -18,7 +18,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 12px;
-  color: #999;
+  color: var(--grey);
   margin: 0;
   padding: 0;
   opacity: 1;
@@ -35,7 +35,7 @@
 
 .searchInput {
   width: 100%;
-  background: #efefef;
+  background: var(--light-grey-bg);
   border-radius: 5px;
   border: none;
   box-sizing: border-box;
@@ -44,7 +44,7 @@
 }
 
 .searchInput:focus {
-  outline: 1px solid #eaeaea;
+  outline: 1px solid var(--light-grey);
 }
 
 .searchInput::placeholder {
@@ -72,7 +72,7 @@
   margin: 15px 0 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid var(--light-grey);
   overflow: scroll;
   scrollbar-width: none;
 }

@@ -3,8 +3,12 @@ import * as styles from './ChatInput.module.css';
 import registerComponent from '../../utils/registerComponent';
 import ChatInputButton from '../ChatInputButton/ChatInputButton';
 
+type Props = {
+  [key: string]: unknown
+}
+
 class ChatInput extends Block {
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       ...props,
       styles,

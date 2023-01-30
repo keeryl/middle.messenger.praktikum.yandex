@@ -10,7 +10,7 @@
   font-weight: 500;
   font-size: 40px;
   line-height: 40px;
-  color: #1e1e1e;
+  color: var(--black);
   margin: 0;
 }
 
@@ -18,7 +18,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
-  color: #1e1e1e;
+  color: var(--black);
   margin: 0;
 }
 
@@ -26,7 +26,7 @@
   font-weight: 500;
   font-size: 11px;
   line-height: 11px;
-  color: #3369f3;
+  color: var(--blue);
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.2s linear;

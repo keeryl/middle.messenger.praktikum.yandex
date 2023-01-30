@@ -7,8 +7,12 @@ import registerComponent from '../../utils/registerComponent';
 ChatHeader
 ChatMessages
 
+type Props = {
+  [key: string]: unknown
+}
+
 class ChatMessanger extends Block {
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       styles,
       ...props

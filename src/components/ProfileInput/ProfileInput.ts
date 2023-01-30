@@ -3,10 +3,13 @@ import { Block } from '../../utils/Block';
 import registerComponent from '../../utils/registerComponent';
 import InputErrorMessage from '../InputErrorMessage/InputErrorMessage';
 
+type Props = {
+  [key: string]: unknown
+}
 
 class ProfileInput extends Block {
 
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       styles,
       ...props,

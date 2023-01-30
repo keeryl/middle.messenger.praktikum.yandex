@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--light-grey);
   padding: 10px 0;
 }
 
@@ -19,7 +19,7 @@
 .chatImage {
   width: 34px;
   height: 34px;
-  background-color: #efefef;
+  background-color: var(--light-grey-bg);
   border-radius: 30px;
 }
 
@@ -57,7 +57,7 @@
   flex-direction: column;
   top: 70px;
   right: 10px;
-  background: #fff;
+  background: var(--white);
   box-shadow: 0 0 6px rgb(0 0 0 / 14%);
   border-radius: 12px;
   padding: 15px;

@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--light-grey);
   padding: 12px 0;
   gap: 10px;
   cursor: pointer;
@@ -20,7 +20,7 @@
 .img {
   min-width: 47px;
   min-height: 47px;
-  background: #efefef;
+  background: var(--light-grey-bg);
   border-radius: 50px;
 }
 
@@ -42,7 +42,7 @@
   font-weight: 600;
   font-size: 13px;
   line-height: 13px;
-  color: #1e1e1e;
+  color: var(--black);
   margin: 0;
   padding: 0;
 }
@@ -51,7 +51,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
-  color: #999;
+  color: var(--grey);
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -70,7 +70,7 @@
   font-weight: 500;
   font-size: 9px;
   line-height: 13px;
-  color: #999;
+  color: var(--grey);
   margin: 0;
   padding: 0;
 }
@@ -78,9 +78,9 @@
 .counter {
   width: 20px;
   height: 20px;
-  background: #3369f3;
+  background: var(--blue);
   border-radius: 30px;
-  color: #fff;
+  color: var(--white);
   font-weight: 500;
   font-size: 11px;
   line-height: 12px;

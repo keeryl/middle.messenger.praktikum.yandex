@@ -5,10 +5,15 @@ import ProfileInput from '../ProfileInput/ProfileInput';
 import AuthButton from '../AuthButton/AuthButton';
 import Button from '../Button/Button';
 import InputErrorMessage from '../InputErrorMessage/InputErrorMessage';
+Button
+
+type Props = {
+  [key: string]: unknown
+}
 
 class ProfileChangePasswordPopup extends Block {
 
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       ...props,
       styles,

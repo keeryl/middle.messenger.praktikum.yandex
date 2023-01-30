@@ -1,8 +1,12 @@
 import * as styles from './Page_404.module.css';
 import { Block } from '../../utils/Block';
 
+type Props = {
+  [key: string]: unknown
+}
+
 class Page_404 extends Block {
-  constructor(props: any) {
+  constructor(props: Props) {
     super({styles, ...props});
   }
 

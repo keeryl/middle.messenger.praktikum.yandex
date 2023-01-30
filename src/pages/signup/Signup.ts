@@ -4,9 +4,13 @@ import AuthInput from '../../components/AuthInput/AuthInput';
 import InputErrorMessage from '../../components/InputErrorMessage/InputErrorMessage';
 import * as styles from './Signup.module.css';
 
+type Props = {
+  [key: string]: unknown
+}
+
 class Signup extends Block {
   isMatch: Function
-  constructor(props: any) {
+  constructor(props: Props) {
     super({
       ...props,
       error: '',

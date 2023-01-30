@@ -6,7 +6,7 @@
   padding: 10px 0;
   box-sizing: border-box;
   gap: 10px;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid var(--light-grey);
 }
 
 .settingsBtn {
@@ -33,15 +33,15 @@
   width: 100%;
   box-sizing: border-box;
   padding: 10px 20px;
-  background: #efefef;
+  background: var(--light-grey-bg);
   border: none;
   border-radius: 30px;
   font-weight: 500;
   font-size: 12px;
   line-height: 12px;
-  color: #999;
+  color: var(--grey);
 }
 
 .messageInput:focus {
-  outline: 1px solid #3369f3;
+  outline: 1px solid var(--blue);
 }

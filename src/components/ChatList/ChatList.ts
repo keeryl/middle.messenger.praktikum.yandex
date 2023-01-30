@@ -4,9 +4,13 @@ import ChatItem from '../ChatItem/ChatItem';
 import registerComponent from '../../utils/registerComponent';
 ChatItem
 
+type Props = {
+  [key: string]: unknown
+}
+
 class ChatList extends Block {
 
-  constructor(props: any) {
+  constructor(props: Props) {
     super({ styles, ...props });
   }
 

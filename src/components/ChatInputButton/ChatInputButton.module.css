@@ -4,7 +4,7 @@
   box-sizing: border-box;
   min-width: 28px;
   height: 28px;
-  background-color: #3369f3;
+  background-color: var(--blue);
   background-image: url(../../../static/images/chat_arow_right.svg);
   background-position: center center;
   background-repeat: no-repeat;
