@@ -6,33 +6,33 @@
   gap: 20px;
 }
 
-.page-500__title {
+.title {
   font-weight: 500;
   font-size: 40px;
   line-height: 40px;
-  color: #1E1E1E;
+  color: var(--black);
   margin: 0;
 }
 
-.page-500__subtitle {
+.subtitle {
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
-  color: #1E1E1E;
+  color: var(--black);
   margin: 0;
 }
 
-.page-500__back-btn {
+.btn {
   font-weight: 500;
   font-size: 11px;
   line-height: 11px;
-  color: #3369F3;
+  color: var(--blue);
   cursor: pointer;
   opacity: 1;
-  transition: opacity .2s linear;
-  margin: 40px 0 0 0;
+  transition: opacity 0.2s linear;
+  margin: 40px 0 0;
 }
 
-.page-500__back-btn:hover {
-  opacity: .7;
+.btn:hover {
+  opacity: 0.7;
 }

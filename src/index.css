@@ -1,8 +1,9 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts.css);
 
-
-#app, html, body {
+#app,
+html,
+body {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -17,8 +18,27 @@
 }
 
 :root {
-  font-family: 'Inter', 'Arial', sans-serif;
+  font-family: Inter, Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.6;
+
+  --blue-time: #3369f3;
+  --grey-time: #999;
+  --blue-btn: #3369f3;
+  --white: #fff;
+  --btn-disabled-bg: #f8f8f8;
+  --btn-disabled-color: #c2c2c2;
+  --blue: #3369f3;
+  --grey: #999;
+  --middle-grey: #c2c2c2;
+  --light-grey: #eaeaea;
+  --light-grey-bg: #efefef;
+  --lightest-grey: #fbfbfb;
+  --message-self-bg: #e4edfd;
+  --message-bg: #f8f8f8;
+  --red: #ff2f2f;
+  --pure-red: #f00;
+  --black: #1e1e1e;
+  --pure-black: #000;
 }
