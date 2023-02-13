@@ -1,0 +1,40 @@
+.wrapper {
+  width: 100%;
+}
+
+.inputLabel {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+  color: var(--black);
+  border-bottom: 1px solid var(--light-grey);
+  padding: 0;
+  margin: 0 0 3px;
+}
+
+.inputLabel:last-child {
+  border: none;
+}
+
+.input {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+  color: var(--grey);
+  background: none;
+  border: none;
+  text-align: right;
+  padding: 10px 0;
+  margin: 0;
+  width: 40%;
+}
+
+.input:focus {
+  outline: none;
+}
