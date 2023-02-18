@@ -44,7 +44,10 @@
   gap: 16px;
 }
 
-.btn {
+.button {
+  border: none;
+  outline: none;
+  background: none;
   width: 100%;
   text-align: center;
   margin: 14px 0 0;
@@ -58,6 +61,18 @@
   transition: opacity 0.2s linear;
 }
 
-.btn:hover {
+.button:hover {
   opacity: 0.7;
+}
+
+.button:active {
+  border: none;
+}
+
+.button:disabled {
+  border: none;
+  cursor: default;
+  opacity: 1;
+  background: var(--message-bg);
+  color: var(--middle-grey);
 }

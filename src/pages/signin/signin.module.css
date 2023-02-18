@@ -56,6 +56,9 @@
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.2s linear;
+  border: none;
+  outline: none;
+  background: none;
 }
 
 .btn:hover {

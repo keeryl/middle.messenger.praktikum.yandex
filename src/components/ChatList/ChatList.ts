@@ -2,6 +2,7 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatList.module.css';
 import ChatItem from '../ChatItem/ChatItem';
 import registerComponent from '../../utils/registerComponent';
+import Router from '../../utils/Router';
 ChatItem
 
 type Props = {
@@ -11,18 +12,21 @@ type Props = {
 class ChatList extends Block {
 
   constructor(props: Props) {
-    super({ styles, ...props });
+    super({
+      styles,
+      ...props,
+      handleProfileClick: () => this.handleProfileClick(),
+    });
+  }
+
+  handleProfileClick() {
+    Router.go('/profile');
   }
 
   render(): string {
     return `
       <section class="{{styles.chatList}}">
-        <button
-          onclick="renderPage('profile')"
-          class="{{styles.navButton}}"
-        >
-          Профиль >
-        </button>
+        {{{ Button value='Профиль >' class=styles.navButton type="button" onClick=handleProfileClick }}}
         <input
           class="{{styles.searchInput}}"
           placeholder="Поиск">

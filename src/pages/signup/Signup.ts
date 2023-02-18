@@ -2,7 +2,11 @@ import { Block } from '../../utils/Block';
 import AuthButton from '../../components/AuthButton/AuthButton';
 import AuthInput from '../../components/AuthInput/AuthInput';
 import InputErrorMessage from '../../components/InputErrorMessage/InputErrorMessage';
-import * as styles from './Signup.module.css';
+import * as styles from './signup.module.css';
+import Router from '../../utils/Router';
+import useInputValidation from '../../utils/inputValidator';
+const [formValues, errors, validateInput, validateForm] = useInputValidation();
+import AuthController from '../../controllers/AuthController';
 
 type Props = {
   [key: string]: unknown
@@ -14,6 +18,10 @@ class Signup extends Block {
     super({
       ...props,
       error: '',
+      formValues: formValues,
+      errors: errors,
+      validateInput: validateInput,
+      validateForm: validateForm,
       styles,
       isEmailInvalid: (): boolean => Object.values(this.props.errors.email).some(v => v === false),
       isLoginInvalid: (): boolean => Object.values(this.props.errors.login).some(v => v === false),
@@ -33,6 +41,7 @@ class Signup extends Block {
       isButtonDisabled: 'disabled',
       onFocusout: () => this.handleFocusout(),
       onChange: (e: Event) => this.handleChange(e),
+      onSigninClick: () => this.onSigninClick(),
       events: {
         submit: (e: Event) => this.handleSubmit(e)
       },
@@ -43,6 +52,15 @@ class Signup extends Block {
   handleSubmit(event: Event) {
     event.preventDefault();
     console.log('SUBMIT', this.props.formValues);
+    const { first_name, second_name, login, email, password, phone } = this.props.formValues;
+    AuthController.signup({
+      first_name: first_name,
+      second_name: second_name,
+      login: login,
+      email: email,
+      password: password,
+      phone: phone,
+    });
   }
 
   checkPassword() {
@@ -53,6 +71,10 @@ class Signup extends Block {
     this.setProps({
       error: this.isMatch() ? '' : 'Пароли не совпадают'
     })
+  }
+
+  onSigninClick() {
+    Router.go('/signin')
   }
 
   handleChange(event: Event) {
@@ -193,7 +215,12 @@ class Signup extends Block {
             isFormInvalid=isFormInvalid
             isButtonDisabled=isButtonDisabled
           }}}
-          <p onclick="renderPage('signin')" class="{{styles.btn}}">Войти</p>
+          {{{ Button
+            type="button"
+            value="Войти"
+            class=styles.button
+            onClick=onSigninClick
+          }}}
         </form>
       </main>
     `

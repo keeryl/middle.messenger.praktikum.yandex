@@ -2,15 +2,6 @@ import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 
-type Props<P extends Record<string, unknown> = any> = { events?: Record<string,() => void> } & P;
-
-type BlockEvents<P = any> = {
-  "init": [];
-  "flow:component-did-mount": [];
-  "flow:component-did-update": [P, P];
-  "flow:render": [];
-}
-
 export class Block<P extends Record<string, unknown> = any> {
 
   static EVENTS = {
@@ -23,15 +14,15 @@ export class Block<P extends Record<string, unknown> = any> {
    _element: any = null;
    id: string;
    children: Record<string, Block>;
-   props: Props;
-   eventBus: () => EventBus<BlockEvents>;
+   props: P;
+   eventBus: () => EventBus;
 
-  constructor(propsWithChildren: Props<P>) {
+  constructor(propsWithChildren: P) {
     this.id = nanoid(6);
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
     this.children = children;
     this.props = this._makePropsProxy(props);
-    const eventBus = new EventBus<BlockEvents<Props<P>>>();
+    const eventBus = new EventBus();
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
@@ -54,10 +45,10 @@ export class Block<P extends Record<string, unknown> = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  protected componentDidUpdate(oldProps: Props<P>, newProps: Props<P>): boolean {
+  protected componentDidUpdate(oldProps: P, newProps: P): boolean {
     return true;
   }
-  private _componentDidUpdate(oldProps: Props<P>, newProps: Props<P>): void {
+  private _componentDidUpdate(oldProps: P, newProps: P): void {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -96,7 +87,7 @@ export class Block<P extends Record<string, unknown> = any> {
     return temp.content;
   }
 
-  private _registerEvents(eventBus: EventBus<BlockEvents>) {
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -104,14 +95,14 @@ export class Block<P extends Record<string, unknown> = any> {
   }
 
   private _addEvents() {
-    const { events = {} } = this.props;
+    const {events = {}} = this.props as P & { events: Record<string, () => void> };
     Object.keys(events).forEach(eventName => {
       this._element.addEventListener(eventName, events[eventName]);
     });
   }
 
   private _removeEvents() {
-    const { events } = this.props;
+    const {events = {}} = this.props as P & { events: Record<string, () => void> };
     if (!!this.props.events) {
       Object.keys(events).forEach(eventName => {
         this._element.removeEventListener(eventName, events[eventName]);
@@ -119,7 +110,7 @@ export class Block<P extends Record<string, unknown> = any> {
     }
   }
 
-  private _getChildrenAndProps(childrenAndProps: Props<P>): {props: Props<P>, children: Record<string, Block>} {
+  private _getChildrenAndProps(childrenAndProps: P): {props: P, children: Record<string, Block>} {
     const props = {} as Record<string, unknown>;
     const children: Record<string, Block> = {};
     Object.entries(childrenAndProps).forEach(([key, value]) => {
@@ -129,17 +120,17 @@ export class Block<P extends Record<string, unknown> = any> {
         props[key] = value;
       }
     });
-    return { props: props as Props<P>, children };
+    return { props: props as P, children };
   }
 
-  setProps = (nextProps: Partial<Props<P>>): void => {
+  setProps = (nextProps: P): void => {
     if(!nextProps) {
       return;
     }
     Object.assign(this.props, nextProps);
   }
 
-  private _makePropsProxy(props: Props<P>) {
+  private _makePropsProxy(props: P) {
 
     const self = this;
 
@@ -151,7 +142,7 @@ export class Block<P extends Record<string, unknown> = any> {
 
       set(target, prop, value): boolean {
         const oldTarget = {...target}
-        target[prop as keyof Props<P>] = value;
+        target[prop as keyof P] = value;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...oldTarget }, { ...target });
         return true;
       },
@@ -171,3 +162,5 @@ export class Block<P extends Record<string, unknown> = any> {
   }
 
 }
+
+

@@ -1,5 +1,6 @@
-import * as styles from './Page_500.module.css';
+import * as styles from './page_500.module.css';
 import { Block } from '../../utils/Block';
+import Router from '../../utils/Router';
 
 type Props = {
   [key: string]: unknown
@@ -7,7 +8,15 @@ type Props = {
 
 class Page_500 extends Block {
   constructor(props: Props) {
-    super({ styles, ...props });
+    super({
+      styles,
+      ...props,
+      onClick: () => this.onClick(),
+    });
+  }
+
+  onClick() {
+    Router.go('/');
   }
 
   render() {
@@ -15,12 +24,12 @@ class Page_500 extends Block {
       <main class="{{styles.page-500}}">
         <h1 class="{{styles.title}}">500</h1>
         <h2 class="{{styles.subtitle}}">Мы уже фиксим</h2>
-        <p
-          onclick="renderPage('chat')"
-          class="{{styles.btn}}"
-        >
-          Назад к чатам
-        </p>
+        {{{ Button
+          type="button"
+          value="Назад к чатам"
+          class=styles.btn
+          onClick=onClick
+         }}}
       </main>
     `
   }

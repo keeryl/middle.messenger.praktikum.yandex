@@ -12,14 +12,15 @@ class ProfileChangeDataBtn extends Block {
       styles,
       ...props,
       events: {
-        click: (event: Event) => this.handleClick(event),
-      },
+        click: () => this.handleClick()
+      }
     });
 
   }
 
-  handleClick(event: Event) {
-    this.props.onDataChange(event);
+  handleClick() {
+    console.log('click')
+    this.props.onDataChange();
   }
 
   render() {

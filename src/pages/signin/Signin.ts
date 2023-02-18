@@ -2,6 +2,10 @@ import { Block } from '../../utils/Block';
 import AuthButton from '../../components/AuthButton/AuthButton';
 import AuthInput from '../../components/AuthInput/AuthInput';
 import * as styles from './signin.module.css';
+import Router from '../../utils/Router';
+import useInputValidation from '../../utils/inputValidator';
+import AuthController from '../../controllers/AuthController';
+const [formValues, errors, validateInput, validateForm] = useInputValidation();
 
 type Props = {
   [key: string]: unknown
@@ -12,17 +16,25 @@ class Signin extends Block {
     super({
       ...props,
       styles,
+      formValues: formValues,
+      errors: errors,
+      validateInput: validateInput,
+      validateForm: validateForm,
       isLoginInvalid: () => Object.values(this.props.errors.login).some(v => v === false),
       isPasswordInvalid: () => Object.values(this.props.errors.password).some(v => v === false),
       isFormInvalid: () => this.props.isLoginInvalid() || this.props.isPasswordInvalid(),
       isButtonDisabled: 'disabled',
       onChange: (e: Event) => this.handleChange(e),
+      onFocusout: () => this.handleFocusout(),
+      onSignupClick: () => this.onSignupClick(),
       events: {
         submit: (e: Event) => this.handleSubmit(e)
       }
     });
 
   }
+
+  handleFocusout() {}
 
   handleChange(event: Event) {
     const { name, value } = event.target as HTMLInputElement;
@@ -46,7 +58,14 @@ class Signin extends Block {
   handleSubmit(event: Event) {
     event.preventDefault();
     const {login, password} = this.props.formValues
-    console.log('SUBMIT', {login: login, password: password});
+    AuthController.signin({
+      login: login,
+      password: password
+    });
+  }
+
+  onSignupClick() {
+    Router.go('/signup');
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
@@ -103,9 +122,12 @@ class Signin extends Block {
               isFormInvalid=isFormInvalid
               isButtonDisabled=isButtonDisabled
           }}}
-          <p onclick="renderPage('signup')" class="{{styles.btn}}">
-            Нет аккаунта?
-          </p>
+          {{{ Button
+                type="button"
+                value="Нет аккаунта?"
+                class=styles.btn
+                onClick=onSignupClick
+          }}}
         </form>
       </main>
     `
