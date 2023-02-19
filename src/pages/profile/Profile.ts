@@ -33,7 +33,8 @@ class Profile extends Block {
       error: '',
       passwordPopupIsOpened: false,
       handlePasswordPopup: () => this.handlePasswordPopup(),
-      onDataChange: () => this.handleChangeData(),
+      onDataChange: (e: Event) => this.handleChangeData(e),
+      onPasswordChange: () => this.handlePasswordChange(),
       handleLogout: () => this.handleLogout(),
       handleBackClick: () => this.handleBackClick(),
       onChange: (e: Event) => this.handleInputChange(e),
@@ -41,7 +42,6 @@ class Profile extends Block {
       isButtonDisabled: 'disabled',
       events: {
         reset: () => this.handleLogout(),
-        // submit: () => this.handleChangeData()
       }
     });
   }
@@ -77,9 +77,8 @@ class Profile extends Block {
     return `${samePasswordError} ${passwordMatchError}`
   }
 
-  handleChangeData () {
+  handleChangeData (e: Event) {
     const { email, login, first_name, second_name, display_name, phone } = this.props.formValues;
-    console.log('SUBMIT')
     UserController.changeUserProfileData({
       first_name: first_name,
       second_name: second_name,
@@ -88,7 +87,30 @@ class Profile extends Block {
       email: email,
       phone: phone
     })
+      .then(() => {
+        this.setProps({
+          isButtonDisabled: this.checkFormValidity() ? '' : 'disabled',
+        });
+      })
+  }
 
+  handlePasswordChange() {
+    console.log('handlePasswordChange');
+    this.setProps({
+      formValues: {
+        ...this.props.formValues,
+        password: '',
+        passwordCheck: '',
+        newPassword: ''
+      },
+      errors: {
+        ...this.props.errors,
+        password: { required: false, format: false },
+        passwordCheck: { required: false, format: false },
+        newPassword: { required: false, format: false },
+      },
+      error: ''
+    });
   }
 
   handlePasswordPopup () {
@@ -122,9 +144,6 @@ class Profile extends Block {
   }
 
   handleFocusout(event: Event) {
-    this.setProps({
-      isButtonDisabled: this.checkFormValidity() ? '' : 'disabled',
-    });
   }
 
   handleInputChange(event: Event) {
@@ -193,9 +212,6 @@ class Profile extends Block {
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
-    console.log('newProps', newProps)
-    console.log('oldProps', oldProps)
-    // console.log('isEqual', isEqual(oldProps.user, newProps.user))
     Object.values(this.children).forEach(component => {
       if (component instanceof ProfileInput) {
         component.setProps({
@@ -205,7 +221,7 @@ class Profile extends Block {
       }
       if (component instanceof ProfileChangeDataBtn) {
         component.setProps({
-          isButtonDisabled: newProps.isButtonDisabled,
+          isButtonDisabled: this.checkFormValidity() ? '' : 'disabled',
         });
       }
       if (component instanceof ProfileChangePasswordPopup) {
@@ -227,7 +243,6 @@ class Profile extends Block {
   }
 
   render() {
-
     return `
       <main class="{{styles.profile-window}}">
       {{{ Button value='' class=styles.back-btn type="button" onClick=handleBackClick }}}
@@ -301,6 +316,7 @@ class Profile extends Block {
             ProfileChangeDataBtn
               onDataChange=onDataChange
               isButtonDisabled=isButtonDisabled
+              type="button"
           }}}
           {{{ Button value='Изменить пароль' class=styles.btn type="button" onClick=handlePasswordPopup}}}
           {{{ Button value='Выйти' class=styles.btn type="button" onClick=handleLogout}}}
@@ -314,6 +330,7 @@ class Profile extends Block {
             onChange=onChange
             onFocusout=onFocusout
             error=error
+            onPasswordChange=onPasswordChange
       }}}
       </main>
     `
@@ -322,8 +339,6 @@ class Profile extends Block {
 
 registerComponent('Profile', Profile);
 
-const mapStateToProfileProps = (state: any) => ({ user: state.user });
+const mapStateToProfileProps = (state: any) => ({ user: {...state.user} });
 
 export const ProfilePage = withStore(mapStateToProfileProps)(Profile);
-
-// export default Profile;

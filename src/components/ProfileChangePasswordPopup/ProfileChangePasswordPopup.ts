@@ -5,6 +5,8 @@ import ProfileInput from '../ProfileInput/ProfileInput';
 import AuthButton from '../AuthButton/AuthButton';
 import Button from '../Button/Button';
 import InputErrorMessage from '../InputErrorMessage/InputErrorMessage';
+import UserController from '../../controllers/UserController';
+import ApiMessage from '../ApiMessage/ApiMessage';
 Button
 
 type Props = {
@@ -18,6 +20,8 @@ class ProfileChangePasswordPopup extends Block {
       ...props,
       styles,
       isButtonDisabled: 'disabled',
+      apiMessage: '',
+      apiMessageClass: null,
       events: {
         submit: (e: Event) => this.handleSubmit(e)
       }
@@ -32,12 +36,35 @@ class ProfileChangePasswordPopup extends Block {
 
   handleSubmit(e: Event) {
     e.preventDefault();
-    const { password, newPassword, passwordCheck } = this.props.formValues;
-    console.log('SUBMIT POPUP', {
+    const { password, newPassword } = this.props.formValues;
+    UserController.changeUserPassword({
       oldPassword: password,
-      newPassword: newPassword,
-      passwordCheck: passwordCheck
+      newPassword: newPassword
     })
+      .then(() => {
+        console.log('Успешно');
+        this.setProps({
+          apiMessageClass: this.props.styles.successMessage,
+          apiMessage: 'Пароль изменен',
+        });
+        this.props.onPasswordChange();
+      })
+      .catch(e => {
+        console.log('error', e)
+        this.setProps({
+          apiMessageClass: this.props.styles.errorMessage,
+          apiMessage: 'Произошла ошибка при изменении пароля или введен неправильный пароль'
+        });
+        this.props.onPasswordChange();
+      })
+      .finally(() => {
+        setTimeout(() => {
+          this.setProps({
+            apiMessageClass: null,
+            apiMessage: ''
+          });
+        }, 3000)
+      });
   }
 
   checkFormValidity () {
@@ -56,6 +83,7 @@ class ProfileChangePasswordPopup extends Block {
         component.setProps({
           value: newProps.formValues[component.props.name],
           errors: newProps.errors[component.props.name],
+          apiMessage: newProps.apiMessage
         });
       }
       if (component instanceof AuthButton) {
@@ -68,11 +96,20 @@ class ProfileChangePasswordPopup extends Block {
           error: newProps.error,
         });
       }
+      if (component instanceof ApiMessage) {
+        component.setProps({
+          class: newProps.apiMessageClass,
+          message: newProps.apiMessage
+        });
+      }
     });
+
 
     if (oldProps.passwordPopupIsOpened === newProps.passwordPopupIsOpened) {
       return false;
     }
+
+
     return true;
   }
 
@@ -90,6 +127,7 @@ class ProfileChangePasswordPopup extends Block {
         errors=errors.password
         onFocusout=onFocusout
         onChange=onChange
+        apiMessage=apiMessage
       }}}
       {{{ ProfileInput
         label="Новый пароль"
@@ -100,6 +138,7 @@ class ProfileChangePasswordPopup extends Block {
         errors=errors.newPassword
         onFocusout=onFocusout
         onChange=onChange
+        apiMessage=apiMessage
       }}}
       {{{ ProfileInput
         label="Повторите новый пароль"
@@ -110,10 +149,11 @@ class ProfileChangePasswordPopup extends Block {
         errors=errors.passwordCheck
         onFocusout=onFocusout
         onChange=onChange
+        apiMessage=apiMessage
       }}}
       </fieldset>
       {{{ InputErrorMessage error=error }}}
-
+      {{{ ApiMessage class=apiMessageClass message=apiMessage }}}
       {{{ AuthButton isButtonDisabled=isButtonDisabled buttonText="Сохранить" }}}
       {{{ Button type="button" value="Назад" class=styles.btn onClick=onClick }}}
       </form>

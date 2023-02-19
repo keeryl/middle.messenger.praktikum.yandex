@@ -13,7 +13,6 @@ export class UserController {
     return this.api.changeUserProfileData(data)
       .then(data => {
         if (data) {
-          console.log('Successful', data)
           store.set('user', data);
           return data;
         }
@@ -32,9 +31,7 @@ export class UserController {
 
   async changeUserPassword(data: PasswordData) {
     try {
-      const res = await this.api.changeUserPassword(data);
-      console.log(res)
-
+      return this.api.changeUserPassword(data);
     } catch (e: any) {
       console.error(e.message);
     }

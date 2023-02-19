@@ -28,12 +28,12 @@ export class UserAPI extends BaseAPI {
   }
 
 
-  changeUserAvatar(data: AvatarData) {
+  changeUserAvatar(data: AvatarData): Promise<unknown> {
     return this.http.put('/profile/avatar', data);
   }
 
-  changeUserPassword(data: PasswordData) {
-    return this.http.put('/profile/password', data);
+  changeUserPassword(data: PasswordData): Promise<unknown> {
+    return this.http.put('/password', data);
   }
 
   create = undefined;

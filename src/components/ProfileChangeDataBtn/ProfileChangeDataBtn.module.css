@@ -1,4 +1,4 @@
-.btn {
+.butn {
   width: 100%;
   padding: 10px 0;
   margin: 0;
@@ -15,15 +15,15 @@
   transition: opacity 0.2s linear;
 }
 
-.btn:hover {
+.butn:hover {
   opacity: 0.7;
 }
 
-.btn:active {
+.butn:active {
   border: none;
 }
 
-.btn:disabled {
+.butn:disabled {
   border: none;
   border-bottom: 1px solid var(--light-grey);
   cursor: default;

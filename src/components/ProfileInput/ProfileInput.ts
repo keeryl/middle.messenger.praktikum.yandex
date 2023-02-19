@@ -44,7 +44,11 @@ class ProfileInput extends Block {
         });
       }
     });
-    return false;
+    if (oldProps.apiMessage !== newProps.apiMessage) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   render() {

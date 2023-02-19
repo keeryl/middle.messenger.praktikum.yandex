@@ -12,20 +12,19 @@ class ProfileChangeDataBtn extends Block {
       styles,
       ...props,
       events: {
-        click: () => this.handleClick()
+        click: (e: Event) => this.handleClick(e)
       }
     });
 
   }
 
-  handleClick() {
-    console.log('click')
-    this.props.onDataChange();
+  handleClick(e: Event) {
+    this.props.onDataChange(e);
   }
 
   render() {
     return `
-      <button class="{{styles.btn}}" type="button" {{ isButtonDisabled }}>Изменить данные</button>
+      <button class="{{styles.butn}}" type="{{type}}" {{isButtonDisabled}}>Изменить данные</button>
     `
   }
 }
