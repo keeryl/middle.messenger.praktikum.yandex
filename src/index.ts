@@ -1,4 +1,3 @@
-// import { Block } from '../src/utils/Block';
 import AuthController from './controllers/AuthController';
 import Chat from './pages/Chat/Chat';
 import Page_404 from './pages/Page_404/Page_404';
@@ -11,7 +10,6 @@ import Router from './utils/Router';
 enum Routes {
   'Home' = '/',
   'Profile' = '/profile',
-  // 'Chat' = '/chat',
   'Signin' = '/signin',
   'Signup' = '/signup',
   'Page_404' = '/page_404',
@@ -21,7 +19,6 @@ enum Routes {
 window.addEventListener('DOMContentLoaded', async () => {
   Router
     .use(Routes.Home, Chat)
-      // .use(Routes.Chat, Chat)
     .use(Routes.Profile, ProfilePage)
     .use(Routes.Signin, Signin)
     .use(Routes.Signup, Signup)

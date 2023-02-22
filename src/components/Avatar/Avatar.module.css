@@ -31,12 +31,11 @@
   right: 0;
   bottom: 0;
   background: url(../../../static/images/change_avatar.svg) center center no-repeat;
-  background-color: rgba(60, 60, 60, .5);
+  background-color: rgb(60 60 60 / 50%);
   z-index: 1;
   opacity: 0;
   border-radius: 50%;
   transition: opacity 0.2s linear;
-
 }
 
 .overlay:hover {

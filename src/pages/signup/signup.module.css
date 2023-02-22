@@ -82,9 +82,8 @@
   font-size: 8px;
   line-height: 8px;
   padding: 0;
-  margin: 0;
   color: var(--red);
-  margin: 0 0 15px 0;
+  margin: 0 0 15px;
 }
 
 .successMessage {
@@ -92,7 +91,6 @@
   font-size: 8px;
   line-height: 8px;
   padding: 0;
-  margin: 0;
   color: var(--green);
-  margin: 0 0 15px 0;
+  margin: 0 0 15px;
 }
