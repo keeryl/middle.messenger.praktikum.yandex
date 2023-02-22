@@ -10,37 +10,21 @@ export class AuthController {
   }
 
   async signin(data: SigninData) {
-    try {
-      await this.api.signin(data);
-
-      router.go('/');
-    } catch (e: any) {
-      console.error(e);
-    }
+      return this.api.signin(data);
   }
 
   async signup(data: SignupData) {
-    try {
-      await this.api.signup(data);
-
-      await this.fetchUser();
-
-      router.go('/');
-    } catch (e: any) {
-      console.error(e.message);
-    }
+    return this.api.signup(data);
   }
 
   async fetchUser() {
     const user = await this.api.read();
-
     store.set('user', user);
   }
 
   async logout() {
     try {
       await this.api.logout();
-
       router.go('/signin');
     } catch (e: any) {
       console.error(e.message);

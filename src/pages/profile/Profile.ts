@@ -3,6 +3,7 @@ import ProfileInput from '../../components/ProfileInput/ProfileInput';
 import ProfileChangeDataBtn from '../../components/ProfileChangeDataBtn/ProfileChangeDataBtn';
 import Button from '../../components/Button/Button';
 import ProfileChangePasswordPopup from '../../components/ProfileChangePasswordPopup/ProfileChangePasswordPopup';
+import ChangeAvatarPopup from '../../components/ChangeAvatarPopup/ChangeAvatarPopup';
 import * as styles from './Profile.module.css';
 import registerComponent from '../../utils/registerComponent';
 import * as popup from '../../components/ProfileChangePasswordPopup/ProfileChangePasswordPopup.module.css';
@@ -13,8 +14,10 @@ import Router from '../../utils/Router';
 import { withStore } from '../../hocs/withStore';
 import { isEqual } from '../../utils/helpers';
 const [formValues, errors, validateInput, validateForm] = useInputValidation();
-import store from '../../utils/Store';
-Button
+// import store from '../../utils/Store';
+import Avatar from '../../components/Avatar/Avatar';
+import ApiMessage from '../../components/ApiMessage/ApiMessage';
+
 popup
 
 type Props = {
@@ -26,12 +29,15 @@ class Profile extends Block {
     super({
       styles,
       ...props,
+      apiMessage: '',
+      apiMessageClass: null,
       formValues: {...formValues},
       errors: {...errors},
       validateInput: validateInput,
       validateForm: validateForm,
       error: '',
       passwordPopupIsOpened: false,
+      avatarPopupIsOpened: false,
       handlePasswordPopup: () => this.handlePasswordPopup(),
       onDataChange: (e: Event) => this.handleChangeData(e),
       onPasswordChange: () => this.handlePasswordChange(),
@@ -39,6 +45,7 @@ class Profile extends Block {
       handleBackClick: () => this.handleBackClick(),
       onChange: (e: Event) => this.handleInputChange(e),
       onFocusout: (e: Event) => this.handleFocusout(e),
+      onAvatarClick: () => this.handleAvatarPopup(),
       isButtonDisabled: 'disabled',
       events: {
         reset: () => this.handleLogout(),
@@ -87,15 +94,57 @@ class Profile extends Block {
       email: email,
       phone: phone
     })
-      .then(() => {
+      .then((data) => {
+        if (data) {
+          this.setProps({
+            apiMessageClass: this.props.styles.successMessage,
+            apiMessage: 'Данные профиля изменены',
+            user: {
+              ...this.props.user,
+              display_name: this.props.user.display_name === null ? this.props.user.first_name : this.props.user.display_name,
+            },
+            formValues: {
+              ...this.props.formValues,
+              email: this.props.user.email,
+              login: this.props.user.login,
+              first_name: this.props.user.first_name,
+              second_name: this.props.user.second_name,
+              display_name: this.props.user.display_name ? this.props.user.display_name : this.props.user.first_name,
+              phone: this.props.user.phone,
+            },
+            isButtonDisabled: this.checkFormValidity() ? '' : 'disabled',
+          });
+        }
+      })
+      .catch((e) => {
+       let error
+       if (e.reason === 'Email already exists') {
+        error = 'Введеный email уже существует';
+       } else if (e.reason === 'Login already exists') {
+        error = 'Введеный login уже существует';
+       } else {
+         error = 'Произошла ошибка при изменении данных профиля';
+       }
+        // this.setProps({
+        //   isButtonDisabled: ''
+        // });
         this.setProps({
-          isButtonDisabled: this.checkFormValidity() ? '' : 'disabled',
+          apiMessageClass: this.props.styles.errorMessage,
+          apiMessage: error,
+          isButtonDisabled: '',
         });
       })
+      .finally(() => {
+        setTimeout(() => {
+          this.setProps({
+            apiMessageClass: null,
+            apiMessage: ''
+          });
+        }, 3000);
+      });
   }
 
   handlePasswordChange() {
-    console.log('handlePasswordChange');
     this.setProps({
       formValues: {
         ...this.props.formValues,
@@ -110,6 +159,26 @@ class Profile extends Block {
         newPassword: { required: false, format: false },
       },
       error: ''
+    });
+  }
+
+  handleAvatarPopup () {
+    this.setProps({
+      avatarPopupIsOpened: !this.props.avatarPopupIsOpened,
+      isButtonDisabled: 'disabled',
+      user: {
+        ...this.props.user,
+        display_name: this.props.user.display_name === null ? this.props.user.first_name : this.props.user.display_name,
+      },
+      formValues: {
+        ...this.props.formValues,
+        email: this.props.user.email,
+        login: this.props.user.login,
+        first_name: this.props.user.first_name,
+        second_name: this.props.user.second_name,
+        display_name: this.props.user.display_name ? this.props.user.display_name : this.props.user.first_name,
+        phone: this.props.user.phone,
+      },
     });
   }
 
@@ -135,7 +204,6 @@ class Profile extends Block {
   }
 
   handleLogout() {
-    console.log('LOGOUT');
     AuthController.logout();
   }
 
@@ -164,14 +232,18 @@ class Profile extends Block {
       isButtonDisabled: this.checkFormValidity() ? '' : 'disabled',
       error: this.getPasswordValidityError(),
     });
-  }
+
+    console.log('formValues', this.props.formValues);
+    console.log('user', this.props.user)
+    console.log('isButtonDisabled', this.props.isButtonDisabled)  }
 
   init() {
 
     this.setProps({
       user: {
         ...this.props.user,
-        display_name: this.props.user.display_name === null ? this.props.user.first_name : this.props.user.display_name },
+        display_name: this.props.user.display_name === null ? this.props.user.first_name : this.props.user.display_name,
+      },
       formValues: {
         ...this.props.formValues,
         email: this.props.user.email,
@@ -215,13 +287,13 @@ class Profile extends Block {
     Object.values(this.children).forEach(component => {
       if (component instanceof ProfileInput) {
         component.setProps({
-          value: newProps.formValues[component.props.name],
+          value: newProps.user[component.props.name],
           errors: newProps.errors[component.props.name],
         });
       }
       if (component instanceof ProfileChangeDataBtn) {
         component.setProps({
-          isButtonDisabled: this.checkFormValidity() ? '' : 'disabled',
+          isButtonDisabled: newProps.isButtonDisabled,
         });
       }
       if (component instanceof ProfileChangePasswordPopup) {
@@ -232,9 +304,27 @@ class Profile extends Block {
           error: newProps.error,
         });
       }
+      if (component instanceof ChangeAvatarPopup) {
+        component.setProps({
+          avatarPopupIsOpened: newProps.avatarPopupIsOpened
+        });
+      }
+      if (component instanceof Avatar) {
+        component.setProps({
+          avatar: newProps.user.avatar
+        });
+      }
+      if (component instanceof ApiMessage) {
+        component.setProps({
+          class: newProps.apiMessageClass,
+          message: newProps.apiMessage
+        });
+      }
     });
 
     if (isEqual(oldProps.user, newProps.user)) {
+      return false;
+    } else if (oldProps.user.avatar !== newProps.user.avatar) {
       return false;
     } else {
       return true;
@@ -248,7 +338,7 @@ class Profile extends Block {
       {{{ Button value='' class=styles.back-btn type="button" onClick=handleBackClick }}}
       <section class="{{styles.profile}}">
         <form class="{{styles.form}}">
-          <div class="{{styles.user-img}}"></div>
+          {{{ Avatar avatar=user.avatar onAvatarClick=onAvatarClick }}}
           <h1 class="{{styles.user-name}}">{{user.first_name}}</h1>
           <fieldset class="{{styles.user-info}}">
             {{{ ProfileInput
@@ -312,6 +402,8 @@ class Profile extends Block {
               onChange=onChange
             }}}
           </fieldset>
+          {{{ ApiMessage class=apiMessageClass message=apiMessage }}}
+
           {{{
             ProfileChangeDataBtn
               onDataChange=onDataChange
@@ -331,6 +423,10 @@ class Profile extends Block {
             onFocusout=onFocusout
             error=error
             onPasswordChange=onPasswordChange
+      }}}
+      {{{ ChangeAvatarPopup
+        avatarPopupIsOpened=avatarPopupIsOpened
+        onClick=onAvatarClick
       }}}
       </main>
     `

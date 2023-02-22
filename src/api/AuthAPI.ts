@@ -30,12 +30,12 @@ export class AuthAPI extends BaseAPI {
     super('/auth');
   }
 
-  signin(data: SigninData) {
+  signin(data: SigninData): Promise<unknown> {
     return this.http.post('/signin', data);
   }
 
 
-  signup(data: SignupData) {
+  signup(data: SignupData): Promise<unknown> {
     return this.http.post('/signup', data);
   }
 

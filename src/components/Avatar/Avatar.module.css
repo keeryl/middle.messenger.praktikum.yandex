@@ -1,0 +1,44 @@
+.img-container {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  background-color: var(--light-grey-bg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../../../static/images/user-img_default.svg);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  line-height: 130px;
+  object-fit: cover;
+  font-size: 8px;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url(../../../static/images/change_avatar.svg) center center no-repeat;
+  background-color: rgba(60, 60, 60, .5);
+  z-index: 1;
+  opacity: 0;
+  border-radius: 50%;
+  transition: opacity 0.2s linear;
+
+}
+
+.overlay:hover {
+  opacity: 1;
+}

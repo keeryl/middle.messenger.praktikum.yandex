@@ -7,6 +7,7 @@ import Router from '../../utils/Router';
 import useInputValidation from '../../utils/inputValidator';
 const [formValues, errors, validateInput, validateForm] = useInputValidation();
 import AuthController from '../../controllers/AuthController';
+import ApiMessage from '../../components/ApiMessage/ApiMessage';
 
 type Props = {
   [key: string]: unknown
@@ -18,6 +19,8 @@ class Signup extends Block {
     super({
       ...props,
       error: '',
+      apiMessage: '',
+      apiMessageClass: null,
       formValues: formValues,
       errors: errors,
       validateInput: validateInput,
@@ -51,7 +54,9 @@ class Signup extends Block {
 
   handleSubmit(event: Event) {
     event.preventDefault();
-    console.log('SUBMIT', this.props.formValues);
+    this.setProps({
+      isButtonDisabled: 'disabled'
+    });
     const { first_name, second_name, login, email, password, phone } = this.props.formValues;
     AuthController.signup({
       first_name: first_name,
@@ -60,7 +65,45 @@ class Signup extends Block {
       email: email,
       password: password,
       phone: phone,
-    });
+    })
+      .then((data) => {
+        if (data) {
+          this.setProps({
+            apiMessageClass: this.props.styles.successMessage,
+            apiMessage: 'Регистрация прошла упешно',
+          });
+          setTimeout(() => {
+            AuthController.fetchUser();
+            Router.go('/')
+          }, 1000);
+        }
+      })
+      .catch((e) => {
+       let error
+       if (e.reason === 'Email already exists') {
+        error = 'Введеный email уже существует';
+       } else if (e.reason === 'Login already exists') {
+        error = 'Введеный login уже существует';
+       } else {
+         error = 'Произошла ошибка при регистрации';
+       }
+        this.setProps({
+          isButtonDisabled: ''
+        });
+        this.setProps({
+          apiMessageClass: this.props.styles.errorMessage,
+          apiMessage: error,
+          isButtonDisabled: '',
+        });
+      })
+      .finally(() => {
+        setTimeout(() => {
+          this.setProps({
+            apiMessageClass: null,
+            apiMessage: ''
+          });
+        }, 3000);
+      });
   }
 
   checkPassword() {
@@ -118,13 +161,17 @@ class Signup extends Block {
           isButtonDisabled: newProps.isButtonDisabled,
         });
       }
-      Object.values(this.children).forEach(component => {
-        if (component instanceof InputErrorMessage) {
-          component.setProps({
-            error: newProps.error
-          });
-        }
-      });
+      if (component instanceof InputErrorMessage) {
+        component.setProps({
+          error: newProps.error
+        });
+      }
+      if (component instanceof ApiMessage) {
+        component.setProps({
+          class: newProps.apiMessageClass,
+          message: newProps.apiMessage
+        });
+      }
     });
     return false;
   }
@@ -210,8 +257,9 @@ class Signup extends Block {
               error=error
             }}}
           </fieldset>
+          {{{ ApiMessage class=apiMessageClass message=apiMessage }}}
           {{{ AuthButton
-            buttonText="Авторизоваться"
+            buttonText="Зарегистрироваться"
             isFormInvalid=isFormInvalid
             isButtonDisabled=isButtonDisabled
           }}}

@@ -1,0 +1,123 @@
+.popup {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s, opacity 0.2s linear;
+  background-color: var(--white);
+}
+
+.popup_opened {
+  visibility: visible;
+  opacity: 1;
+}
+
+.form {
+  min-width: 430px;
+  min-height: 330px;
+  box-sizing: border-box;
+  padding: 25px;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 10px;
+  position: relative;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--black);
+  margin: 0;
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-label {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: var(--blue);
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.input-label:hover {
+  opacity: .7;
+}
+
+.input {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.btn {
+  padding: 10px 0;
+  margin: 0;
+  border: none;
+  background-color: var(--white);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+  color: var(--blue);
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.btn:hover {
+  opacity: 0.7;
+}
+
+.btn:active {
+  border: none;
+}
+
+.errorMessage {
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 8px;
+  padding: 0;
+  margin: 0;
+  color: var(--red);
+}
+
+.successMessage {
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 8px;
+  padding: 0;
+  margin: 0;
+  color: var(--green);
+}

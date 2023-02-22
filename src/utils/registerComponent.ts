@@ -2,7 +2,7 @@ import Handlebars from 'handlebars';
 import { Block } from '../utils/Block';
 
 function registerComponent(name: string, Component: typeof Block): void {
-  Handlebars.registerHelper(name, function({ data, fn, hash }): string {
+  Handlebars.registerHelper(name, function({ data, fn, hash }) {
     const component = new Component(hash);
     if (!data.root.children) {
       data.root.children = {}

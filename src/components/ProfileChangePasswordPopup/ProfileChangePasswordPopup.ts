@@ -42,15 +42,13 @@ class ProfileChangePasswordPopup extends Block {
       newPassword: newPassword
     })
       .then(() => {
-        console.log('Успешно');
         this.setProps({
           apiMessageClass: this.props.styles.successMessage,
           apiMessage: 'Пароль изменен',
         });
         this.props.onPasswordChange();
       })
-      .catch(e => {
-        console.log('error', e)
+      .catch(() => {
         this.setProps({
           apiMessageClass: this.props.styles.errorMessage,
           apiMessage: 'Произошла ошибка при изменении пароля или введен неправильный пароль'
@@ -63,7 +61,7 @@ class ProfileChangePasswordPopup extends Block {
             apiMessageClass: null,
             apiMessage: ''
           });
-        }, 3000)
+        }, 3000);
       });
   }
 

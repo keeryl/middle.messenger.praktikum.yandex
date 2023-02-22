@@ -1,9 +1,5 @@
 import BaseAPI from './BaseAPI';
 
-export interface AvatarData {
-
-}
-
 export interface ProfileData {
   first_name: string;
   second_name: string;
@@ -28,7 +24,7 @@ export class UserAPI extends BaseAPI {
   }
 
 
-  changeUserAvatar(data: AvatarData): Promise<unknown> {
+  changeUserAvatar(data: FormData): Promise<unknown> {
     return this.http.put('/profile/avatar', data);
   }
 

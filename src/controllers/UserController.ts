@@ -1,6 +1,5 @@
-import API, { UserAPI, AvatarData, PasswordData, ProfileData } from '../api/UserAPI';
+import API, { UserAPI, PasswordData, ProfileData } from '../api/UserAPI';
 import store from '../utils/Store';
-import router from '../utils/Router';
 
 export class UserController {
   private readonly api: UserAPI;
@@ -19,22 +18,18 @@ export class UserController {
       });
   }
 
-  async changeUserAvatar(data: AvatarData) {
-    try {
-      const res = await this.api.changeUserAvatar(data);
-      console.log(res)
-      // store.set('user.avatar', data);
-    } catch (e: any) {
-      console.error(e.message);
-    }
+  async changeUserAvatar(data: FormData) {
+    return this.api.changeUserAvatar(data)
+    .then(data => {
+      if (data) {
+        store.set('user', data);
+        return data;
+      }
+    });
   }
 
   async changeUserPassword(data: PasswordData) {
-    try {
-      return this.api.changeUserPassword(data);
-    } catch (e: any) {
-      console.error(e.message);
-    }
+    return this.api.changeUserPassword(data);
   }
 
 }
