@@ -1,9 +1,10 @@
 import { Block } from '../../utils/Block';
 import * as styles from './ChatMessanger.module.css';
 import ChatHeader from '../ChatHeader/ChatHeader';
-import ChatMessages from '../ChatMessages/ChatMessages';
+import { ChatMessages } from '../ChatMessages/ChatMessages';
 import ChatInput from '../ChatInput/ChatInput';
 import registerComponent from '../../utils/registerComponent';
+// import { withStore } from '../../hocs/withStore';
 ChatHeader
 ChatMessages
 
@@ -28,21 +29,29 @@ class ChatMessanger extends Block {
         });
       }
     });
-    return false;
+    if (oldProps.selectedChat === newProps.selectedChat) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   render() {
     return `
       <section class="{{styles.chatMessanger}}">
-
-        {{{ ChatHeader }}}
-        {{{ ChatMessages }}}
-        {{{ ChatInput
-          message=message
-          onMessageInput=onMessageInput
-          buttonState=buttonState
-        }}}
-
+        {{#if selectedChat}}
+          {{{ ChatHeader onSettingsClick=onSettingsClick}}}
+          {{{ ChatMessages }}}
+          {{{ ChatInput
+            message=message
+            onMessageInput=onMessageInput
+            buttonState=buttonState
+          }}}
+        {{else}}
+          <p class="{{styles.defaultMessage}}">
+            Выберите чат, чтобы отправить сообщение
+          </p>
+        {{/if}}
       </section>
     `
   }
@@ -50,4 +59,6 @@ class ChatMessanger extends Block {
 
 registerComponent('ChatMessanger', ChatMessanger);
 
+
 export default ChatMessanger;
+

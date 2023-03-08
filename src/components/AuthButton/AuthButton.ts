@@ -25,6 +25,7 @@ class AuthButton extends Block {
   render() {
     return `
       <button
+        type="submit"
         class="{{styles.button}}"
        {{isButtonDisabled}}
       >

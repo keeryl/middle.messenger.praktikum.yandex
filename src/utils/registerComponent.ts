@@ -8,7 +8,7 @@ function registerComponent(name: string, Component: typeof Block): void {
       data.root.children = {}
     }
     data.root.children[component.id] = component;
-    return `<div data-id="${component.id}"></div>`
+    return `<div data-id="${component.id}"></div>`;
   });
 }
 

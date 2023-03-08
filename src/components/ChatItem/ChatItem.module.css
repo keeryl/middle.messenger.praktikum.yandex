@@ -6,11 +6,15 @@
   justify-content: space-between;
   box-sizing: border-box;
   border-bottom: 1px solid var(--light-grey);
-  padding: 12px 0;
+  padding: 10px;
   gap: 10px;
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.2s linear;
+}
+
+.selected {
+  background-color: #E4EDFD;
 }
 
 .chatItem:hover {
@@ -22,6 +26,7 @@
   min-height: 47px;
   background: var(--light-grey-bg);
   border-radius: 50px;
+  font-size: 0;
 }
 
 .title {

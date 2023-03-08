@@ -1,9 +1,13 @@
 import { Block } from '../../utils/Block';
 import * as styles from './ChatList.module.css';
-import ChatItem from '../ChatItem/ChatItem';
 import registerComponent from '../../utils/registerComponent';
 import Router from '../../utils/Router';
-ChatItem
+import SearchInput from '../SearchInput/SearchInput';
+import Chats from '../Chats/Chats';
+// import { withStore } from '../../hocs/withStore';
+
+SearchInput
+Chats
 
 type Props = {
   [key: string]: unknown
@@ -23,23 +27,37 @@ class ChatList extends Block {
     Router.go('/profile');
   }
 
+  componentDidUpdate(oldProps: any, newProps: any) {
+    Object.values(this.children).forEach(component => {
+      // if (component instanceof SearchInput) {
+      //   component.setProps({
+
+      //   });
+      // }
+      if (component instanceof Chats) {
+        component.setProps({
+          chats: newProps.chats,
+          // selectedChat: newProps.selectedChat
+        });
+      }
+    });
+    return false;
+  }
+
   render(): string {
     return `
       <section class="{{styles.chatList}}">
-        {{{ Button value='Профиль >' class=styles.navButton type="button" onClick=handleProfileClick }}}
-        <input
-          class="{{styles.searchInput}}"
-          placeholder="Поиск">
-        <ul class="{{styles.chats}}">
-
-          {{{ChatItem
-            userName = props.userName
-            lastMessage = props.lastMessage
-            time = props.time
-            counter = props.counter
-          }}}
-
-        </ul>
+        {{{ Button
+          value="Профиль >"
+          class=styles.navButton
+          type="button"
+          onClick=handleProfileClick
+        }}}
+        {{{ SearchInput }}}
+        {{{ Chats
+          chats=chats
+          selectedChat=selectedChat
+        }}}
       </section>
     `
   }

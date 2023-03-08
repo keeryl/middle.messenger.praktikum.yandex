@@ -8,12 +8,15 @@ export function withStore(mapStateToProps: (state: any) => any) {
     return class WithStore extends Component {
 
       constructor(props: any) {
+        let previousState = mapStateToProps(store.getState());
 
-        super({ ...props,  ...mapStateToProps(store.getState()) });
+        super({ ...props,  ...previousState });
 
         store.on(StoreEvents.Updated, () => {
+          const stateProps = mapStateToProps(store.getState());
+          previousState = stateProps;
 
-          this.setProps({ ...mapStateToProps(store.getState()) });
+          this.setProps({ ...stateProps });
         });
 
       }

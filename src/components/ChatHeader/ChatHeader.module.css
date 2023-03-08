@@ -30,7 +30,6 @@
 }
 
 .chatSettings {
-  position: relative;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -45,38 +44,9 @@
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.2s linear;
+  z-index: 50;
 }
 
 .chatSettings:hover {
-  opacity: 0.7;
-}
-
-.settingsTooltip {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: 70px;
-  right: 10px;
-  background: var(--white);
-  box-shadow: 0 0 6px rgb(0 0 0 / 14%);
-  border-radius: 12px;
-  padding: 15px;
-  box-sizing: border-box;
-  gap: 15px;
-}
-
-.tooltipBtn {
-  background-color: inherit;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  opacity: 1;
-  transition: opacity 0.2s linear;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-.tooltipBtn:hover {
   opacity: 0.7;
 }

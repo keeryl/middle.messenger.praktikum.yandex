@@ -14,10 +14,9 @@ import Router from '../../utils/Router';
 import { withStore } from '../../hocs/withStore';
 import { isEqual } from '../../utils/helpers';
 const [formValues, errors, validateInput, validateForm] = useInputValidation();
-// import store from '../../utils/Store';
 import Avatar from '../../components/Avatar/Avatar';
 import ApiMessage from '../../components/ApiMessage/ApiMessage';
-
+Button
 popup
 
 type Props = {
@@ -125,9 +124,6 @@ class Profile extends Block {
        } else {
          error = 'Произошла ошибка при изменении данных профиля';
        }
-        // this.setProps({
-        //   isButtonDisabled: ''
-        // });
         this.setProps({
           apiMessageClass: this.props.styles.errorMessage,
           apiMessage: error,
@@ -232,10 +228,7 @@ class Profile extends Block {
       isButtonDisabled: this.checkFormValidity() ? '' : 'disabled',
       error: this.getPasswordValidityError(),
     });
-
-    console.log('formValues', this.props.formValues);
-    console.log('user', this.props.user)
-    console.log('isButtonDisabled', this.props.isButtonDisabled)  }
+  }
 
   init() {
 
@@ -435,6 +428,6 @@ class Profile extends Block {
 
 registerComponent('Profile', Profile);
 
-const mapStateToProfileProps = (state: any) => ({ user: {...state.user} });
+const mapStateToProfileProps = (state: any) => ({ user: { ...(state.user || {} )} });
 
 export const ProfilePage = withStore(mapStateToProfileProps)(Profile);

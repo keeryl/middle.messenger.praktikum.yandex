@@ -2,7 +2,7 @@ import API, { AuthAPI, SigninData, SignupData } from '../api/AuthAPI';
 import store from '../utils/Store';
 import router from '../utils/Router';
 
-export class AuthController {
+class AuthController {
   private readonly api: AuthAPI;
 
   constructor() {
