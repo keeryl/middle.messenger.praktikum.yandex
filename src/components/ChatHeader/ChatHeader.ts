@@ -3,6 +3,7 @@ import * as styles from './ChatHeader.module.css';
 import registerComponent from '../../utils/registerComponent';
 import Button from '../Button/Button';
 import ChatSettingsPopup from '../ChatSettingsPopup/ChatSettingsPopup';
+import { withStore } from '../../hocs/withStore';
 Button
 ChatSettingsPopup
 
@@ -10,7 +11,7 @@ type Props = {
   [key: string]: unknown
 }
 
-class ChatHeader extends Block {
+class ChatHeaderBlock extends Block {
   constructor(props: Props) {
     super({
       styles,
@@ -23,7 +24,7 @@ class ChatHeader extends Block {
       <section class="{{styles.chatHeader}}">
         <div class="{{styles.chatInfo}}">
           <div class="{{styles.chatImage}}"></div>
-          <h2 class="{{styles.chatName}}">Название чата</h2>
+          <h2 class="{{styles.chatName}}">{{selectedChat.title}}</h2>
         </div>
         {{{ Button type="button" class=styles.chatSettings value="" onClick=onSettingsClick }}}
       </section>
@@ -31,6 +32,10 @@ class ChatHeader extends Block {
   }
 }
 
-registerComponent('ChatHeader', ChatHeader);
+const mapStateToProps = (state: any) => ({
+  selectedChat: state.selectedChat || {id: null}
+});
 
-export default ChatHeader;
+export const ChatHeader = withStore(mapStateToProps)(ChatHeaderBlock);
+
+registerComponent('ChatHeader', ChatHeader);

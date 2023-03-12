@@ -1,5 +1,6 @@
 import store, { StoreEvents } from '../utils/Store';
 import { Block } from '../utils/Block';
+import { isEqual } from '../utils/helpers';
 
 export function withStore(mapStateToProps: (state: any) => any) {
 
@@ -8,17 +9,16 @@ export function withStore(mapStateToProps: (state: any) => any) {
     return class WithStore extends Component {
 
       constructor(props: any) {
-        let previousState = mapStateToProps(store.getState());
-
-        super({ ...props,  ...previousState });
+        let state = mapStateToProps(store.getState());
+        super({ ...props,  ...state });
 
         store.on(StoreEvents.Updated, () => {
-          const stateProps = mapStateToProps(store.getState());
-          previousState = stateProps;
-
-          this.setProps({ ...stateProps });
+          const newState = mapStateToProps(store.getState());
+          if (!isEqual(state, newState)) {
+            this.setProps({ ...newState });
+          }
+          state = newState;
         });
-
       }
     }
 

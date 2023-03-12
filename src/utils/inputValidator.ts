@@ -17,7 +17,8 @@ const useInputValidation = () => {
     password: '',
     newPassword: '',
     passwordCheck: '',
-    message: ''
+    message: '',
+    chatTitle: ''
   }
 
 
@@ -60,6 +61,10 @@ const useInputValidation = () => {
     },
     message: {
       required: false,
+    },
+    chatTitle: {
+      required: false,
+      format: false,
     }
   }
 
@@ -102,6 +107,10 @@ const useInputValidation = () => {
     },
     message: {
       required: (value: string): boolean => value !== '',
+    },
+    chatTitle: {
+      required: (value: string): boolean => value !== '',
+      format: (value: string): boolean => /^[a-zA-Zа-яёА-ЯЁ]{2,15}$/gmi.test(value),
     }
   }
 

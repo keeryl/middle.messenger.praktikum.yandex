@@ -1,5 +1,5 @@
 import AuthController from './controllers/AuthController';
-import { ChatPage } from './pages/Chat/Chat';
+import Chat from './pages/Chat/Chat';
 import Page_404 from './pages/Page_404/Page_404';
 import Page_500 from './pages/Page_500/Page_500';
 import { ProfilePage } from './pages/Profile/Profile';
@@ -18,7 +18,7 @@ enum Routes {
 
 window.addEventListener('DOMContentLoaded', async () => {
   Router
-    .use(Routes.Home, ChatPage)
+    .use(Routes.Home, Chat)
     .use(Routes.Profile, ProfilePage)
     .use(Routes.Signin, Signin)
     .use(Routes.Signup, Signup)

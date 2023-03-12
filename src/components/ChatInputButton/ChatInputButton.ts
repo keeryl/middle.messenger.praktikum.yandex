@@ -10,14 +10,14 @@ class ChatInputButton extends Block {
   constructor(props: Props) {
     super({
       styles,
-      ...props,
+      ...props
     });
 
   }
 
   render() {
     return `
-      <button class="{{styles.button}}" {{buttonState}}></button>
+      <button type="submit" class="{{styles.button}}" {{buttonState}}></button>
     `
   }
 }

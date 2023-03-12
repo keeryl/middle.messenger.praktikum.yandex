@@ -4,6 +4,7 @@ import registerComponent from '../../utils/registerComponent';
 import ChatsController from '../../controllers/ChatsController';
 import { withStore } from '../../hocs/withStore';
 import store from '../../utils/Store';
+// import { isEqual } from '../../utils/helpers';
 
 type Props = {
   [key: string]: unknown
@@ -20,14 +21,14 @@ class ChatItemBlock extends Block {
         click: (e: Event) => this.handleClick(e)
       }
     });
-    this.props.selectedClass = () => this.props.chatProps.id === this.props.selectedChat ? this.props.styles.selected : '';
+    this.props.selectedClass = () => this.props.chatProps.id === this.props.selectedChat.id ? this.props.styles.selected : '';
   }
 
   handleClick(e: Event) {
-    this.props.chatProps.id === this.props.selectedChat ?
-      store.set('selectedChat', null)
+    this.props.chatProps.id === this.props.selectedChat.id ?
+      store.set('selectedChat', {id: null})
       :
-      ChatsController.selectChat(this.props.chatProps.id)
+      ChatsController.selectChat(this.props.chatProps);
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
@@ -59,7 +60,7 @@ class ChatItemBlock extends Block {
 }
 
 const mapStateToProps = (state: any) => ({
-  selectedChat: state.selectedChat || null
+  selectedChat: state.selectedChat || {id: null}
 });
 
 export const ChatItem = withStore(mapStateToProps)(ChatItemBlock);

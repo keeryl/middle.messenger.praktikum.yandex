@@ -39,6 +39,7 @@ class MessagesController {
   }
 
   sendMessage(id: number, message: string) {
+    console.log(id, message)
     const socket = this.sockets.get(id);
 
     if (!socket) {

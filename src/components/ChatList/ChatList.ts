@@ -3,10 +3,11 @@ import * as styles from './ChatList.module.css';
 import registerComponent from '../../utils/registerComponent';
 import Router from '../../utils/Router';
 import SearchInput from '../SearchInput/SearchInput';
-import Chats from '../Chats/Chats';
-// import { withStore } from '../../hocs/withStore';
+import { Chats } from '../Chats/Chats';
+import ChatListMenu from '../ChatListMenu/ChatListMenu';
 
 SearchInput
+ChatListMenu
 Chats
 
 type Props = {
@@ -34,10 +35,9 @@ class ChatList extends Block {
 
       //   });
       // }
-      if (component instanceof Chats) {
+      if (component instanceof ChatListMenu) {
         component.setProps({
-          chats: newProps.chats,
-          // selectedChat: newProps.selectedChat
+          chatListSettingsActive: newProps.chatListSettingsActive,
         });
       }
     });
@@ -47,17 +47,12 @@ class ChatList extends Block {
   render(): string {
     return `
       <section class="{{styles.chatList}}">
-        {{{ Button
-          value="Профиль >"
-          class=styles.navButton
-          type="button"
-          onClick=handleProfileClick
+        {{{ ChatListMenu
+          onChatListSettingsClick=onChatListSettingsClick
+          chatListSettingsActive=chatListSettingsActive
+          handleAddChatPopup=handleAddChatPopup
         }}}
-        {{{ SearchInput }}}
-        {{{ Chats
-          chats=chats
-          selectedChat=selectedChat
-        }}}
+        {{{ Chats }}}
       </section>
     `
   }

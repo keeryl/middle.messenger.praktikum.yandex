@@ -1,10 +1,10 @@
 import { Block } from '../../utils/Block';
 import * as styles from './ChatMessanger.module.css';
-import ChatHeader from '../ChatHeader/ChatHeader';
+import { ChatHeader } from '../ChatHeader/ChatHeader';
 import { ChatMessages } from '../ChatMessages/ChatMessages';
 import ChatInput from '../ChatInput/ChatInput';
 import registerComponent from '../../utils/registerComponent';
-// import { withStore } from '../../hocs/withStore';
+import { withStore } from '../../hocs/withStore';
 ChatHeader
 ChatMessages
 
@@ -12,7 +12,7 @@ type Props = {
   [key: string]: unknown
 }
 
-class ChatMessanger extends Block {
+class ChatMessangerBlock extends Block {
   constructor(props: Props) {
     super({
       styles,
@@ -29,7 +29,7 @@ class ChatMessanger extends Block {
         });
       }
     });
-    if (oldProps.selectedChat === newProps.selectedChat) {
+    if (oldProps.selectedChat.id === newProps.selectedChat.id) {
       return false;
     } else {
       return true;
@@ -39,13 +39,14 @@ class ChatMessanger extends Block {
   render() {
     return `
       <section class="{{styles.chatMessanger}}">
-        {{#if selectedChat}}
+        {{#if selectedChat.id}}
           {{{ ChatHeader onSettingsClick=onSettingsClick}}}
           {{{ ChatMessages }}}
           {{{ ChatInput
             message=message
             onMessageInput=onMessageInput
             buttonState=buttonState
+            selectedChat=selectedChat
           }}}
         {{else}}
           <p class="{{styles.defaultMessage}}">
@@ -57,8 +58,10 @@ class ChatMessanger extends Block {
   }
 }
 
+const mapStateToProps = (state: any) => ({
+  selectedChat: state.selectedChat || {id: null}
+});
+
+export const ChatMessanger = withStore(mapStateToProps)(ChatMessangerBlock);
+
 registerComponent('ChatMessanger', ChatMessanger);
-
-
-export default ChatMessanger;
-

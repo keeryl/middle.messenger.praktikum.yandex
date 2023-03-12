@@ -1,8 +1,9 @@
 import { Block } from '../../utils/Block';
 import * as styles from './Chats.module.css';
-import {ChatItem} from '../ChatItem/ChatItem';
+import { ChatItem } from '../ChatItem/ChatItem';
 import registerComponent from '../../utils/registerComponent';
-// import { withStore } from '../../hocs/withStore';
+import { withStore } from '../../hocs/withStore';
+import ChatsController from '../../controllers/ChatsController';
 
 ChatItem
 
@@ -11,31 +12,27 @@ type Props = {
   [key: string]: unknown
 }
 
-class Chats extends Block {
+class ChatsBlock extends Block {
 
   constructor(props: Props) {
     super({
       styles,
       ...props,
     });
-    console.log("CHATS", this);
+  }
+
+  init() {
+    ChatsController.fetchChats();
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
-    // Object.values(this.children).forEach(component => {
-    //   if (component instanceof ChatItem) {
-    //     component.setProps({
-    //       selectedChat: newProps.selectedChat
-    //     });
-    //   }
-    // });
-    if (JSON.stringify(oldProps.chats)===JSON.stringify(newProps.chats)) {
-      return false;
-    } else {
-      console.log("CHATS UPDATED")
-      return true;
-    }
-    // return false;
+    // if (JSON.stringify(oldProps.chats)===JSON.stringify(newProps.chats)) {
+    //   return false;
+    // } else {
+    //   console.log('CHATS UPDATED');
+    //   return true;
+    // }
+    return true;
   }
 
   render(): string {
@@ -51,14 +48,10 @@ class Chats extends Block {
   }
 }
 
+const mapStateToProps = (state: any) => ({
+  chats: { ...(state.chats || [] )}
+});
+
+export const Chats = withStore(mapStateToProps)(ChatsBlock);
+
 registerComponent('Chats', Chats);
-
-export default Chats;
-
-// const mapStateToProps = (state: any) => ({
-//   chats: { ...(state.chats || [] )}
-// });
-
-// export const Chats = withStore(mapStateToProps)(ChatsBlock);
-
-// registerComponent('Chats', Chats);

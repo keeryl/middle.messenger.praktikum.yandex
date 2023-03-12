@@ -18,7 +18,7 @@ export class ChatsAPI extends BaseAPI {
     super('/chats');
   }
 
-  create(title: string) {
+  create(title: string): Promise<unknown> {
     return this.http.post('/', { title });
   }
 
