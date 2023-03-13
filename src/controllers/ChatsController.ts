@@ -40,7 +40,7 @@ class ChatsController {
   }
 
   selectChat(chatData: Record<string, unknown>) {
-    store.set('selectedChat', chatData);
+    store.set('selectedChat', {...chatData});
   }
 }
 

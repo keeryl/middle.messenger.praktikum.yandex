@@ -24,13 +24,14 @@ class ChatMessage extends Block {
 
   render() {
     return `
-      <article class="{{styles.message}}">
+      <li class="{{styles.message}}">
         <p class="{{styles.messageText}}">
+          {{message.content}}
         </p>
         <div class="{{styles.messageInfo}}">
-          <time class="{{styles.messageTime}}">12:15</time>
+          <time class="{{styles.messageTime}}">{{message.time}}</time>
         </div>
-      </article>
+      </li>
     `
   }
 }

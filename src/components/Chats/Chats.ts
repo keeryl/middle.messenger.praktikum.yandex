@@ -50,6 +50,7 @@ class ChatsBlock extends Block {
 
 const mapStateToProps = (state: any) => ({
   chats: { ...(state.chats || [] )}
+  // selectedChat: {...state.selectedChat} || {id: null}
 });
 
 export const Chats = withStore(mapStateToProps)(ChatsBlock);

@@ -33,7 +33,7 @@ class ChatHeaderBlock extends Block {
 }
 
 const mapStateToProps = (state: any) => ({
-  selectedChat: state.selectedChat || {id: null}
+  selectedChat: {...state.selectedChat} || {id: null}
 });
 
 export const ChatHeader = withStore(mapStateToProps)(ChatHeaderBlock);

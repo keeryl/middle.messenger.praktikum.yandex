@@ -59,7 +59,7 @@ class ChatMessangerBlock extends Block {
 }
 
 const mapStateToProps = (state: any) => ({
-  selectedChat: state.selectedChat || {id: null}
+  selectedChat: {...state.selectedChat} || {id: null}
 });
 
 export const ChatMessanger = withStore(mapStateToProps)(ChatMessangerBlock);

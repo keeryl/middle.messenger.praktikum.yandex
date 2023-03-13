@@ -15,7 +15,7 @@ class ChatInput extends Block {
       styles,
       events: {
         input: (event: Event) => this.onInputChange(event),
-        submit: (event: Event) => this.handleMessageSubmit(event)
+        // submit: (event: Event) => this.handleMessageSubmit(event)
       }
     });
   }
@@ -24,10 +24,10 @@ class ChatInput extends Block {
   }
 
   handleMessageSubmit(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
-    console.log('MESSAGE SUBMIT', this.props.message);
-    MessagesController.sendMessage(this.props.selectedChat.id, this.props.message);
+    // event.preventDefault();
+    // event.stopPropagation();
+    // console.log('MESSAGE SUBMIT', this.props.message);
+
   }
 
   onInputChange(event: Event) {
@@ -42,14 +42,15 @@ class ChatInput extends Block {
         });
       }
     });
-    return false;
+    return true;
+
   }
 
   render() {
     return `
       <form class="{{styles.chatInput}}">
         <button class="{{styles.settingsBtn}}" type="button"></button>
-        <input name="message" class="{{styles.messageInput}}" value="{{message}}">
+        <input name="message" class="{{styles.messageInput}}" value="{{message}}" autofocus>
         {{{ ChatInputButton buttonState=buttonState }}}
       </form>
     `

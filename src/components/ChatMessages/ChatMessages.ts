@@ -2,6 +2,8 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatMessages.module.css';
 import registerComponent from '../../utils/registerComponent';
 import { withStore } from '../../hocs/withStore';
+import ChatMessage from '../ChatMessage/ChatMessage';
+ChatMessage
 
 type Props = {
   [key: string]: unknown
@@ -17,15 +19,19 @@ class ChatMessagesBlock extends Block {
 
   render(): string {
     return `
-      <section class="{{styles.messages}}">
-
-      </section>
+      <ul class="{{styles.messages}}">
+        {{#each messages}}
+          {{{ ChatMessage
+            message=this
+          }}}
+        {{/each}}
+      </ul>
     `
   }
 }
 
 const mapStateToProps = (state: any) => {
-  const selectedChatId = state.selectedChat;
+  const selectedChatId = state.selectedChat.id;
 
   if (!selectedChatId) {
     return {

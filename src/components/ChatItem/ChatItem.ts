@@ -4,7 +4,6 @@ import registerComponent from '../../utils/registerComponent';
 import ChatsController from '../../controllers/ChatsController';
 import { withStore } from '../../hocs/withStore';
 import store from '../../utils/Store';
-// import { isEqual } from '../../utils/helpers';
 
 type Props = {
   [key: string]: unknown
@@ -26,13 +25,19 @@ class ChatItemBlock extends Block {
 
   handleClick(e: Event) {
     this.props.chatProps.id === this.props.selectedChat.id ?
-      store.set('selectedChat', {id: null})
+      store.set('selectedChat.id', null)
       :
       ChatsController.selectChat(this.props.chatProps);
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
-    return true;
+    if (this.props.chatProps.id === newProps.selectedChat.id ||
+      this.props.chatProps.id === oldProps.selectedChat.id
+      ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 
@@ -46,7 +51,7 @@ class ChatItemBlock extends Block {
           >
           <div class="{{styles.title}}">
             <p class="{{styles.userName}}">{{chatProps.title}}</p>
-            <p class="{{styles.lastMessage}}">{{chatProps.last_message}}</p>
+            <p class="{{styles.lastMessage}}">{{chatProps.last_message.content}}</p>
           </div>
           <div class="{{styles.info}}">
             <p class="{{styles.time}}">{{chatProps.time}}</p>
@@ -60,7 +65,7 @@ class ChatItemBlock extends Block {
 }
 
 const mapStateToProps = (state: any) => ({
-  selectedChat: state.selectedChat || {id: null}
+  selectedChat: {...state.selectedChat} || {id: null},
 });
 
 export const ChatItem = withStore(mapStateToProps)(ChatItemBlock);

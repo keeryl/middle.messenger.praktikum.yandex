@@ -50,6 +50,7 @@ class MessagesController {
       type: 'message',
       content: message,
     });
+    console.log('state', store.getState())
   }
 
   fetchOldMessages(id: number) {

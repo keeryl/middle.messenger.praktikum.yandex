@@ -9,6 +9,7 @@ import AddUserPopup from '../../components/AddUserPopup/AddUserPopup';
 import DeleteUserPopup from '../../components/DeleteUserPopup/DeleteUserPopup';
 const [formValues, errors, validateInput, validateForm] = useInputValidation();
 import registerComponent from '../../utils/registerComponent';
+import MessagesController from '../../controllers/MessagesController';
 ChatList
 
 type Props = {
@@ -146,8 +147,12 @@ class Chat extends Block {
 
   handleMessageSubmit(event: Event) {
     event.preventDefault();
-    const { message } = this.props.formValues
-    console.log('SUBMIT', {message: message});
+    const { message } = this.props.formValues;
+    MessagesController.sendMessage(this.props.selectedChat.id, message);
+    this.setProps({
+      ...this.props.formValues,
+      message: ''
+    })
   }
 
   handleSettingsClick() {
