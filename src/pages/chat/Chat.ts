@@ -10,13 +10,14 @@ import DeleteUserPopup from '../../components/DeleteUserPopup/DeleteUserPopup';
 const [formValues, errors, validateInput, validateForm] = useInputValidation();
 import registerComponent from '../../utils/registerComponent';
 import MessagesController from '../../controllers/MessagesController';
+import { withStore } from '../../hocs/withStore';
 ChatList
 
 type Props = {
   [key: string]: unknown
 }
 
-class Chat extends Block {
+class ChatBlock extends Block {
   constructor(props: Props) {
     super({
       styles,
@@ -150,8 +151,10 @@ class Chat extends Block {
     const { message } = this.props.formValues;
     MessagesController.sendMessage(this.props.selectedChat.id, message);
     this.setProps({
-      ...this.props.formValues,
-      message: ''
+      formValues: {
+        ...this.props.formValues,
+        message: ''
+      }
     })
   }
 
@@ -262,5 +265,13 @@ class Chat extends Block {
   }
 }
 
+// registerComponent('Chat', Chat);
+// export default Chat;
+
+const mapStateToProps = (state: any) => ({
+  selectedChat: {...state.selectedChat} || {id: null},
+});
+
+export const Chat = withStore(mapStateToProps)(ChatBlock);
+
 registerComponent('Chat', Chat);
-export default Chat;

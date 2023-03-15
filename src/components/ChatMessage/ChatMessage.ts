@@ -7,13 +7,15 @@ type Props = {
   [key: string]: unknown
 }
 
-class ChatMessage extends Block {
+class ChatMessageBlock extends Block {
 
   constructor(props: Props) {
     super({
       styles,
       ...props,
     });
+    this.props.isMine = this.props.userId === this.props.message.user_id;
+    this.props.time = this.props.message.time.slice(11,16);
   }
 
 
@@ -24,19 +26,34 @@ class ChatMessage extends Block {
 
   render() {
     return `
-      <li class="{{styles.message}}">
+      <li class="{{styles.message}} {{#if isMine}} {{styles.message_type_self}} {{/if}}">
         <p class="{{styles.messageText}}">
           {{message.content}}
         </p>
         <div class="{{styles.messageInfo}}">
-          <time class="{{styles.messageTime}}">{{message.time}}</time>
+          <div class="{{styles.messageStatus}}">
+            <div class="{{styles.statusFirstCheck}}"></div>
+            {{#if message.is_read}}
+            <div class="{{styles.statusSecondCheck}}"></div>
+            {{/if}}
+          </div>
+          <time class="{{styles.messageTime}} {{#if isMine}} {{styles.messageTime_type_self}} {{/if}}">
+            {{time}}
+          </time>
         </div>
       </li>
     `
   }
 }
 
+// registerComponent('ChatMessage', ChatMessage);
+
+// export default ChatMessage;
+
+const mapStateToProps = (state: any) => ({
+  userId: state.user.id,
+});
+
+export const ChatMessage = withStore(mapStateToProps)(ChatMessageBlock);
+
 registerComponent('ChatMessage', ChatMessage);
-
-export default ChatMessage;
-

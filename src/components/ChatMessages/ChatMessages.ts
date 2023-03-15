@@ -2,7 +2,7 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatMessages.module.css';
 import registerComponent from '../../utils/registerComponent';
 import { withStore } from '../../hocs/withStore';
-import ChatMessage from '../ChatMessage/ChatMessage';
+import { ChatMessage } from '../ChatMessage/ChatMessage';
 ChatMessage
 
 type Props = {

@@ -20,26 +20,29 @@ class ChatItemBlock extends Block {
         click: (e: Event) => this.handleClick(e)
       }
     });
-    this.props.selectedClass = () => this.props.chatProps.id === this.props.selectedChat.id ? this.props.styles.selected : '';
+    this.props.selectedClass = () => this.props.chatProps.id === this.props.selectedChatId ? this.props.styles.selected : '';
   }
 
   handleClick(e: Event) {
-    this.props.chatProps.id === this.props.selectedChat.id ?
-      store.set('selectedChat.id', null)
-      :
+    // this.props.chatProps.id === this.props.selectedChat.id ?
+    //   store.set('selectedChat.id', null)
+    //   :
       ChatsController.selectChat(this.props.chatProps);
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
-    if (this.props.chatProps.id === newProps.selectedChat.id ||
-      this.props.chatProps.id === oldProps.selectedChat.id
-      ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+    // console.log('ChatItem', this);
+    console.log('ChatItem componentDidUpdate');
 
+    // if (this.props.chatProps.id === newProps.selectedChat.id ||
+    //   this.props.chatProps.id === oldProps.selectedChat.id
+    //   ) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+    return true;
+  }
 
   render() {
     return `
@@ -65,9 +68,7 @@ class ChatItemBlock extends Block {
 }
 
 const mapStateToProps = (state: any) => ({
-  selectedChat: {...state.selectedChat} || {id: null},
+  selectedChatId: state.selectedChat?.id || null
 });
-
 export const ChatItem = withStore(mapStateToProps)(ChatItemBlock);
-
 registerComponent('ChatItem', ChatItem);

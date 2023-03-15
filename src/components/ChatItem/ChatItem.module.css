@@ -41,18 +41,26 @@
   padding: 0 10px 0 0;
   gap: 4px;
   max-height: 47px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .userName {
+  width: calc(100%);
   font-weight: 600;
   font-size: 13px;
   line-height: 13px;
   color: var(--black);
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .lastMessage {
+  width: calc(100%);
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
@@ -61,6 +69,7 @@
   padding: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .info {

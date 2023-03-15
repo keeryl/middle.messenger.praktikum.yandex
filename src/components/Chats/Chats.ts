@@ -4,6 +4,7 @@ import { ChatItem } from '../ChatItem/ChatItem';
 import registerComponent from '../../utils/registerComponent';
 import { withStore } from '../../hocs/withStore';
 import ChatsController from '../../controllers/ChatsController';
+import { isEqual } from '../../utils/helpers';
 
 ChatItem
 
@@ -26,16 +27,16 @@ class ChatsBlock extends Block {
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
-    // if (JSON.stringify(oldProps.chats)===JSON.stringify(newProps.chats)) {
-    //   return false;
-    // } else {
-    //   console.log('CHATS UPDATED');
-    //   return true;
-    // }
-    return true;
+    if (!isEqual(oldProps.chats, newProps.chats)) {
+      console.log('CHATS PROPS IS NOT EQUAL - UPDATE')
+      return true;
+    } else {
+      return false;
+    }
   }
 
   render(): string {
+    console.log('RENDER CHATS')
     return `
       <ul class="{{styles.chats}}">
         {{#each chats}}
@@ -50,7 +51,6 @@ class ChatsBlock extends Block {
 
 const mapStateToProps = (state: any) => ({
   chats: { ...(state.chats || [] )}
-  // selectedChat: {...state.selectedChat} || {id: null}
 });
 
 export const Chats = withStore(mapStateToProps)(ChatsBlock);

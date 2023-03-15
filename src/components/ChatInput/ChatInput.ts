@@ -2,7 +2,7 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatInput.module.css';
 import registerComponent from '../../utils/registerComponent';
 import ChatInputButton from '../ChatInputButton/ChatInputButton';
-import MessagesController from '../../controllers/MessagesController';
+// import MessagesController from '../../controllers/MessagesController';
 
 type Props = {
   [key: string]: unknown
@@ -15,7 +15,6 @@ class ChatInput extends Block {
       styles,
       events: {
         input: (event: Event) => this.onInputChange(event),
-        // submit: (event: Event) => this.handleMessageSubmit(event)
       }
     });
   }
@@ -23,15 +22,10 @@ class ChatInput extends Block {
   checkInputValidity () {
   }
 
-  handleMessageSubmit(event: Event) {
-    // event.preventDefault();
-    // event.stopPropagation();
-    // console.log('MESSAGE SUBMIT', this.props.message);
-
-  }
-
   onInputChange(event: Event) {
     this.props.onMessageInput(event);
+    (document.querySelector('input[name="message"]') as HTMLInputElement)
+    .focus();
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
@@ -42,8 +36,11 @@ class ChatInput extends Block {
         });
       }
     });
-    return true;
-
+    if (newProps.message === '') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   render() {

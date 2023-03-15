@@ -1,7 +1,7 @@
 .message {
+  display: block;
   max-width: 40%;
   display: flex;
-  gap: 15px;
   box-sizing: border-box;
   flex-wrap: wrap;
   align-items: flex-end;
