@@ -34,17 +34,18 @@ class ChatItemBlock extends Block {
     // console.log('ChatItem', this);
     console.log('ChatItem componentDidUpdate');
 
-    // if (this.props.chatProps.id === newProps.selectedChat.id ||
-    //   this.props.chatProps.id === oldProps.selectedChat.id
-    //   ) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-    return true;
+    if (this.props.chatProps.id === newProps.selectedChatId ||
+      this.props.chatProps.id === oldProps.selectedChatId
+      ) {
+      return true;
+    } else {
+      return false;
+    }
+    // return true;
   }
 
   render() {
+    console.log('CHAT ITEM RENDER');
     return `
         <li class="{{styles.chatItem}} {{selectedClass}}">
           <img

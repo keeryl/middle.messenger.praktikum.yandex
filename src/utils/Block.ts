@@ -8,7 +8,8 @@ export class Block<P extends Record<string, unknown> = any> {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
     FLOW_CDU: "flow:component-did-update",
-    FLOW_RENDER: "flow:render"
+    FLOW_RENDER: "flow:render",
+    FLOW_CWU: "flow:component-will-unmount"
   } as const;
 
    _element: any = null;
@@ -64,11 +65,24 @@ export class Block<P extends Record<string, unknown> = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
+  protected componentWillUnmount() {}
+
+  private _componentWillUnmount() {
+    this.componentWillUnmount();
+  }
+
+  dispatchComponentWillUnmount() {
+    this.eventBus().emit(Block.EVENTS.FLOW_CWU);
+  }
+
   protected render(): string {
     return '';
   }
 
   private _render() {
+    Object.values(this.children).forEach(child => {
+      child.dispatchComponentWillUnmount();
+    });
     const template = this.render();
     const fragment = this.compile(template, {...this.props, children: this.children});
     const newElement = fragment.firstElementChild;
@@ -137,6 +151,7 @@ export class Block<P extends Record<string, unknown> = any> {
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
   }
 
   private _addEvents() {
