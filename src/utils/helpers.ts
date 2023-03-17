@@ -19,6 +19,9 @@ export function merge(lhs: Indexed, rhs: Indexed): Indexed {
     }
   }
 
+  // console.log('object after merge', lhs)
+
+
   return lhs;
 }
 

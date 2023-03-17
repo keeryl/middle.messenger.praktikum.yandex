@@ -36,15 +36,15 @@ const mapStateToProps = (state: any) => {
   if (!selectedChatId) {
     return {
       messages: [],
-      selectedChat: null,
-      userId: state.user.id
+      // selectedChat: null,
+      // userId: state.user.id
     };
   }
 
   return {
     messages: (state.messages || {})[selectedChatId] || [],
-    selectedChat: state.selectedChat,
-    userId: state.user.id
+    // selectedChat: state.selectedChat,
+    // userId: state.user.id
   };
 }
 

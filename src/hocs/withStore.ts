@@ -15,30 +15,19 @@ export function withStore(mapStateToProps: (state: any) => any) {
         const eventHandler = () => {
           const newState = mapStateToProps(store.getState());
           if (!isEqual(state, newState)) {
-            console.log('IS NOT EQUAL')
-            state = newState;
             this.setProps({ ...newState });
+            state = newState
           }
         }
         super({ ...props,  ...state });
         this.eventHandler = eventHandler;
-        store.on(StoreEvents.Updated, eventHandler);
+        store.on(StoreEvents.Updated, this.eventHandler);
+
       }
 
       componentWillUnmount() {
-        console.log('COMPONENT WILL UNMOUNT')
         store.off(StoreEvents.Updated, this.eventHandler);
       }
     }
   }
 }
-
-
-        // store.on(StoreEvents.Updated, () => {
-        //   const newState = mapStateToProps(store.getState());
-        //   if (!isEqual(state, newState)) {
-        //     console.log('IS NOT EQUAL')
-        //     state = newState;
-        //     this.setProps({ ...newState });
-        //   }
-        // });

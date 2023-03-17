@@ -24,19 +24,20 @@ class ChatItemBlock extends Block {
   }
 
   handleClick(e: Event) {
-    // this.props.chatProps.id === this.props.selectedChat.id ?
-    //   store.set('selectedChat.id', null)
-    //   :
-      ChatsController.selectChat(this.props.chatProps);
+    console.log({...this.props.chatProps});
+    this.props.chatProps.id === this.props.selectedChatId ?
+      store.set('selectedChat', {})
+      :
+      ChatsController.selectChat({...this.props.chatProps});
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
-    // console.log('ChatItem', this);
-    console.log('ChatItem componentDidUpdate');
-
+    // console.log('ChatItem componentDidUpdate');
     if (this.props.chatProps.id === newProps.selectedChatId ||
       this.props.chatProps.id === oldProps.selectedChatId
       ) {
+      console.log('ChatItem Update - true, store', store.getState());
+      console.log('ChatItem', this);
       return true;
     } else {
       return false;

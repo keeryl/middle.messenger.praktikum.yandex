@@ -23,6 +23,7 @@ class ChatsBlock extends Block {
   }
 
   init() {
+    console.log('INIT - CHATS, fetchChats()')
     ChatsController.fetchChats();
   }
 
@@ -52,7 +53,5 @@ class ChatsBlock extends Block {
 const mapStateToProps = (state: any) => ({
   chats: { ...(state.chats || [] )}
 });
-
 export const Chats = withStore(mapStateToProps)(ChatsBlock);
-
 registerComponent('Chats', Chats);

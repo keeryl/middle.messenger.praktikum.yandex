@@ -30,11 +30,6 @@ class ChatList extends Block {
 
   componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
-      // if (component instanceof SearchInput) {
-      //   component.setProps({
-
-      //   });
-      // }
       if (component instanceof ChatListMenu) {
         component.setProps({
           chatListSettingsActive: newProps.chatListSettingsActive,

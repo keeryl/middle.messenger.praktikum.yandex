@@ -149,7 +149,7 @@ class ChatBlock extends Block {
   handleMessageSubmit(event: Event) {
     event.preventDefault();
     const { message } = this.props.formValues;
-    MessagesController.sendMessage(this.props.selectedChat.id, message);
+    MessagesController.sendMessage(this.props.selectedChatId, message);
     this.setProps({
       formValues: {
         ...this.props.formValues,
@@ -269,7 +269,7 @@ class ChatBlock extends Block {
 // export default Chat;
 
 const mapStateToProps = (state: any) => ({
-  selectedChat: {...state.selectedChat} || {id: null},
+  selectedChatId: state.selectedChat?.id
 });
 
 export const Chat = withStore(mapStateToProps)(ChatBlock);

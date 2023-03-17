@@ -29,7 +29,7 @@ class ChatMessangerBlock extends Block {
         });
       }
     });
-    if (oldProps.selectedChat.id === newProps.selectedChat.id) {
+    if (oldProps.selectedChatId === newProps.selectedChatId) {
       return false;
     } else {
       return true;
@@ -39,14 +39,13 @@ class ChatMessangerBlock extends Block {
   render() {
     return `
       <section class="{{styles.chatMessanger}}">
-        {{#if selectedChat.id}}
+        {{#if selectedChatId}}
           {{{ ChatHeader onSettingsClick=onSettingsClick}}}
           {{{ ChatMessages }}}
           {{{ ChatInput
             message=message
             onMessageInput=onMessageInput
             buttonState=buttonState
-            selectedChat=selectedChat
           }}}
         {{else}}
           <p class="{{styles.defaultMessage}}">
@@ -59,7 +58,7 @@ class ChatMessangerBlock extends Block {
 }
 
 const mapStateToProps = (state: any) => ({
-  selectedChat: {...state.selectedChat} || {id: null}
+  selectedChatId: state.selectedChat?.id || null
 });
 
 export const ChatMessanger = withStore(mapStateToProps)(ChatMessangerBlock);
