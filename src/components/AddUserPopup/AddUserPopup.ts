@@ -1,13 +1,11 @@
 import { Block } from '../../utils/Block';
 import * as styles from '../../components/AddUserPopup/AddUserPopup.module.css';
 import registerComponent from '../../utils/registerComponent';
-// import AuthInput from '../AuthInput/AuthInput';
 import Input from '../Input/Input';
 import AuthButton from '../AuthButton/AuthButton';
 import UserController from '../../controllers/UserController';
+import ChatController from '../../controllers/ChatsController';
 import DropdownList from '../DropdownList/DropdownList';
-import { isEqual } from '../../utils/helpers';
-Input
 
 type Props = {
   [key: string]: unknown
@@ -20,24 +18,23 @@ class AddUserPopup extends Block {
       ...props,
       users: [],
       inputValue: '',
-      selectedUser: '',
+      selectedUser: {id: null, login: ''},
       dropListStub: '',
       onInput: (e: Event) => this.handleInput(e),
       onDropItemClick: (id: number, login: string) => this.handleDropitemClick(id, login),
       events: {
         submit: (e: Event) => this.handleSubmit(e),
-        // input: (e: Event) => this.handleInput(e)
       }
     });
     this.props.state = () => this.props.addUserPopupIsOpened ? this.props.styles.popup_opened : '';
-    this.props.buttonState = () => this.props.selectedUser ? '' : 'disabled' ;
+    this.props.buttonState = () => this.props.selectedUser.login ? '' : 'disabled' ;
   }
 
   handleInput(e: Event) {
     const { value } = e.target as HTMLInputElement;
     this.setProps({
       inputValue: value,
-      selectedUser: ''
+      selectedUser: {id: null, login: ''}
     });
     if (this.props.inputValue === '') {
       this.setProps({
@@ -66,9 +63,8 @@ class AddUserPopup extends Block {
   }
 
   handleDropitemClick(id: number, login: string) {
-    console.log('CLICK CLAKC', id, login);
     this.setProps({
-      selectedUser: login,
+      selectedUser: { login: login, id: id },
       users: [],
       dropListStub: '',
       inputValue: login,
@@ -77,25 +73,26 @@ class AddUserPopup extends Block {
   }
 
   handleSubmit(e: Event) {
-    // e.preventDefault();
-    // e.stopPropagation();
-    // console.log('SUBMIT ADD', this.props.formValues.login);
-    // UserController.findUser(this.props.formValues.login)
-    //   .then(res => {
-    //     if (res) {
-    //       console.log('RES FIND USER', res);
-    //     }
-    //   });
+    e.preventDefault();
+    e.stopPropagation();
+    ChatController.addUserToChat(this.props.selectedChatId, this.props.selectedUser.id)
+      .then(res => {
+        this.setProps({
+          inputValue: '',
+          selectedUser: {id: null, login: null}
+        });
+        ChatController.fetchChatUsers(this.props.selectedChatId)
+          .then(res => {
+            console.log('CHAT USERS', res);
+          })
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
-      // if (component instanceof AuthInput) {
-      //   component.setProps({
-      //     value: newProps.formValues.login,
-      //     errors: newProps.errors.login,
-      //   });
-      // }
       if (component instanceof AuthButton) {
         component.setProps({
           isButtonDisabled: this.props.buttonState,
@@ -109,13 +106,19 @@ class AddUserPopup extends Block {
       }
       if (component instanceof Input) {
         component.setProps({
-          value: newProps.selectedUser,
+          value: newProps.selectedUser.login,
         });
       }
     });
     if (oldProps.addUserPopupIsOpened === newProps.addUserPopupIsOpened) {
       return false;
     } else {
+      this.setProps({
+        selectedUser: {id: null, login: ''},
+        users: [],
+        dropListStub: '',
+        inputValue: ''
+      });
       return true;
     }
   }
@@ -129,7 +132,7 @@ class AddUserPopup extends Block {
           {{{ Input
             class=styles.input
             type="text"
-            value=selectedUser
+            value=selectedUser.login
             onChange=onInput
             placeholder="Поиск"
           }}}
@@ -148,15 +151,3 @@ class AddUserPopup extends Block {
 registerComponent('AddUserPopup', AddUserPopup);
 
 export default AddUserPopup;
-
-
-// {{{ AuthInput
-//   label="Логин"
-//   name="login"
-//   type="text"
-//   errorMessage="Логин не введен или не соответствует формату"
-//   value=formValues.login
-//   errors=errors.login
-//   onFocusout=onPopupFocusout
-//   onChange=onPopupInput
-// }}}

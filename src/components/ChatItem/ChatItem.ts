@@ -47,11 +47,8 @@ class ChatItemBlock extends Block {
   render() {
     return `
         <li class="{{styles.chatItem}} {{selectedClass}}">
-          <img
-            class="{{styles.img}}"
-            src="https://ya-praktikum.tech/api/v2/resources{{avatar}}"
-            alt="Аватар чата"
-          >
+          <div class="{{styles.img-container}}">
+          </div>
           <div class="{{styles.title}}">
             <p class="{{styles.userName}}">{{chatProps.title}}</p>
             <p class="{{styles.lastMessage}}">{{chatProps.last_message.content}}</p>

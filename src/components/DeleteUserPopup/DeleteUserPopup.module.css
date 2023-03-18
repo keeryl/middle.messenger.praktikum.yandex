@@ -38,3 +38,65 @@
   text-align: center;
   margin: 0;
 }
+
+.fieldset {
+  border: none;
+  max-height: 100px;
+  overflow: scroll;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+}
+
+.fieldset::-webkit-scrollbar {
+  width: 0;
+}
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.item {
+  padding: 5px;
+  margin: 0;
+  border: none;
+  background-color: var(--white);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+  color: var(--blue);
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--black);
+  background: url(../../../static/images/deleteUserBtn.svg) right center no-repeat;
+  text-align: left;
+}
+
+.item:hover {
+  opacity: 0.7;
+}
+
+.stub {
+  position: absolute;
+  top: 35px;
+  color: grey;
+  margin: 0;
+  width: 100%;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 30px;
+  color: var(--grey);
+  background-color: rgba(240, 240, 240, .5);
+  box-sizing: border-box;
+  padding: 0 10px;
+}

@@ -33,7 +33,6 @@ export class UserController {
   }
 
   async findUser(login: string) {
-    console.log(login)
     return this.api.findUser({login: login});
   }
 

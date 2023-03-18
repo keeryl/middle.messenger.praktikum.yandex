@@ -47,12 +47,14 @@
 }
 
 .messageStatus {
+  margin: 0 0 0 5px;
   display: flex;
   flex-flow: row-reverse;
   justify-content: flex-start;
 }
 
 .statusFirstCheck {
+  box-sizing: border-box;
   width: 10px;
   height: 10px;
   background-image: url(../../../static/images/chat_galka.svg);

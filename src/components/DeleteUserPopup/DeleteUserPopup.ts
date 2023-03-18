@@ -1,8 +1,8 @@
 import { Block } from '../../utils/Block';
 import * as styles from '../../components/DeleteUserPopup/DeleteUserPopup.module.css';
 import registerComponent from '../../utils/registerComponent';
-import AuthInput from '../AuthInput/AuthInput';
-import AuthButton from '../AuthButton/AuthButton';
+import ChatController from '../../controllers/ChatsController';
+import DropdownList from '../DropdownList/DropdownList';
 
 type Props = {
   [key: string]: unknown
@@ -13,36 +13,46 @@ class DeleteUserPopup extends Block {
     super({
       styles,
       ...props,
-      events: {
-        submit: (e: Event) => this.handleSubmit(e),
-      }
+      users: [],
+      handleDeleteUser: (id: number, login: string) => this.handleDeleteUser(id, login)
     });
     this.props.state = () => this.props.deleteUserPopupIsOpened ? this.props.styles.popup_opened : '';
   }
 
-  handleSubmit(e: Event) {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('SUBMIT DELETE')
+  handleDeleteUser(id: number, login: string) {
+    ChatController.deleteUserFromChat(this.props.selectedChatId, id)
+      .then(() => {
+        return ChatController.fetchChatUsers(this.props.selectedChatId);
+      })
+      .then((res) => {
+        if (res) {
+          this.setProps({
+            users: res
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
-      if (component instanceof AuthInput) {
+      if (component instanceof DropdownList) {
         component.setProps({
-          value: newProps.formValues.login,
-          errors: newProps.errors.login,
-        });
-      }
-      if (component instanceof AuthButton) {
-        component.setProps({
-          isButtonDisabled: newProps.isPopupBtnDisabled,
+          list: newProps.users,
         });
       }
     });
-    if (oldProps.deleteUserPopupIsOpened === newProps.deleteUserPopupIsOpened) {
+    if (oldProps.deleteUserPopupIsOpened === newProps.deleteUserPopupIsOpened ) {
       return false;
     } else {
+      ChatController.fetchChatUsers(this.props.selectedChatId)
+      .then(res => {
+        this.setProps({
+          users: res
+        });
+      });
       return true;
     }
   }
@@ -52,20 +62,9 @@ class DeleteUserPopup extends Block {
     <div class="{{styles.popup}} {{state}}" id="popup-deleteUser">
       <form class="{{styles.popup-form}}">
         <h2 class="{{styles.title}}">Удалить пользователя</h2>
-        {{{ AuthInput
-          label="Логин"
-          name="login"
-          type="text"
-          errorMessage="Логин не введен или не соответствует формату"
-          value=formValues.login
-          errors=errors.login
-          onFocusout=onPopupFocusout
-          onChange=onPopupInput
-        }}}
-        {{{ AuthButton
-          buttonText="Удалить"
-          isButtonDisabled=isPopupBtnDisabled
-        }}}
+        <fieldset class="{{styles.fieldset}}">
+          {{{ DropdownList styles=styles list=users stub="Нет пользователей" onClick=handleDeleteUser}}}
+        </fieldset>
       </form>
     </div>
     `
@@ -75,3 +74,4 @@ class DeleteUserPopup extends Block {
 registerComponent('DeleteUserPopup', DeleteUserPopup);
 
 export default DeleteUserPopup;
+

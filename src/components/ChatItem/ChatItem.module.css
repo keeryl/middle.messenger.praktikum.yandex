@@ -21,12 +21,29 @@
   opacity: 0.7;
 }
 
-.img {
+.img-container {
   min-width: 47px;
-  min-height: 47px;
-  background: var(--light-grey-bg);
-  border-radius: 50px;
-  font-size: 0;
+  height: 47px;
+  background-color: var(--light-grey-bg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../../../static/images/user-img_default.svg);
+  background-size: 20px 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  line-height: 130px;
+  object-fit: cover;
+  font-size: 0.9999px;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 0;
 }
 
 .title {

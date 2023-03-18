@@ -23,13 +23,11 @@ class ChatsBlock extends Block {
   }
 
   init() {
-    console.log('INIT - CHATS, fetchChats()')
     ChatsController.fetchChats();
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
     if (!isEqual(oldProps.chats, newProps.chats)) {
-      console.log('CHATS PROPS IS NOT EQUAL - UPDATE')
       return true;
     } else {
       return false;
@@ -37,7 +35,6 @@ class ChatsBlock extends Block {
   }
 
   render(): string {
-    console.log('RENDER CHATS')
     return `
       <ul class="{{styles.chats}}">
         {{#each chats}}

@@ -33,7 +33,6 @@ export class UserAPI extends BaseAPI {
   }
 
   findUser(data: { login: string }): Promise<unknown> {
-    console.log(data);
     return this.http.post('/search', data);
   }
 

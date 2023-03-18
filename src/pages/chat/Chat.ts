@@ -196,18 +196,12 @@ class ChatBlock extends Block {
       if (component instanceof AddUserPopup) {
         component.setProps({
           addUserPopupIsOpened: newProps.addUserPopupIsOpened,
-          isPopupBtnDisabled: newProps.isPopupBtnDisabled,
-          formValues: newProps.formValues,
-          errors: newProps.errors,
           selectedChatId: newProps.selectedChatId
         });
       }
       if (component instanceof DeleteUserPopup) {
         component.setProps({
           deleteUserPopupIsOpened: newProps.deleteUserPopupIsOpened,
-          isPopupBtnDisabled: newProps.isPopupBtnDisabled,
-          formValues: newProps.formValues,
-          errors: newProps.errors,
           selectedChatId: newProps.selectedChatId
         });
       }
@@ -250,20 +244,10 @@ class ChatBlock extends Block {
         }}}
         {{{ AddUserPopup
           addUserPopupIsOpened=addUserPopupIsOpened
-          isPopupBtnDisabled=isPopupBtnDisabled
-          onPopupInput=onPopupInput
-          onPopupFocusout=onPopupFocusout
-          formValues=formValues
-          errors=errors
           selectedChatId=selectedChatId
         }}}
         {{{ DeleteUserPopup
           deleteUserPopupIsOpened=deleteUserPopupIsOpened
-          isPopupBtnDisabled=isPopupBtnDisabled
-          onPopupInput=onPopupInput
-          onPopupFocusout=onPopupFocusout
-          formValues=formValues
-          errors=errors
           selectedChatId=selectedChatId
         }}}
       </main>
