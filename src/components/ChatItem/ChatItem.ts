@@ -24,29 +24,27 @@ class ChatItemBlock extends Block {
   }
 
   handleClick(e: Event) {
-    console.log({...this.props.chatProps});
     this.props.chatProps.id === this.props.selectedChatId ?
-      store.set('selectedChat', {})
+      store.set('selectedChat', {_id: null})
       :
-      ChatsController.selectChat({...this.props.chatProps});
+      ChatsController.selectChat({
+        _id: this.props.chatProps.id,
+        _avatar: this.props.chatProps.id,
+        _title : this.props.chatProps.title
+      });
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
-    // console.log('ChatItem componentDidUpdate');
     if (this.props.chatProps.id === newProps.selectedChatId ||
       this.props.chatProps.id === oldProps.selectedChatId
       ) {
-      console.log('ChatItem Update - true, store', store.getState());
-      console.log('ChatItem', this);
       return true;
     } else {
       return false;
     }
-    // return true;
   }
 
   render() {
-    console.log('CHAT ITEM RENDER');
     return `
         <li class="{{styles.chatItem}} {{selectedClass}}">
           <img
@@ -70,7 +68,8 @@ class ChatItemBlock extends Block {
 }
 
 const mapStateToProps = (state: any) => ({
-  selectedChatId: state.selectedChat?.id || null
+  selectedChatId: state.selectedChat?._id || null
 });
+
 export const ChatItem = withStore(mapStateToProps)(ChatItemBlock);
 registerComponent('ChatItem', ChatItem);

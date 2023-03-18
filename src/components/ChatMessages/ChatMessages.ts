@@ -31,7 +31,7 @@ class ChatMessagesBlock extends Block {
 }
 
 const mapStateToProps = (state: any) => {
-  const selectedChatId = state.selectedChat.id;
+  const selectedChatId = state.selectedChat._id;
 
   if (!selectedChatId) {
     return {

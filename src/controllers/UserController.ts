@@ -32,6 +32,11 @@ export class UserController {
     return this.api.changeUserPassword(data);
   }
 
+  async findUser(login: string) {
+    console.log(login)
+    return this.api.findUser({login: login});
+  }
+
 }
 
 export default new UserController();

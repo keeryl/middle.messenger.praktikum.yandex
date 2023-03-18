@@ -22,7 +22,7 @@ class ChatsController {
       await MessagesController.connect(chat.id, token);
     });
 
-    await store.set('chats', chats);
+    store.set('chats', chats);
   }
 
   addUserToChat(id: number, userId: number) {
@@ -39,8 +39,8 @@ class ChatsController {
     return this.api.getToken(id);
   }
 
-  async selectChat(chatData: Record<string, unknown>) {
-    await store.set('selectedChat', chatData);
+  selectChat(chatData: Record<string, unknown>) {
+    store.set('selectedChat', chatData);
   }
 }
 

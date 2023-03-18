@@ -24,7 +24,7 @@ class ChatHeaderBlock extends Block {
       <section class="{{styles.chatHeader}}">
         <div class="{{styles.chatInfo}}">
           <div class="{{styles.chatImage}}"></div>
-          <h2 class="{{styles.chatName}}">{{selectedChatTitle}}</h2>
+          <h2 class="{{styles.chatName}}">{{chatTitle}}</h2>
         </div>
         {{{ Button type="button" class=styles.chatSettings value="" onClick=onSettingsClick }}}
       </section>
@@ -32,9 +32,18 @@ class ChatHeaderBlock extends Block {
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  selectedChatTitle: state.selectedChat?.title
-});
+// const mapStateToProps = (state: any) => ({
+//   selectedChatTitle: state.selectedChat?._title
+// });
+
+const mapStateToProps = (state: any) => {
+  const selectedChatId = state.selectedChat._id;
+  const title = (state.chats as Array<any>).find(item => item.id === selectedChatId)?.title
+
+  return {
+    chatTitle: title || null
+  };
+}
 
 export const ChatHeader = withStore(mapStateToProps)(ChatHeaderBlock);
 

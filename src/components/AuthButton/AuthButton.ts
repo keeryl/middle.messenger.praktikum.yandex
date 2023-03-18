@@ -27,7 +27,7 @@ class AuthButton extends Block {
       <button
         type="submit"
         class="{{styles.button}}"
-       {{isButtonDisabled}}
+        {{isButtonDisabled}}
       >
         {{buttonText}}
       </button>

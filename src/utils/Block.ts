@@ -14,7 +14,6 @@ export class Block<P extends Record<string, unknown> = any> {
 
    _element: any = null;
    id: string;
-  //  children: Record<string, Block | Block[]>;
    children: Record<string, Block>;
    props: P;
    eventBus: () => EventBus;

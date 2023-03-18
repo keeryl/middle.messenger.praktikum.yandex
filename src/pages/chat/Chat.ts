@@ -10,6 +10,7 @@ import DeleteUserPopup from '../../components/DeleteUserPopup/DeleteUserPopup';
 const [formValues, errors, validateInput, validateForm] = useInputValidation();
 import registerComponent from '../../utils/registerComponent';
 import MessagesController from '../../controllers/MessagesController';
+import ChatsController from '../../controllers/ChatsController';
 import { withStore } from '../../hocs/withStore';
 ChatList
 
@@ -155,7 +156,8 @@ class ChatBlock extends Block {
         ...this.props.formValues,
         message: ''
       }
-    })
+    });
+    ChatsController.fetchChats();
   }
 
   handleSettingsClick() {
@@ -196,7 +198,8 @@ class ChatBlock extends Block {
           addUserPopupIsOpened: newProps.addUserPopupIsOpened,
           isPopupBtnDisabled: newProps.isPopupBtnDisabled,
           formValues: newProps.formValues,
-          errors: newProps.errors
+          errors: newProps.errors,
+          selectedChatId: newProps.selectedChatId
         });
       }
       if (component instanceof DeleteUserPopup) {
@@ -204,7 +207,8 @@ class ChatBlock extends Block {
           deleteUserPopupIsOpened: newProps.deleteUserPopupIsOpened,
           isPopupBtnDisabled: newProps.isPopupBtnDisabled,
           formValues: newProps.formValues,
-          errors: newProps.errors
+          errors: newProps.errors,
+          selectedChatId: newProps.selectedChatId
         });
       }
       if (component instanceof ChatList) {
@@ -251,6 +255,7 @@ class ChatBlock extends Block {
           onPopupFocusout=onPopupFocusout
           formValues=formValues
           errors=errors
+          selectedChatId=selectedChatId
         }}}
         {{{ DeleteUserPopup
           deleteUserPopupIsOpened=deleteUserPopupIsOpened
@@ -259,17 +264,16 @@ class ChatBlock extends Block {
           onPopupFocusout=onPopupFocusout
           formValues=formValues
           errors=errors
+          selectedChatId=selectedChatId
         }}}
       </main>
     `
   }
 }
 
-// registerComponent('Chat', Chat);
-// export default Chat;
 
 const mapStateToProps = (state: any) => ({
-  selectedChatId: state.selectedChat?.id
+  selectedChatId: state.selectedChat?._id
 });
 
 export const Chat = withStore(mapStateToProps)(ChatBlock);

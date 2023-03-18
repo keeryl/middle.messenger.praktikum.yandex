@@ -32,6 +32,11 @@ export class UserAPI extends BaseAPI {
     return this.http.put('/password', data);
   }
 
+  findUser(data: { login: string }): Promise<unknown> {
+    console.log(data);
+    return this.http.post('/search', data);
+  }
+
   create = undefined;
   update = undefined;
   delete = undefined;

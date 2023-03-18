@@ -38,3 +38,89 @@
   text-align: center;
   margin: 0;
 }
+
+.fieldset {
+  position: relative;
+  width: 100%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* gap: 5px; */
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.input {
+  width: 100%;
+  background: var(--light-grey-bg);
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+}
+
+.input:focus {
+  outline: 1px solid var(--light-grey);
+}
+
+.input::placeholder {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  color: transparent;
+  background-image: url(../../../static/images/search_icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.input:focus::placeholder {
+  color: transparent;
+  opacity: 0;
+}
+
+.items {
+  position: absolute;
+  top: 35px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 100px;
+  overflow: scroll;
+  background-color: rgba(240, 240, 240, .5);
+}
+
+.item {
+  width: 100%;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 30px;
+  color: #1e1e1e;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.item:hover {
+  background-color: rgba(220, 220, 220, .5);
+}
+
+.stub {
+  position: absolute;
+  top: 35px;
+  color: grey;
+  margin: 0;
+  width: 100%;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 30px;
+  color: var(--grey);
+  background-color: rgba(240, 240, 240, .5);
+}

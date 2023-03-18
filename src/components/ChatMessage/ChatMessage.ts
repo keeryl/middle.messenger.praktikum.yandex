@@ -46,10 +46,6 @@ class ChatMessageBlock extends Block {
   }
 }
 
-// registerComponent('ChatMessage', ChatMessage);
-
-// export default ChatMessage;
-
 const mapStateToProps = (state: any) => ({
   userId: state.user.id,
 });
