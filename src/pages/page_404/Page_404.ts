@@ -17,7 +17,7 @@ class Page_404 extends Block {
   }
 
   onClick() {
-    Router.go('/');
+    Router.back();
   }
 
   render() {

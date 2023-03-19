@@ -16,7 +16,7 @@ class Page_500 extends Block {
   }
 
   onClick() {
-    Router.go('/');
+    Router.back();
   }
 
   render() {

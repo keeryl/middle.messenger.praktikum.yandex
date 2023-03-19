@@ -83,7 +83,7 @@ class ChatListMenu extends Block {
   }
 
   handleProfileClick() {
-    Router.go('/profile');
+    Router.go('/settings');
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {

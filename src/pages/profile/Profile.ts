@@ -208,7 +208,7 @@ class Profile extends Block {
   }
 
   handleBackClick() {
-    Router.go('/');
+    Router.go('/messenger');
   }
 
   handleFocusout(event: Event) {

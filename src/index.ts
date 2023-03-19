@@ -8,10 +8,10 @@ import Signup from './pages/Signup/Signup';
 import Router from './utils/Router';
 
 enum Routes {
-  'Home' = '/',
-  'Profile' = '/profile',
-  'Signin' = '/signin',
-  'Signup' = '/signup',
+  'Home' = '/messenger',
+  'Profile' = '/settings',
+  'Signin' = '/',
+  'Signup' = '/sign-up',
   'Page_404' = '/page_404',
   'Page_500' = '/page_500'
 }

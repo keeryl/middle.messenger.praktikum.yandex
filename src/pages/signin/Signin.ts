@@ -75,7 +75,7 @@ class Signin extends Block {
       });
       setTimeout(() => {
         AuthController.fetchUser();
-        Router.go('/')
+        Router.go('/messenger')
       }, 1000);
     })
     .catch((e) => {
@@ -106,7 +106,7 @@ class Signin extends Block {
   }
 
   onSignupClick() {
-    Router.go('/signup');
+    Router.go('/sign-up');
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
