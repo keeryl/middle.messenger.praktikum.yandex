@@ -10,12 +10,14 @@ import * as popup from '../../components/ProfileChangePasswordPopup/ProfileChang
 import useInputValidation from '../../utils/inputValidator';
 import AuthController from '../../controllers/AuthController';
 import UserController from '../../controllers/UserController';
+import MessagesController from '../../controllers/MessagesController';
 import Router from '../../utils/Router';
 import { withStore } from '../../hocs/withStore';
 import { isEqual } from '../../utils/helpers';
 const [formValues, errors, validateInput, validateForm] = useInputValidation();
 import Avatar from '../../components/Avatar/Avatar';
 import ApiMessage from '../../components/ApiMessage/ApiMessage';
+import store from '../../utils/Store';
 Button
 popup
 
@@ -201,6 +203,8 @@ class Profile extends Block {
 
   handleLogout() {
     AuthController.logout();
+    store.clear();
+    MessagesController.closeAll();
   }
 
   handleBackClick() {

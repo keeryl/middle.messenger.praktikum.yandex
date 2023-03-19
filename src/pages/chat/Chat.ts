@@ -12,6 +12,7 @@ import registerComponent from '../../utils/registerComponent';
 import MessagesController from '../../controllers/MessagesController';
 import ChatsController from '../../controllers/ChatsController';
 import { withStore } from '../../hocs/withStore';
+import store from '../../utils/Store';
 ChatList
 
 type Props = {

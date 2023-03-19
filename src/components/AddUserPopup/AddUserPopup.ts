@@ -59,7 +59,6 @@ class AddUserPopup extends Block {
         console.log(err);
       });
     }
-
   }
 
   handleDropitemClick(id: number, login: string) {
@@ -68,8 +67,7 @@ class AddUserPopup extends Block {
       users: [],
       dropListStub: '',
       inputValue: login,
-    })
-
+    });
   }
 
   handleSubmit(e: Event) {

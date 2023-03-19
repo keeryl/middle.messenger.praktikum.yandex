@@ -31,7 +31,6 @@ class AddChatPopup extends Block {
     ChatsController.create(this.props.formValues.chatTitle)
       .then(res => {
         if (res) {
-          console.log('RES', res)
           ChatsController.fetchChats();
           this.setProps({
             apiMessageClass: this.props.styles.successMessage,

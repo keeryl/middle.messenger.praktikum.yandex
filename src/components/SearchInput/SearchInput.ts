@@ -12,12 +12,25 @@ class SearchInput extends Block {
     super({
       styles,
       ...props,
+      events: {
+        input: (e: Event) => this.handleInput(e)
+      }
     });
   }
 
+  handleInput (e: Event) {
+    this.props.onChange(e);
+  }
+
+  componentDidUpdate(oldProps: any, newProps: any) {
+    if (newProps.value === '') {
+      return true;
+    }
+    return false;  }
+
   render(): string {
     return `
-      <input class="{{styles.searchInput}}" placeholder="Поиск">
+      <input class="{{styles.searchInput}}" placeholder="Поиск" value={{value}}>
     `
   }
 }
