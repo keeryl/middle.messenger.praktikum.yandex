@@ -1,7 +1,7 @@
 import AuthController from './controllers/AuthController';
-import { Chat } from './pages/Chat/Chat';
 import Page_404 from './pages/Page_404/Page_404';
 import Page_500 from './pages/Page_500/Page_500';
+import { Chat } from './pages/Chat/Chat';
 import { ProfilePage } from './pages/Profile/Profile';
 import Signin from './pages/Signin/Signin';
 import Signup from './pages/Signup/Signup';
