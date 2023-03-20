@@ -1,7 +1,7 @@
 import { Block } from '../../utils/Block';
 import ChatList from '../../components/ChatList/ChatList';
 import { ChatMessanger } from '../../components/ChatMessanger/ChatMessanger'
-import * as styles from './Chat.module.css';
+import * as styles from './chat.module.css';
 import useInputValidation from '../../utils/inputValidator';
 import ChatSettingsPopup from '../../components/ChatSettingsPopup/ChatSettingsPopup';
 import AddChatPopup from '../../components/AddChatPopup/AddChatPopup';

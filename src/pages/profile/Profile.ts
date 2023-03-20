@@ -4,7 +4,7 @@ import ProfileChangeDataBtn from '../../components/ProfileChangeDataBtn/ProfileC
 import Button from '../../components/Button/Button';
 import ProfileChangePasswordPopup from '../../components/ProfileChangePasswordPopup/ProfileChangePasswordPopup';
 import ChangeAvatarPopup from '../../components/ChangeAvatarPopup/ChangeAvatarPopup';
-import * as styles from './Profile.module.css';
+import * as styles from './profile.module.css';
 import registerComponent from '../../utils/registerComponent';
 import * as popup from '../../components/ProfileChangePasswordPopup/ProfileChangePasswordPopup.module.css';
 import useInputValidation from '../../utils/inputValidator';
