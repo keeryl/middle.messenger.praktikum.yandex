@@ -1,22 +1,19 @@
-import * as styles from './ChangeAvatarPopup.module.css';
 import { Block } from '../../utils/Block';
+import * as styles from '../../components/AvatarPopup/AvatarPopup.module.css';
 import registerComponent from '../../utils/registerComponent';
-import Button from '../Button/Button';
-import UserController from '../../controllers/UserController';
-import ApiMessage from '../ApiMessage/ApiMessage';
 import AuthButton from '../AuthButton/AuthButton';
-Button
+import ChatsController from '../../controllers/ChatsController';
+import ApiMessage from '../ApiMessage/ApiMessage';
 
 type Props = {
   [key: string]: unknown
 }
 
-class ChangeAvatarPopup extends Block {
-
+class AvatarPopup extends Block {
   constructor(props: Props) {
     super({
-      ...props,
       styles,
+      ...props,
       isButtonDisabled: 'disabled',
       apiMessage: '',
       apiMessageClass: null,
@@ -25,13 +22,8 @@ class ChangeAvatarPopup extends Block {
         submit: (e: Event) => this.handleSubmit(e),
         input: (e: Event) => this.handleInput(e)
       }
-     });
-     this.props.state = () => this.props.avatarPopupIsOpened ? this.props.styles.popup_opened : '';
-    }
-
-  handlePopup(e: Event) {
-    e.stopPropagation();
-    this.props.onClick(e);
+    });
+    this.props.state = () => this.props.avatarPopupIsOpened ? this.props.styles.popup_opened : '';
   }
 
   handleInput(e: Event) {
@@ -51,8 +43,9 @@ class ChangeAvatarPopup extends Block {
       isButtonDisabled: 'disabled',
     });
     let formData = new FormData();
-    formData.append('avatar', this.props.file)
-    UserController.changeUserAvatar(formData)
+    formData.append('avatar', this.props.file);
+    formData.append('chatId', this.props.selectedChatId);
+    ChatsController.editAvatar(formData)
       .then((data) => {
         if (data) {
           this.setProps({
@@ -60,6 +53,10 @@ class ChangeAvatarPopup extends Block {
             apiMessage: 'Аватар изменен',
             file: null
           });
+          ChatsController.fetchChats();
+          setTimeout(() => {
+            this.props.closeAllPopups();
+          }, 2000);
         }
       })
       .catch(() => {
@@ -106,24 +103,26 @@ class ChangeAvatarPopup extends Block {
 
   render() {
     return `
-    <div class="{{styles.popup}} {{state}}">
-      <form class="{{styles.form}}">
-      <h2 class="{{styles.title}}">Загрузите файл</h2>
-      <fieldset class="{{styles.fieldset}}">
-      <div class="{{styles.input-container}}">
-        <input class="{{styles.input}}" type="file" name="avatar" id="avatar"/>
-        <label class="{{styles.input-label}}" for="avatar">Выбрать файл на компьютере</label>
-      </div>
-      </fieldset>
-      {{{ ApiMessage class=apiMessageClass message=apiMessage }}}
-      {{{ AuthButton isButtonDisabled=isButtonDisabled buttonText="Поменять" }}}
-      {{{ Button type="button" value="Назад" class=styles.btn onClick=onClick }}}
+    <div class="{{styles.popup}} {{state}}" id="popup-avatar">
+      <form class="{{styles.popup-form}}">
+        <h2 class="{{styles.title}}">Изменить аватар</h2>
+        <fieldset class="{{styles.fieldset}}">
+        <div class="{{styles.input-container}}">
+          <input class="{{styles.input}}" type="file" name="avatar" id="avatar"/>
+          <label class="{{styles.input-label}}" for="avatar">Выбрать файл на компьютере</label>
+        </div>
+        </fieldset>
+        {{{ ApiMessage class=apiMessageClass message=apiMessage }}}
+        {{{ AuthButton
+          buttonText="Добавить"
+          isButtonDisabled=isPopupBtnDisabled
+        }}}
       </form>
     </div>
     `
   }
 }
 
-registerComponent('ChangeAvatarPopup', ChangeAvatarPopup);
+registerComponent('AvatarPopup', AvatarPopup);
 
-export default ChangeAvatarPopup;
+export default AvatarPopup;

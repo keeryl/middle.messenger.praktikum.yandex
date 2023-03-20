@@ -1,12 +1,11 @@
 .chatList {
+  box-sizing: border-box;
   background: var(--lightest-grey);
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-width: 25vw;
-  width: 25vw;
-  max-width: 200px;
-  box-sizing: border-box;
+  width: 20vw;
+  /* max-width: 200px; */
   padding: 21px 0 0 0;
   border-right: 1px solid var(--light-grey);
   gap: 10px;

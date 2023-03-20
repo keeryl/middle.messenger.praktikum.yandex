@@ -107,6 +107,7 @@ const useInputValidation = () => {
     },
     message: {
       required: (value: string): boolean => value !== '',
+      format: (value: string): boolean => /\S/.test(value),
     },
     chatTitle: {
       required: (value: string): boolean => value !== '',

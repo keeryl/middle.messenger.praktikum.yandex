@@ -12,7 +12,7 @@ import registerComponent from '../../utils/registerComponent';
 import MessagesController from '../../controllers/MessagesController';
 import ChatsController from '../../controllers/ChatsController';
 import { withStore } from '../../hocs/withStore';
-import store from '../../utils/Store';
+import AvatarPopup from '../../components/AvatarPopup/AvatarPopup';
 ChatList
 
 type Props = {
@@ -28,6 +28,7 @@ class ChatBlock extends Block {
       chatListSettingsActive: false,
       addChatPopupIsOpened: false,
       addUserPopupIsOpened: false,
+      avatarPopupIsOpened: false,
       deleteUserPopupIsOpened: false,
       formValues: {...formValues},
       errors: {...errors},
@@ -46,7 +47,9 @@ class ChatBlock extends Block {
       onChatListSettingsClick: () => this.handleChatListSettingsClick(),
       handleAddChatPopup: () => this.handleAddChatPopup(),
       handleAddUserPopup: () => this.handleAddUserPopup(),
+      handleAvatarPopup: () => this.handleAvatarPopup(),
       handleDeleteUserPopup: () => this.handleDeleteUserPopup(),
+      handleDeleteChat: () => this.handleDeleteChat(),
       closeAllPopups: () => this.closeAllPopups(),
       events: {
         submit: (e: Event) => this.handleMessageSubmit(e),
@@ -67,6 +70,7 @@ class ChatBlock extends Block {
       deleteUserPopupIsOpened: false,
       settingsPopupIsOpened: false,
       addChatPopupIsOpened: false,
+      avatarPopupIsOpened: false,
       formValues: {
         ...this.props.formValues,
         login: '',
@@ -78,6 +82,12 @@ class ChatBlock extends Block {
   handleAddChatPopup() {
     this.setProps({
       addChatPopupIsOpened: !this.props.addChatPopupIsOpened,
+    });
+  }
+
+  handleAvatarPopup() {
+    this.setProps({
+      avatarPopupIsOpened: !this.props.avatarPopupIsOpened,
     });
   }
 
@@ -126,7 +136,6 @@ class ChatBlock extends Block {
   }
 
   handlePopupInputFocusout(event: Event) {
-
   }
 
   handleMessageInput (event: Event) {
@@ -155,8 +164,9 @@ class ChatBlock extends Block {
     this.setProps({
       formValues: {
         ...this.props.formValues,
-        message: ''
-      }
+        message: '',
+      },
+      isMessageSubmitBtnDisabled: 'disabled'
     });
     ChatsController.fetchChats();
   }
@@ -171,6 +181,26 @@ class ChatBlock extends Block {
     this.setProps({
       chatListSettingsActive: !this.props.chatListSettingsActive
     });
+  }
+
+  handleDeleteChat() {
+    this.closeAllPopups();
+    ChatsController.delete(this.props.selectedChatId)
+      .then(res => {
+        if (res) {
+          ChatsController.fetchChats()
+            .then(() => {
+              ChatsController.selectChat({
+                _id: this.props.chats[0].id || null,
+                _avatar: this.props.chats[0].avatar || null,
+                _title : this.props.chats[0].title || null
+              });
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
@@ -206,6 +236,12 @@ class ChatBlock extends Block {
           selectedChatId: newProps.selectedChatId
         });
       }
+      if (component instanceof AvatarPopup) {
+        component.setProps({
+          avatarPopupIsOpened: newProps.avatarPopupIsOpened,
+          selectedChatId: newProps.selectedChatId
+        });
+      }
       if (component instanceof ChatList) {
         component.setProps({
           chatListSettingsActive: newProps.chatListSettingsActive,
@@ -228,11 +264,13 @@ class ChatBlock extends Block {
           onMessageInput=onMessageInput
           buttonState=isMessageSubmitBtnDisabled
           onSettingsClick=onSettingsClick
+          handleAvatarPopup=handleAvatarPopup
         }}}
         {{{ ChatSettingsPopup
           settingsPopupIsOpened=settingsPopupIsOpened
           handleAddUserPopup=handleAddUserPopup
           handleDeleteUserPopup=handleDeleteUserPopup
+          handleDeleteChat=handleDeleteChat
         }}}
         {{{ AddChatPopup
           addChatPopupIsOpened=addChatPopupIsOpened
@@ -251,6 +289,11 @@ class ChatBlock extends Block {
           deleteUserPopupIsOpened=deleteUserPopupIsOpened
           selectedChatId=selectedChatId
         }}}
+        {{{ AvatarPopup
+          avatarPopupIsOpened=avatarPopupIsOpened
+          selectedChatId=selectedChatId
+          closeAllPopups=closeAllPopups
+        }}}
       </main>
     `
   }
@@ -258,7 +301,8 @@ class ChatBlock extends Block {
 
 
 const mapStateToProps = (state: any) => ({
-  selectedChatId: state.selectedChat?._id
+  selectedChatId: state.selectedChat?._id,
+  chats: { ...(state.chats || [] )}
 });
 
 export const Chat = withStore(mapStateToProps)(ChatBlock);

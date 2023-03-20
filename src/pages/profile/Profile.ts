@@ -335,7 +335,9 @@ class Profile extends Block {
       {{{ Button value='' class=styles.back-btn type="button" onClick=handleBackClick }}}
       <section class="{{styles.profile}}">
         <form class="{{styles.form}}">
-          {{{ Avatar avatar=user.avatar onAvatarClick=onAvatarClick }}}
+          <div class="{{styles.img-container}}">
+           {{{ Avatar avatar=user.avatar onAvatarClick=onAvatarClick }}}
+          </div>
           <h1 class="{{styles.user-name}}">{{user.first_name}}</h1>
           <fieldset class="{{styles.user-info}}">
             {{{ ProfileInput

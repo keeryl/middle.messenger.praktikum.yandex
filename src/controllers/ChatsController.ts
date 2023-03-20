@@ -29,6 +29,10 @@ class ChatsController {
     return this.api.getUsers(chatId);
   }
 
+  editAvatar(formData: FormData) {
+    return this.api.editAvatar(formData)
+  }
+
   addUserToChat(id: number, userId: number) {
     return this.api.addUsers(id, [userId]);
   }
@@ -38,9 +42,7 @@ class ChatsController {
   }
 
   async delete(id: number) {
-    await this.api.delete(id);
-
-    this.fetchChats();
+    return this.api.delete(id);
   }
 
   getToken(id: number) {

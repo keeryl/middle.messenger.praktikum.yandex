@@ -33,6 +33,12 @@ class ChatSettingsPopup extends Block {
             onClick=handleDeleteUserPopup
             type='button'
           }}}
+          {{{
+            Button value='Удалить чат'
+            class=styles.deleteBtn
+            onClick=handleDeleteChat
+            type='button'
+          }}}
         </div>
       </div>
     `

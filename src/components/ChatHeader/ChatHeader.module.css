@@ -16,15 +16,11 @@
   gap: 10px;
 }
 
-.chatImage {
+.img-container {
   width: 34px;
   height: 34px;
   background-color: var(--light-grey-bg);
   border-radius: 50%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-image: url(../../../static/images/user-img_default.svg);
-  background-size: 15px 15px;
 }
 
 .chatName {

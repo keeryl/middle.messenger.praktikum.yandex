@@ -4,7 +4,7 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel ./src/index.html --open --port 3000",
+    "dev": "parcel ./src/index.html --open --port 3001",
     "build": "parcel build ./src/index.html --no-cache",
     "start": "parcel build ./src/index.html --no-cache && node ./server.js",
     "lint": "node_modules/.bin/eslint .",

@@ -40,7 +40,7 @@ class ChatMessangerBlock extends Block {
     return `
       <section class="{{styles.chatMessanger}}">
         {{#if selectedChatId}}
-          {{{ ChatHeader onSettingsClick=onSettingsClick}}}
+          {{{ ChatHeader onSettingsClick=onSettingsClick handleAvatarPopup=handleAvatarPopup }}}
           {{{ ChatMessages }}}
           {{{ ChatInput
             message=message

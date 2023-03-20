@@ -43,10 +43,10 @@ export class Block<P extends Record<string, unknown> = any> {
   }
 
   dispatchComponentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     Object.values(this.children).forEach(child => {
       child.dispatchComponentDidMount();
     });
+    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
   protected componentDidUpdate(oldProps: P, newProps: P): boolean {
@@ -89,6 +89,9 @@ export class Block<P extends Record<string, unknown> = any> {
     this._element = newElement;
     this._removeEvents();
     this._addEvents();
+    Object.values(this.children).forEach(child => {
+      child.dispatchComponentDidMount();
+    });
   }
 
   compile(template: string, context: any) {
@@ -104,10 +107,8 @@ export class Block<P extends Record<string, unknown> = any> {
       }
       component.getContent()?.append(...Array.from(stub.childNodes));
       stub.replaceWith(component.getContent());
-      component.dispatchComponentDidMount();
     });
     return temp.content;
-
   }
 
   private _registerEvents(eventBus: EventBus) {

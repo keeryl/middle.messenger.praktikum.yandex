@@ -24,8 +24,11 @@ class ChatInput extends Block {
 
   onInputChange(event: Event) {
     this.props.onMessageInput(event);
-    (document.querySelector('input[name="message"]') as HTMLInputElement)
-    .focus();
+  }
+
+  componentDidMount() {
+    // (document.querySelector('input[name="message"]') as HTMLInputElement).focus();
+    // console.log("DID MOUNT", (document.querySelector('input[name="message"]') as HTMLInputElement))
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {

@@ -20,16 +20,20 @@ class ChatItemBlock extends Block {
         click: (e: Event) => this.handleClick(e)
       }
     });
-    this.props.selectedClass = () => this.props.chatProps.id === this.props.selectedChatId ? this.props.styles.selected : '';
+    this.props.selected = () => this.props.chatProps.id === this.props.selectedChatId;
   }
 
   handleClick(e: Event) {
     this.props.chatProps.id === this.props.selectedChatId ?
-      store.set('selectedChat', {_id: null})
+      store.set('selectedChat', {
+        _id: null,
+        _avatar: null,
+        _title : null
+      })
       :
       ChatsController.selectChat({
         _id: this.props.chatProps.id,
-        _avatar: this.props.chatProps.id,
+        _avatar: this.props.chatProps.avatar,
         _title : this.props.chatProps.title
       });
   }
@@ -46,8 +50,11 @@ class ChatItemBlock extends Block {
 
   render() {
     return `
-        <li class="{{styles.chatItem}} {{selectedClass}}">
+        <li class="{{styles.chatItem}} {{#if selected}}{{styles.selected}}{{/if}}">
           <div class="{{styles.img-container}}">
+            {{#if chatProps.avatar}}
+              <img class="{{styles.img}}" src="https://ya-praktikum.tech/api/v2/resources{{chatProps.avatar}}", alt="Аватар чата">
+            {{/if}}
           </div>
           <div class="{{styles.title}}">
             <p class="{{styles.userName}}">{{chatProps.title}}</p>
@@ -67,6 +74,7 @@ class ChatItemBlock extends Block {
 const mapStateToProps = (state: any) => ({
   selectedChatId: state.selectedChat?._id || null
 });
+
 
 export const ChatItem = withStore(mapStateToProps)(ChatItemBlock);
 registerComponent('ChatItem', ChatItem);

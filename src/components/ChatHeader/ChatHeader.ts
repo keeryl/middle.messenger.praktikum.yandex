@@ -4,6 +4,7 @@ import registerComponent from '../../utils/registerComponent';
 import Button from '../Button/Button';
 import ChatSettingsPopup from '../ChatSettingsPopup/ChatSettingsPopup';
 import { withStore } from '../../hocs/withStore';
+import Avatar from '../Avatar/Avatar';
 Button
 ChatSettingsPopup
 
@@ -23,7 +24,9 @@ class ChatHeaderBlock extends Block {
     return `
       <section class="{{styles.chatHeader}}">
         <div class="{{styles.chatInfo}}">
-          <div class="{{styles.chatImage}}"></div>
+          <div class="{{styles.img-container}}">
+           {{{ Avatar avatar=avatar onAvatarClick=handleAvatarPopup }}}
+          </div>
           <h2 class="{{styles.chatName}}">{{chatTitle}}</h2>
         </div>
         {{{ Button type="button" class=styles.chatSettings value="" onClick=onSettingsClick }}}
@@ -32,16 +35,14 @@ class ChatHeaderBlock extends Block {
   }
 }
 
-// const mapStateToProps = (state: any) => ({
-//   selectedChatTitle: state.selectedChat?._title
-// });
-
 const mapStateToProps = (state: any) => {
-  const selectedChatId = state.selectedChat._id;
+  const selectedChatId = state.selectedChat?._id;
   const title = (state.chats as Array<any>).find(item => item.id === selectedChatId)?.title
+  const avatar = (state.chats as Array<any>).find(item => item.id === selectedChatId)?.avatar
 
   return {
-    chatTitle: title || null
+    chatTitle: title || null,
+    avatar: avatar || null
   };
 }
 

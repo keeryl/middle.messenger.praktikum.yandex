@@ -47,6 +47,7 @@
 }
 
 .messageStatus {
+  box-sizing: border-box;
   margin: 0 0 0 5px;
   display: flex;
   flex-flow: row-reverse;
@@ -58,16 +59,17 @@
   width: 10px;
   height: 10px;
   background-image: url(../../../static/images/chat_galka.svg);
-  background-size: 10px 10px;
+  background-size: 10px 6px;
   background-repeat: no-repeat;
   background-position: center center;
 }
 
 .statusSecondCheck {
+  box-sizing: border-box;
   width: 10px;
   height: 10px;
   background-image: url(../../../static/images/chat_galka.svg);
-  background-size: 10px 10px;
+  background-size: 10px 6px;
   background-repeat: no-repeat;
   background-position: center center;
   transform: translate(6px);
