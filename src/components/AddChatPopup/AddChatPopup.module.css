@@ -9,6 +9,7 @@
   box-sizing: border-box;
   gap: 15px;
   visibility: hidden;
+  z-index: 100;
 }
 
 .popup_opened {
