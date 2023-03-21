@@ -1,5 +1,6 @@
 import WSTransport, { WSTransportEvents } from '../utils/WSTransport';
 import store from '../utils/Store';
+import ChatsController from '../controllers/ChatsController';
 
 export interface Message {
   chat_id: number;
@@ -66,11 +67,10 @@ class MessagesController {
   }
 
   private onMessage(id: number, messages: Message | Message[]) {
-    console.log('om message')
     let messagesToAdd: Message[] = [];
 
     if (Array.isArray(messages)) {
-      // messagesToAdd = messages.reverse();
+
       messagesToAdd = messages;
     } else {
       messagesToAdd.push(messages);
@@ -81,7 +81,9 @@ class MessagesController {
     messagesToAdd = [...messagesToAdd, ...currentMessages];
 
     store.set(`messages.${id}`, messagesToAdd);
-    console.log(store.getState().messages)
+
+    ChatsController.fetchChats();
+
   }
 
   private onClose(id: number) {
