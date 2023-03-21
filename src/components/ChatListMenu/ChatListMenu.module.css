@@ -96,7 +96,7 @@
   justify-content: flex-start;
   max-height: 200px;
   overflow: scroll;
-  background-color: rgba(240, 240, 240, 1);
+  background-color: rgb(240 240 240 / 100%);
   z-index: 99;
 }
 
@@ -120,20 +120,19 @@
 }
 
 .item:hover {
-  background-color: rgba(220, 220, 220, .5);
+  background-color: rgb(220 220 220 / 50%);
 }
 
 .stub {
   position: absolute;
   top: 40px;
-  color: grey;
   margin: 0;
   width: 100%;
   font-weight: 500;
   font-size: 13px;
   line-height: 30px;
   color: var(--grey);
-  background-color: rgba(240, 240, 240, 1);
+  background-color: rgb(240 240 240 / 100%);
   box-sizing: border-box;
   padding: 0 10px;
 }

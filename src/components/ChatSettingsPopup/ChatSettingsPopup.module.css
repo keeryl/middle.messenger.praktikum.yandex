@@ -1,10 +1,7 @@
 .popup {
   display: none;
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   visibility: hidden;
 }
 
@@ -31,11 +28,6 @@
   padding: 5px 0 5px 30px;
   margin: 0;
   border: none;
-  background-color: var(--white);
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 13px;
-  color: var(--blue);
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.2s linear;
@@ -44,6 +36,7 @@
   line-height: 14px;
   color: var(--black);
   background: url(../../../static/images/addUserBtn.svg) left center no-repeat;
+  background-color: var(--white);
   text-align: left;
 }
 
@@ -59,11 +52,6 @@
   padding: 5px 0 5px 30px;
   margin: 0;
   border: none;
-  background-color: var(--white);
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 13px;
-  color: var(--blue);
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.2s linear;
@@ -72,6 +60,7 @@
   line-height: 14px;
   color: var(--black);
   background: url(../../../static/images/deleteUserBtn.svg) left center no-repeat;
+  background-color: var(--white);
   text-align: left;
 
 }
