@@ -23,7 +23,8 @@ class ChatMessagesBlock extends Block {
       return true;
     } else {
       return false;
-    }  }
+    }
+  }
 
   render(): string {
     return `
