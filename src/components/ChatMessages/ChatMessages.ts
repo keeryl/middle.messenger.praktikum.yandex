@@ -20,11 +20,13 @@ class ChatMessagesBlock extends Block {
   render(): string {
     return `
       <ul class="{{styles.messages}}">
-        {{#each messages}}
-          {{{ ChatMessage
-            message=this
-          }}}
-        {{/each}}
+        {{#if messages}}
+          {{#each messages}}
+            {{{ ChatMessage
+              message=this
+            }}}
+          {{/each}}
+        {{/if}}
       </ul>
     `
   }
