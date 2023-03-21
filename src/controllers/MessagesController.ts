@@ -66,19 +66,22 @@ class MessagesController {
   }
 
   private onMessage(id: number, messages: Message | Message[]) {
+    console.log('om message')
     let messagesToAdd: Message[] = [];
 
     if (Array.isArray(messages)) {
-      messagesToAdd = messages.reverse();
+      // messagesToAdd = messages.reverse();
+      messagesToAdd = messages;
     } else {
       messagesToAdd.push(messages);
     }
 
     const currentMessages = (store.getState().messages || {})[id] || [];
 
-    messagesToAdd = [...currentMessages, ...messagesToAdd];
+    messagesToAdd = [...messagesToAdd, ...currentMessages];
 
     store.set(`messages.${id}`, messagesToAdd);
+    console.log(store.getState().messages)
   }
 
   private onClose(id: number) {
