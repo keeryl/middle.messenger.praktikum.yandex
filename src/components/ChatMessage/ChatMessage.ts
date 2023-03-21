@@ -15,7 +15,7 @@ class ChatMessageBlock extends Block {
       ...props,
     });
     this.props.isMine = this.props.userId === this.props.message.user_id;
-    this.props.time = () => this.props.message.time.slice(11,16);
+    this.props.time = () => this.props.message.time?.slice(11,16);
   }
 
 
