@@ -72,9 +72,10 @@ export default class WSTransport extends EventBus {
         if (data.type && data.type === 'pong') {
           return;
         }
+        console.log(message);
         this.emit(WSTransportEvents.Message, data)
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
 
     });

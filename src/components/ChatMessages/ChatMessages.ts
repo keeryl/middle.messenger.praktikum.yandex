@@ -3,6 +3,7 @@ import * as styles from './ChatMessages.module.css';
 import registerComponent from '../../utils/registerComponent';
 import { withStore } from '../../hocs/withStore';
 import { ChatMessage } from '../ChatMessage/ChatMessage';
+import { isEqual } from '../../utils/helpers';
 ChatMessage
 
 type Props = {
@@ -16,6 +17,13 @@ class ChatMessagesBlock extends Block {
       ...props
     });
   }
+
+  componentDidUpdate(oldProps: any, newProps: any) {
+    if (!isEqual(oldProps.messages, newProps.messages)) {
+      return true;
+    } else {
+      return false;
+    }  }
 
   render(): string {
     return `
@@ -38,15 +46,11 @@ const mapStateToProps = (state: any) => {
   if (!selectedChatId) {
     return {
       messages: [],
-      // selectedChat: null,
-      // userId: state.user.id
     };
   }
 
   return {
     messages: (state.messages || {})[selectedChatId] || [],
-    // selectedChat: state.selectedChat,
-    // userId: state.user.id
   };
 }
 
