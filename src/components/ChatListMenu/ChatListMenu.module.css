@@ -135,4 +135,5 @@
   background-color: rgb(240 240 240 / 100%);
   box-sizing: border-box;
   padding: 0 10px;
+  z-index: 99;
 }
