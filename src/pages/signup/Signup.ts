@@ -2,7 +2,12 @@ import { Block } from '../../utils/Block';
 import AuthButton from '../../components/AuthButton/AuthButton';
 import AuthInput from '../../components/AuthInput/AuthInput';
 import InputErrorMessage from '../../components/InputErrorMessage/InputErrorMessage';
-import * as styles from './Signup.module.css';
+import * as styles from './signup.module.css';
+import Router from '../../utils/Router';
+import useInputValidation from '../../utils/inputValidator';
+const [formValues, errors, validateInput, validateForm] = useInputValidation();
+import AuthController from '../../controllers/AuthController';
+import ApiMessage from '../../components/ApiMessage/ApiMessage';
 
 type Props = {
   [key: string]: unknown
@@ -14,6 +19,12 @@ class Signup extends Block {
     super({
       ...props,
       error: '',
+      apiMessage: '',
+      apiMessageClass: null,
+      formValues: formValues,
+      errors: errors,
+      validateInput: validateInput,
+      validateForm: validateForm,
       styles,
       isEmailInvalid: (): boolean => Object.values(this.props.errors.email).some(v => v === false),
       isLoginInvalid: (): boolean => Object.values(this.props.errors.login).some(v => v === false),
@@ -33,6 +44,7 @@ class Signup extends Block {
       isButtonDisabled: 'disabled',
       onFocusout: () => this.handleFocusout(),
       onChange: (e: Event) => this.handleChange(e),
+      onSigninClick: () => this.onSigninClick(),
       events: {
         submit: (e: Event) => this.handleSubmit(e)
       },
@@ -42,7 +54,56 @@ class Signup extends Block {
 
   handleSubmit(event: Event) {
     event.preventDefault();
-    console.log('SUBMIT', this.props.formValues);
+    this.setProps({
+      isButtonDisabled: 'disabled'
+    });
+    const { first_name, second_name, login, email, password, phone } = this.props.formValues;
+    AuthController.signup({
+      first_name: first_name,
+      second_name: second_name,
+      login: login,
+      email: email,
+      password: password,
+      phone: phone,
+    })
+      .then((data) => {
+        if (data) {
+          this.setProps({
+            apiMessageClass: this.props.styles.successMessage,
+            apiMessage: 'Регистрация прошла упешно',
+          });
+          setTimeout(() => {
+            AuthController.fetchUser();
+            Router.go('/messenger')
+          }, 1000);
+        }
+      })
+      .catch((e) => {
+       let error
+       if (e.reason === 'Email already exists') {
+        error = 'Введеный email уже существует';
+       } else if (e.reason === 'Login already exists') {
+        error = 'Введеный login уже существует';
+       } else {
+         error = 'Произошла ошибка при регистрации';
+       }
+        this.setProps({
+          isButtonDisabled: ''
+        });
+        this.setProps({
+          apiMessageClass: this.props.styles.errorMessage,
+          apiMessage: error,
+          isButtonDisabled: '',
+        });
+      })
+      .finally(() => {
+        setTimeout(() => {
+          this.setProps({
+            apiMessageClass: null,
+            apiMessage: ''
+          });
+        }, 3000);
+      });
   }
 
   checkPassword() {
@@ -53,6 +114,10 @@ class Signup extends Block {
     this.setProps({
       error: this.isMatch() ? '' : 'Пароли не совпадают'
     })
+  }
+
+  onSigninClick() {
+    Router.go('/')
   }
 
   handleChange(event: Event) {
@@ -96,13 +161,17 @@ class Signup extends Block {
           isButtonDisabled: newProps.isButtonDisabled,
         });
       }
-      Object.values(this.children).forEach(component => {
-        if (component instanceof InputErrorMessage) {
-          component.setProps({
-            error: newProps.error
-          });
-        }
-      });
+      if (component instanceof InputErrorMessage) {
+        component.setProps({
+          error: newProps.error
+        });
+      }
+      if (component instanceof ApiMessage) {
+        component.setProps({
+          class: newProps.apiMessageClass,
+          message: newProps.apiMessage
+        });
+      }
     });
     return false;
   }
@@ -188,12 +257,18 @@ class Signup extends Block {
               error=error
             }}}
           </fieldset>
+          {{{ ApiMessage class=apiMessageClass message=apiMessage }}}
           {{{ AuthButton
-            buttonText="Авторизоваться"
+            buttonText="Зарегистрироваться"
             isFormInvalid=isFormInvalid
             isButtonDisabled=isButtonDisabled
           }}}
-          <p onclick="renderPage('signin')" class="{{styles.btn}}">Войти</p>
+          {{{ Button
+            type="button"
+            value="Войти"
+            class=styles.button
+            onClick=onSigninClick
+          }}}
         </form>
       </main>
     `

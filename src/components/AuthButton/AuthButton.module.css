@@ -1,4 +1,6 @@
 .button {
+  width: 100%;
+  box-sizing: border-box;
   font-weight: 500;
   font-size: 13px;
   line-height: 13px;
@@ -7,8 +9,9 @@
   border-radius: 8px;
   cursor: pointer;
   border: none;
-  width: 280px;
-  height: 37px;
+
+  /* min-width: 280px; */
+  min-height: 37px;
   opacity: 1;
   transition: opacity 0.2s linear;
 }

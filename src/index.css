@@ -4,20 +4,21 @@
 #app,
 html,
 body {
-  height: 100vh;
+  box-sizing: border-box;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: fff;
-  box-sizing: border-box;
   padding: 0;
   margin: 0;
   border: 0;
 }
 
 :root {
+  box-sizing: border-box;
   font-family: Inter, Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -41,4 +42,5 @@ body {
   --pure-red: #f00;
   --black: #1e1e1e;
   --pure-black: #000;
+  --green: green;
 }

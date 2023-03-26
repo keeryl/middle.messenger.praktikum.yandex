@@ -6,22 +6,44 @@
   justify-content: space-between;
   box-sizing: border-box;
   border-bottom: 1px solid var(--light-grey);
-  padding: 12px 0;
+  padding: 10px;
   gap: 10px;
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.2s linear;
 }
 
+.selected {
+  background-color: #e4edfd;
+}
+
 .chatItem:hover {
   opacity: 0.7;
 }
 
-.img {
+.img-container {
   min-width: 47px;
-  min-height: 47px;
-  background: var(--light-grey-bg);
-  border-radius: 50px;
+  height: 47px;
+  background-color: var(--light-grey-bg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../../../static/images/user-img_default.svg);
+  background-size: 20px 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  line-height: 130px;
+  object-fit: cover;
+  font-size: 0.9999px;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 0;
 }
 
 .title {
@@ -36,18 +58,26 @@
   padding: 0 10px 0 0;
   gap: 4px;
   max-height: 47px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .userName {
+  width: calc(100%);
   font-weight: 600;
   font-size: 13px;
   line-height: 13px;
   color: var(--black);
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .lastMessage {
+  width: calc(100%);
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
@@ -56,6 +86,7 @@
   padding: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .info {

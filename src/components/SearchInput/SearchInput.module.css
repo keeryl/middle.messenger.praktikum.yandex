@@ -1,0 +1,31 @@
+.searchInput {
+  position: relative;
+  width: 100%;
+  background: var(--light-grey-bg);
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+}
+
+.searchInput:focus {
+  outline: 1px solid var(--light-grey);
+}
+
+.searchInput::placeholder {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  color: transparent;
+  background-image: url(../../../static/images/search_icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.searchInput:focus::placeholder {
+  color: transparent;
+  opacity: 0;
+}

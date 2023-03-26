@@ -1,8 +1,14 @@
 import { Block } from '../../utils/Block';
 import * as styles from './ChatList.module.css';
-import ChatItem from '../ChatItem/ChatItem';
 import registerComponent from '../../utils/registerComponent';
-ChatItem
+import Router from '../../utils/Router';
+import SearchInput from '../SearchInput/SearchInput';
+import { Chats } from '../Chats/Chats';
+import ChatListMenu from '../ChatListMenu/ChatListMenu';
+
+SearchInput
+ChatListMenu
+Chats
 
 type Props = {
   [key: string]: unknown
@@ -11,31 +17,37 @@ type Props = {
 class ChatList extends Block {
 
   constructor(props: Props) {
-    super({ styles, ...props });
+    super({
+      styles,
+      ...props,
+      handleProfileClick: () => this.handleProfileClick(),
+    });
+  }
+
+  handleProfileClick() {
+    Router.go('/profile');
+  }
+
+  componentDidUpdate(oldProps: any, newProps: any) {
+    Object.values(this.children).forEach(component => {
+      if (component instanceof ChatListMenu) {
+        component.setProps({
+          chatListSettingsActive: newProps.chatListSettingsActive,
+        });
+      }
+    });
+    return false;
   }
 
   render(): string {
     return `
       <section class="{{styles.chatList}}">
-        <button
-          onclick="renderPage('profile')"
-          class="{{styles.navButton}}"
-        >
-          Профиль >
-        </button>
-        <input
-          class="{{styles.searchInput}}"
-          placeholder="Поиск">
-        <ul class="{{styles.chats}}">
-
-          {{{ChatItem
-            userName = props.userName
-            lastMessage = props.lastMessage
-            time = props.time
-            counter = props.counter
-          }}}
-
-        </ul>
+        {{{ ChatListMenu
+          onChatListSettingsClick=onChatListSettingsClick
+          chatListSettingsActive=chatListSettingsActive
+          handleAddChatPopup=handleAddChatPopup
+        }}}
+        {{{ Chats }}}
       </section>
     `
   }

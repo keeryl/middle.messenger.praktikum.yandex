@@ -8,6 +8,7 @@
 
 .back-btn {
   width: 5vw;
+  height: 100%;
   background: var(--lightest-grey);
   border: none;
   border-right: 1px solid var(--light-grey);
@@ -19,6 +20,9 @@
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.2s linear;
+  background-image: url(../../../static/images/back-btn__arrow.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .back-btn:hover {
@@ -29,25 +33,16 @@
   border: none;
 }
 
-.arrow {
-  width: 28px;
-  height: 28px;
-  background-color: var(--blue);
-  background-image: url(../../../static/images/back-btn__arrow.svg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  border-radius: 20px;
-  margin: 0;
-}
-
 .profile {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  height: 100%;
   padding: 60px 0 0;
-  box-sizing: border-box;
+  overflow: scroll;
 }
 
 .form {
@@ -57,23 +52,12 @@
   align-items: center;
 }
 
-.user-img {
+.img-container {
+  background-color: var(--light-grey-bg);
+  border-radius: 50%;
   width: 130px;
   height: 130px;
-  background-color: var(--light-grey-bg);
-  background-image: url(../../../static/images/user-img_default.svg);
-  background-position: center center;
-  background-repeat: no-repeat;
-  border-radius: 100px;
-  cursor: pointer;
-  opacity: 1;
-  transition: opacity 0.2s linear;
-  transition: background-color 0.2s linear;
-}
 
-.user-img:hover {
-  opacity: 0.5;
-  background-color: var(--pure-black);
 }
 
 .user-name {
@@ -124,4 +108,22 @@
 .btn:last-child {
   color: var(--pure-red);
   border: none;
+}
+
+.errorMessage {
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 8px;
+  padding: 0;
+  color: var(--red);
+  margin: 0 0 15px;
+}
+
+.successMessage {
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 8px;
+  padding: 0;
+  color: var(--green);
+  margin: 0 0 15px;
 }

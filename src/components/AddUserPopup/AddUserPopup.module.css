@@ -1,0 +1,123 @@
+.popup {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  inset: 0;
+  background: rgb(60 60 60 / 50%);
+  box-sizing: border-box;
+  gap: 15px;
+  visibility: hidden;
+  z-index: 100;
+}
+
+.popup_opened {
+  display: flex;
+  visibility: visible;
+}
+
+.popup-form {
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  box-sizing: border-box;
+  padding: 40px 30px;
+  background-color: var(--white);
+  box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+  border-radius: 12px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--black);
+  text-align: center;
+  margin: 0;
+}
+
+.fieldset {
+  position: relative;
+  width: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.input {
+  width: 100%;
+  background: var(--light-grey-bg);
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+}
+
+.input:focus {
+  outline: 1px solid var(--light-grey);
+}
+
+.input::placeholder {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  color: transparent;
+  background-image: url(../../../static/images/search_icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.input:focus::placeholder {
+  color: transparent;
+  opacity: 0;
+}
+
+.items {
+  position: absolute;
+  top: 35px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 100px;
+  overflow: scroll;
+  background-color: rgb(240 240 240 / 50%);
+}
+
+.item {
+  width: 100%;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 30px;
+  color: #1e1e1e;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.item:hover {
+  background-color: rgb(220 220 220 / 50%);
+}
+
+.stub {
+  position: absolute;
+  top: 35px;
+  margin: 0;
+  width: 100%;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 30px;
+  color: var(--grey);
+  background-color: rgb(240 240 240 / 50%);
+  box-sizing: border-box;
+  padding: 0 10px;
+}

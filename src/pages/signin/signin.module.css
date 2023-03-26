@@ -56,6 +56,9 @@
   cursor: pointer;
   opacity: 1;
   transition: opacity 0.2s linear;
+  border: none;
+  outline: none;
+  background: none;
 }
 
 .btn:hover {
@@ -72,4 +75,22 @@
   opacity: 1;
   background: var(--message-bg);
   color: var(--middle-grey);
+}
+
+.errorMessage {
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 8px;
+  padding: 0;
+  color: var(--red);
+  margin: 0 0 15px;
+}
+
+.successMessage {
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 8px;
+  padding: 0;
+  color: var(--green);
+  margin: 0 0 15px;
 }

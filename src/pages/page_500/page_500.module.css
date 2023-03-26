@@ -31,6 +31,9 @@
   opacity: 1;
   transition: opacity 0.2s linear;
   margin: 40px 0 0;
+  border: none;
+  outline: none;
+  background: none;
 }
 
 .btn:hover {

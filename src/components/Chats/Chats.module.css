@@ -1,0 +1,16 @@
+.chats {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--light-grey);
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.chats::-webkit-scrollbar {
+  width: 0;
+}

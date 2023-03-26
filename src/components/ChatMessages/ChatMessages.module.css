@@ -1,99 +1,23 @@
 .messages {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+
+  /* justify-content: flex-end; */
   align-items: flex-start;
   width: 100%;
   flex-grow: 1;
   padding: 5px 0;
   margin: 0;
   overflow: scroll;
+  scrollbar-width: none;
   gap: 10px;
 }
 
-.message {
-  max-width: 40%;
-  display: flex;
-  gap: 15px;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  padding: 10px;
-  margin: 0;
-  background-color: var(--message-bg);
-  border: none;
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
+/* .messages:first-child {
+  margin-top: auto;
+} */
 
-.message_type_self {
-  background-color: var(--message-self-bg);
-  align-self: flex-end;
-  border-radius: 15px 15px 0;
-}
-
-.messageText {
-  color: var(--black);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  margin: 0;
-  padding: 0;
-  text-align: justify;
-}
-
-.messageText_type_link {
-  color: yellow;
-  cursor: pointer;
-  background-color: red;
-  margin: 5px;
-}
-
-.messageInfo {
-  width: auto;
-  flex-grow: 1;
-  display: flex;
-  align-items: stretch;
-  justify-content: flex-end;
-  gap: 5px;
-}
-
-.messageStatus {
-  display: flex;
-  flex-flow: row-reverse;
-  justify-content: flex-start;
-}
-
-.statusFirstCheck {
-  width: 10px;
-  height: 10px;
-  background-image: url(../../../static/images/chat_galka.svg);
-  background-size: 10px 10px;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-.statusSecondCheck {
-  width: 10px;
-  height: 10px;
-  background-image: url(../../../static/images/chat_galka.svg);
-  background-size: 10px 10px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  transform: translate(6px);
-}
-
-.messageTime {
-  font-weight: 500;
-  font-size: 9px;
-  line-height: 9px;
-  color: var(--grey-time);
-  padding: 0;
-  margin: 0;
-  justify-self: flex-end;
-}
-
-.messageTime_type_self {
-  color: var(--blue-time);
+.messages::-webkit-scrollbar {
+  width: 0;
 }

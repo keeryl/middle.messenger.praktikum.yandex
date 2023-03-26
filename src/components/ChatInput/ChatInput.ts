@@ -2,6 +2,7 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatInput.module.css';
 import registerComponent from '../../utils/registerComponent';
 import ChatInputButton from '../ChatInputButton/ChatInputButton';
+// import MessagesController from '../../controllers/MessagesController';
 
 type Props = {
   [key: string]: unknown
@@ -25,6 +26,11 @@ class ChatInput extends Block {
     this.props.onMessageInput(event);
   }
 
+  componentDidMount() {
+    // (document.querySelector('input[name="message"]') as HTMLInputElement).focus();
+    // console.log("DID MOUNT", (document.querySelector('input[name="message"]') as HTMLInputElement))
+  }
+
   componentDidUpdate(oldProps: any, newProps: any) {
     Object.values(this.children).forEach(component => {
       if (component instanceof ChatInputButton) {
@@ -33,14 +39,18 @@ class ChatInput extends Block {
         });
       }
     });
-    return false;
+    if (newProps.message === '') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   render() {
     return `
       <form class="{{styles.chatInput}}">
         <button class="{{styles.settingsBtn}}" type="button"></button>
-        <input name="message" class="{{styles.messageInput}}" value="{{message}}">
+        <input name="message" class="{{styles.messageInput}}" value="{{message}}" autofocus>
         {{{ ChatInputButton buttonState=buttonState }}}
       </form>
     `

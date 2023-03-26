@@ -1,0 +1,74 @@
+.popup {
+  display: none;
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+
+.popup_opened {
+  display: block;
+  visibility: visible;
+}
+
+.settingsMenu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 61px;
+  right: 20px;
+  background: var(--white);
+  box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+  border-radius: 12px;
+  padding: 15px;
+  box-sizing: border-box;
+  gap: 15px;
+}
+
+.addBtn {
+  padding: 5px 0 5px 30px;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--black);
+  background: url(../../../static/images/addUserBtn.svg) left center no-repeat;
+  background-color: var(--white);
+  text-align: left;
+}
+
+.addBtn:hover {
+  opacity: 0.7;
+}
+
+.addBtn:active {
+  border: none;
+}
+
+.deleteBtn {
+  padding: 5px 0 5px 30px;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--black);
+  background: url(../../../static/images/deleteUserBtn.svg) left center no-repeat;
+  background-color: var(--white);
+  text-align: left;
+
+}
+
+.deleteBtn:hover {
+  opacity: 0.7;
+}
+
+.deleteBtn:active {
+  border: none;
+}
