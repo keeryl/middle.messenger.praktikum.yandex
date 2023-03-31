@@ -9,16 +9,22 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'keeryl_messenger.bundle.js'
   },
-  watch: true,
   devServer: {
     compress: true,
     port: 4000,
     hot: true,
-    https: true,
+    open: true
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })
+  ],
   resolve: {
-    extensions: ['.ts', '.js', '.json']
+    extensions: ['.ts', '.js', '.json'],
+    alias: {
+      handlebars: 'handlebars/dist/handlebars.min.js'
+    }
   },
   module: {
     rules: [
@@ -52,12 +58,16 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
+              esModule: true,
+              modules: {
+                namedExport: true,
+              },
               importLoaders: 1,
             }
           },
-          {
-            loader: 'postcss-loader'
-          }
+          // {
+          //   loader: 'postcss-loader'
+          // }
         ]
       }
 
