@@ -23,6 +23,7 @@ class SearchInput extends Block {
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
+    oldProps;
     if (newProps.value === '') {
       return true;
     }

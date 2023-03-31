@@ -11,7 +11,6 @@ module.exports = {
   },
   watch: true,
   devServer: {
-    //contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 4000,
     hot: true,
@@ -38,11 +37,30 @@ module.exports = {
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         type: 'asset/resource',
-        },
-        {
+      },
+      {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         type: 'asset/inline',
-        },
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            }
+          },
+          {
+            loader: 'postcss-loader'
+          }
+        ]
+      }
+
     ]
   }
 };

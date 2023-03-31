@@ -50,6 +50,8 @@ export class Block<P extends Record<string, unknown> = any> {
   }
 
   protected componentDidUpdate(oldProps: P, newProps: P): boolean {
+    oldProps;
+    newProps;
     return true;
   }
   private _componentDidUpdate(oldProps: P, newProps: P): void {

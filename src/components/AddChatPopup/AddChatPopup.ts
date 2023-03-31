@@ -42,6 +42,7 @@ class AddChatPopup extends Block {
         }
       })
       .catch(err => {
+        err;
         this.setProps({
           apiMessageClass: this.props.styles.errorMessage,
           apiMessage: 'Произошла ошибка при добавлении чата'

@@ -74,7 +74,7 @@ class AddUserPopup extends Block {
     e.preventDefault();
     e.stopPropagation();
     ChatController.addUserToChat(this.props.selectedChatId, this.props.selectedUser.id)
-      .then(res => {
+      .then(() => {
         this.setProps({
           inputValue: '',
           selectedUser: {id: null, login: null}

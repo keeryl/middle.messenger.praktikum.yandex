@@ -14,6 +14,8 @@ class ApiMessage extends Block {
     }
 
   componentDidUpdate(oldProps: any, newProps: any) {
+    oldProps;
+    newProps;
     return true;
   }
 

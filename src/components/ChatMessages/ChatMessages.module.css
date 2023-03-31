@@ -2,8 +2,6 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column-reverse;
-
-  /* justify-content: flex-end; */
   align-items: flex-start;
   width: 100%;
   flex-grow: 1;
@@ -13,10 +11,6 @@
   scrollbar-width: none;
   gap: 10px;
 }
-
-/* .messages:first-child {
-  margin-top: auto;
-} */
 
 .messages::-webkit-scrollbar {
   width: 0;

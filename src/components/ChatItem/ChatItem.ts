@@ -24,6 +24,7 @@ class ChatItemBlock extends Block {
   }
 
   handleClick(e: Event) {
+    e;
     this.props.chatProps.id === this.props.selectedChatId ?
       store.set('selectedChat', {
         _id: null,

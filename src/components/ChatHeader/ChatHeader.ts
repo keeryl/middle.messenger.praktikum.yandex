@@ -2,11 +2,10 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatHeader.module.css';
 import registerComponent from '../../utils/registerComponent';
 import Button from '../Button/Button';
-import ChatSettingsPopup from '../ChatSettingsPopup/ChatSettingsPopup';
 import { withStore } from '../../hocs/withStore';
 import Avatar from '../Avatar/Avatar';
+Avatar
 Button
-ChatSettingsPopup
 
 type Props = {
   [key: string]: unknown

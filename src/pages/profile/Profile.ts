@@ -86,6 +86,7 @@ class Profile extends Block {
   }
 
   handleChangeData (e: Event) {
+    e;
     const { email, login, first_name, second_name, display_name, phone } = this.props.formValues;
     UserController.changeUserProfileData({
       first_name: first_name,
@@ -212,6 +213,7 @@ class Profile extends Block {
   }
 
   handleFocusout(event: Event) {
+    event;
   }
 
   handleInputChange(event: Event) {

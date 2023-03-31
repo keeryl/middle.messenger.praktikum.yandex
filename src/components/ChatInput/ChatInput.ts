@@ -2,7 +2,6 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatInput.module.css';
 import registerComponent from '../../utils/registerComponent';
 import ChatInputButton from '../ChatInputButton/ChatInputButton';
-// import MessagesController from '../../controllers/MessagesController';
 
 type Props = {
   [key: string]: unknown
@@ -26,12 +25,10 @@ class ChatInput extends Block {
     this.props.onMessageInput(event);
   }
 
-  componentDidMount() {
-    // (document.querySelector('input[name="message"]') as HTMLInputElement).focus();
-    // console.log("DID MOUNT", (document.querySelector('input[name="message"]') as HTMLInputElement))
-  }
+  componentDidMount() {}
 
   componentDidUpdate(oldProps: any, newProps: any) {
+    oldProps;
     Object.values(this.children).forEach(component => {
       if (component instanceof ChatInputButton) {
         component.setProps({

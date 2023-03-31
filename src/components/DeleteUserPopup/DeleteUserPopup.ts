@@ -20,6 +20,7 @@ class DeleteUserPopup extends Block {
   }
 
   handleDeleteUser(id: number, login: string) {
+    login;
     ChatController.deleteUserFromChat(this.props.selectedChatId, id)
       .then(() => {
         return ChatController.fetchChatUsers(this.props.selectedChatId);

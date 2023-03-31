@@ -37,6 +37,7 @@ class AuthInput extends Block {
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
+    oldProps;
     Object.values(this.children).forEach(component => {
       if (component instanceof InputErrorMessage) {
         component.setProps({
