@@ -26,7 +26,7 @@ class AddUserPopup extends Block {
         submit: (e: Event) => this.handleSubmit(e),
       }
     });
-    this.props.state = () => this.props.addUserPopupIsOpened ? this.props.styles.popup_opened : '';
+    this.props.state = () => this.props.addUserPopupIsOpened ? this.props.styles.popupOpened : '';
     this.props.buttonState = () => this.props.selectedUser.login ? '' : 'disabled' ;
   }
 
@@ -124,7 +124,7 @@ class AddUserPopup extends Block {
   render() {
     return `
     <div class="{{styles.popup}} {{state}}" id="popup-addUser">
-      <form class="{{styles.popup-form}}">
+      <form class="{{styles.popupForm}}">
         <h2 class="{{styles.title}}">Добавить пользователя</h2>
         <fieldset class="{{styles.fieldset}}">
           {{{ Input

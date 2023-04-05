@@ -27,7 +27,7 @@ class Avatar extends Block {
 
   render() {
     return `
-    <div class="{{styles.img-container}}">
+    <div class="{{styles.imgContainer}}">
       {{#if avatar}}
         <img class="{{styles.img}}" src="https://ya-praktikum.tech/api/v2/resources{{avatar}}" alt="Аватар">
       {{/if}}

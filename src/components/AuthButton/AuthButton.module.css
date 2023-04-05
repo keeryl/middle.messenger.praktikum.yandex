@@ -9,8 +9,6 @@
   border-radius: 8px;
   cursor: pointer;
   border: none;
-
-  /* min-width: 280px; */
   min-height: 37px;
   opacity: 1;
   transition: opacity 0.2s linear;

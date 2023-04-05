@@ -52,7 +52,7 @@ class ChatItemBlock extends Block {
   render() {
     return `
         <li class="{{styles.chatItem}} {{#if selected}}{{styles.selected}}{{/if}}">
-          <div class="{{styles.img-container}}">
+          <div class="{{styles.imgContainer}}">
             {{#if chatProps.avatar}}
               <img class="{{styles.img}}" src="https://ya-praktikum.tech/api/v2/resources{{chatProps.avatar}}", alt="Аватар чата">
             {{/if}}

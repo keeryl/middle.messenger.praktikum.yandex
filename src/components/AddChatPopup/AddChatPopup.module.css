@@ -12,12 +12,12 @@
   z-index: 100;
 }
 
-.popup_opened {
+.popupOpened {
   display: flex;
   visibility: visible;
 }
 
-.popup-form {
+.popupForm {
   width: 30vw;
   display: flex;
   flex-direction: column;

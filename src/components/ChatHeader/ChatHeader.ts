@@ -23,7 +23,7 @@ class ChatHeaderBlock extends Block {
     return `
       <section class="{{styles.chatHeader}}">
         <div class="{{styles.chatInfo}}">
-          <div class="{{styles.img-container}}">
+          <div class="{{styles.imgContainer}}">
            {{{ Avatar avatar=avatar onAvatarClick=handleAvatarPopup }}}
           </div>
           <h2 class="{{styles.chatName}}">{{chatTitle}}</h2>

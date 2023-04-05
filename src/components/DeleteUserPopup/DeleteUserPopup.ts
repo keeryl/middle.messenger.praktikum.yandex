@@ -16,7 +16,7 @@ class DeleteUserPopup extends Block {
       users: [],
       handleDeleteUser: (id: number, login: string) => this.handleDeleteUser(id, login)
     });
-    this.props.state = () => this.props.deleteUserPopupIsOpened ? this.props.styles.popup_opened : '';
+    this.props.state = () => this.props.deleteUserPopupIsOpened ? this.props.styles.popupOpened : '';
   }
 
   handleDeleteUser(id: number, login: string) {
@@ -61,7 +61,7 @@ class DeleteUserPopup extends Block {
   render() {
     return `
     <div class="{{styles.popup}} {{state}}" id="popup-deleteUser">
-      <form class="{{styles.popup-form}}">
+      <form class="{{styles.popupForm}}">
         <h2 class="{{styles.title}}">Удалить пользователя</h2>
         <fieldset class="{{styles.fieldset}}">
           {{{ DropdownList styles=styles list=users stub="Нет пользователей" onClick=handleDeleteUser}}}

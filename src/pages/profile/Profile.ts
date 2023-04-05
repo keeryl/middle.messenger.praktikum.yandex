@@ -333,15 +333,15 @@ class Profile extends Block {
 
   render() {
     return `
-      <main class="{{styles.profile-window}}">
-      {{{ Button value='' class=styles.back-btn type="button" onClick=handleBackClick }}}
+      <main class="{{styles.profileWindow}}">
+      {{{ Button value='' class=styles.backBtn type="button" onClick=handleBackClick }}}
       <section class="{{styles.profile}}">
         <form class="{{styles.form}}">
-          <div class="{{styles.img-container}}">
+          <div class="{{styles.imgContainer}}">
            {{{ Avatar avatar=user.avatar onAvatarClick=onAvatarClick }}}
           </div>
-          <h1 class="{{styles.user-name}}">{{user.first_name}}</h1>
-          <fieldset class="{{styles.user-info}}">
+          <h1 class="{{styles.userName}}">{{user.first_name}}</h1>
+          <fieldset class="{{styles.userInfo}}">
             {{{ ProfileInput
               label="Почта"
               name="email"

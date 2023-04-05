@@ -21,7 +21,7 @@ class Page_500 extends Block {
 
   render() {
     return `
-      <main class="{{styles.page-500}}">
+      <main class="{{styles.page500}}">
         <h1 class="{{styles.title}}">500</h1>
         <h2 class="{{styles.subtitle}}">Мы уже фиксим</h2>
         {{{ Button

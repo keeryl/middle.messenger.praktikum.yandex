@@ -60,16 +60,24 @@ module.exports = {
             options: {
               esModule: true,
               modules: {
+                auto: true,
                 namedExport: true,
+                exportLocalsConvention: "camelCaseOnly"
               },
               importLoaders: 1,
             }
           },
-          // {
-          //   loader: 'postcss-loader'
-          // }
-        ]
-      }
+          {
+            loader: 'postcss-loader'
+          }
+        ],
+        include: /\.module\.css$/,
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", 'postcss-loader'],
+        exclude: /\.module\.css$/,
+      },
 
     ]
   }

@@ -22,7 +22,7 @@ class Page_404 extends Block {
 
   render() {
     return `
-      <main class="{{styles.page-404}}">
+      <main class="{{styles.page404}}">
         <h1 class="{{styles.title}}">404</h1>
         <h2 class="{{styles.subtitle}}">Не туда попали</h2>
         {{{ Button

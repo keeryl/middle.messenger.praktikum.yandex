@@ -26,7 +26,7 @@ class ProfileChangePasswordPopup extends Block {
         submit: (e: Event) => this.handleSubmit(e)
       }
      });
-     this.props.state = () => this.props.passwordPopupIsOpened ? this.props.styles.popup_opened : '';
+     this.props.state = () => this.props.passwordPopupIsOpened ? this.props.styles.popupOpened : '';
     }
 
   handlePopup(e: Event) {

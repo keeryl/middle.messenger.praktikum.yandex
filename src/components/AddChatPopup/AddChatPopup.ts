@@ -21,7 +21,7 @@ class AddChatPopup extends Block {
         submit: (e: Event) => this.handleSubmit(e),
       }
     });
-    this.props.state = () => this.props.addChatPopupIsOpened ? this.props.styles.popup_opened : '';
+    this.props.state = () => this.props.addChatPopupIsOpened ? this.props.styles.popupOpened : '';
   }
 
   handleSubmit(e: Event) {
@@ -88,7 +88,7 @@ class AddChatPopup extends Block {
   render() {
     return `
     <div class="{{styles.popup}} {{state}}" id="popup-addChat">
-      <form class="{{styles.popup-form}}">
+      <form class="{{styles.popupForm}}">
         <h2 class="{{styles.title}}">Добавить чат</h2>
         {{{ AuthInput
           label="Название чата"
