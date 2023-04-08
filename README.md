@@ -2,12 +2,15 @@
 https://www.figma.com/file/EsMNSTjguSUVasDnY1V4Rd/keeryl?node-id=0%3A1
 
 
-# Start project with
+# Start dev server with
 
   npm run dev
-  npm run buld
-  npm run start
+
+
+# Build project with
+
+  npm run build
 
 # Live Demo
 
-https://chipper-dasik-bd92ec.netlify.app/
+https://keeryl-messenger.onrender.com
