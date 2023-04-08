@@ -6,6 +6,7 @@
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
     "dev": "webpack serve",
     "build": "node ./node_modules/.bin/webpack",
+    "start": "node ./node_modules/.bin/webpack && node ./server.js",
     "lint": "node_modules/.bin/eslint . --fix",
     "stylelint": "stylelint \"**/*.css\" --fix",
     "prepare": "husky install"
