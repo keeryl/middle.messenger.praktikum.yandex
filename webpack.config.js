@@ -1,30 +1,29 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
   mode: 'development',
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'keeryl_messenger.bundle.js'
+    filename: 'keeryl_messenger.bundle.js',
   },
   devServer: {
     compress: true,
     port: 4000,
     hot: true,
-    open: true
+    open: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+      template: './src/index.html',
+    }),
   ],
   resolve: {
     extensions: ['.ts', '.js', '.json'],
     alias: {
-      handlebars: 'handlebars/dist/handlebars.min.js'
-    }
+      handlebars: 'handlebars/dist/handlebars.min.js',
+    },
   },
   module: {
     rules: [
@@ -38,7 +37,7 @@ module.exports = {
             },
           },
         ],
-        exclude: /(node_modules)/
+        exclude: /(node_modules)/,
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
@@ -62,26 +61,23 @@ module.exports = {
               modules: {
                 auto: true,
                 namedExport: true,
-                exportLocalsConvention: "camelCaseOnly"
+                exportLocalsConvention: 'camelCaseOnly',
               },
               importLoaders: 1,
-            }
+            },
           },
           {
-            loader: 'postcss-loader'
-          }
+            loader: 'postcss-loader',
+          },
         ],
         include: /\.module\.css$/,
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader", 'postcss-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
         exclude: /\.module\.css$/,
       },
 
-    ]
-  }
+    ],
+  },
 };
-
-
-
