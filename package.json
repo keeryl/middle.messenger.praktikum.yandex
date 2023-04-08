@@ -8,7 +8,7 @@
     "build": "node ./node_modules/.bin/webpack",
     "lint": "node_modules/.bin/eslint . --fix",
     "stylelint": "stylelint \"**/*.css\" --fix",
-    "pre-commit": "npm-run-all test lint stylelint"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -33,7 +33,6 @@
     "eslint": "8.33.0",
     "eslint-config-airbnb": "19.0.4",
     "html-webpack-plugin": "5.5.0",
-    "husky": "8.0.3",
     "mocha": "10.2.0",
     "npm-run-all": "4.1.5",
     "postcss": "8.4.21",
@@ -49,7 +48,8 @@
     "typescript": "4.9.3",
     "webpack": "5.76.3",
     "webpack-cli": "5.0.1",
-    "webpack-dev-server": "4.13.1"
+    "webpack-dev-server": "4.13.1",
+    "husky": "8.0.0"
   },
   "dependencies": {
     "autoprefixer": "10.4.14",
