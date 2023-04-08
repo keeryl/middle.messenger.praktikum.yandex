@@ -11,7 +11,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test && npm run lint && npm run stylelint && npm run build"
+      "pre-commit": "npm-run-all test lint stylelint"
     }
   },
   "repository": {
@@ -39,6 +39,7 @@
     "html-webpack-plugin": "5.5.0",
     "husky": "8.0.3",
     "mocha": "10.2.0",
+    "npm-run-all": "4.1.5",
     "postcss": "8.4.21",
     "postcss-loader": "7.1.0",
     "process": "0.11.10",
@@ -55,11 +56,11 @@
     "webpack-dev-server": "4.13.1"
   },
   "dependencies": {
+    "autoprefixer": "10.4.14",
     "express": "4.18.2",
     "handlebars": "4.7.7",
+    "jsdom": "21.1.1",
     "nanoid": "3",
-    "autoprefixer": "10.4.14",
-    "postcss-nested": "6.0.1",
-    "jsdom": "21.1.1"
+    "postcss-nested": "6.0.1"
   }
 }
