@@ -75,7 +75,7 @@ describe('HTTPTransport class', () => {
       const transport = new HTTPTransport('/');
       transport.delete();
       const request = requests[0];
-      expect(request.method).to.eq('Delete');
+      expect(request.method).to.eq('DELETE');
     });
 
   });
