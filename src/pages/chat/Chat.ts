@@ -136,6 +136,7 @@ class ChatBlock extends Block {
   }
 
   handlePopupInputFocusout(event: Event) {
+    event;
   }
 
   handleMessageInput (event: Event) {
@@ -204,6 +205,7 @@ class ChatBlock extends Block {
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
+    oldProps;
     Object.values(this.children).forEach(component => {
       if (component instanceof ChatMessanger) {
         component.setProps({

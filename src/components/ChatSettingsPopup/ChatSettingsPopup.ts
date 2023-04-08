@@ -14,7 +14,7 @@ class ChatSettingsPopup extends Block {
       styles,
       ...props,
     });
-    this.props.state = () => this.props.settingsPopupIsOpened ? this.props.styles.popup_opened : '';
+    this.props.state = () => this.props.settingsPopupIsOpened ? this.props.styles.popupOpened : '';
   }
 
   render() {

@@ -26,7 +26,7 @@ class ChangeAvatarPopup extends Block {
         input: (e: Event) => this.handleInput(e)
       }
      });
-     this.props.state = () => this.props.avatarPopupIsOpened ? this.props.styles.popup_opened : '';
+     this.props.state = () => this.props.avatarPopupIsOpened ? this.props.styles.popupOpened : '';
     }
 
   handlePopup(e: Event) {
@@ -110,9 +110,9 @@ class ChangeAvatarPopup extends Block {
       <form class="{{styles.form}}">
       <h2 class="{{styles.title}}">Загрузите файл</h2>
       <fieldset class="{{styles.fieldset}}">
-      <div class="{{styles.input-container}}">
+      <div class="{{styles.inputContainer}}">
         <input class="{{styles.input}}" type="file" name="avatar" id="avatar"/>
-        <label class="{{styles.input-label}}" for="avatar">Выбрать файл на компьютере</label>
+        <label class="{{styles.inputLabel}}" for="avatar">Выбрать файл на компьютере</label>
       </div>
       </fieldset>
       {{{ ApiMessage class=apiMessageClass message=apiMessage }}}

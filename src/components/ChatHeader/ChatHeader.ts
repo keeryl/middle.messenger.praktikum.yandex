@@ -2,11 +2,10 @@ import { Block } from '../../utils/Block';
 import * as styles from './ChatHeader.module.css';
 import registerComponent from '../../utils/registerComponent';
 import Button from '../Button/Button';
-import ChatSettingsPopup from '../ChatSettingsPopup/ChatSettingsPopup';
 import { withStore } from '../../hocs/withStore';
 import Avatar from '../Avatar/Avatar';
+Avatar
 Button
-ChatSettingsPopup
 
 type Props = {
   [key: string]: unknown
@@ -24,7 +23,7 @@ class ChatHeaderBlock extends Block {
     return `
       <section class="{{styles.chatHeader}}">
         <div class="{{styles.chatInfo}}">
-          <div class="{{styles.img-container}}">
+          <div class="{{styles.imgContainer}}">
            {{{ Avatar avatar=avatar onAvatarClick=handleAvatarPopup }}}
           </div>
           <h2 class="{{styles.chatName}}">{{chatTitle}}</h2>

@@ -13,7 +13,7 @@
   border-top-right-radius: 15px;
 }
 
-.message_type_self {
+.messageTypeSelf {
   background-color: var(--message-self-bg);
   align-self: flex-end;
   border-radius: 15px 15px 0;
@@ -29,7 +29,7 @@
   text-align: justify;
 }
 
-.messageText_type_link {
+.messageTextTypeLink {
   color: yellow;
   cursor: pointer;
   background-color: red;
@@ -84,6 +84,6 @@
   justify-self: flex-end;
 }
 
-.messageTime_type_self {
+.messageTimeTypeSelf {
   color: var(--blue-time);
 }

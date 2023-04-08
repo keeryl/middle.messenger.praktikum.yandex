@@ -5,7 +5,7 @@
   visibility: hidden;
 }
 
-.popup_opened {
+.popupOpened {
   display: block;
   visibility: visible;
 }

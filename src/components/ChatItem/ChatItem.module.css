@@ -21,7 +21,7 @@
   opacity: 0.7;
 }
 
-.img-container {
+.imgContainer {
   min-width: 47px;
   height: 47px;
   background-color: var(--light-grey-bg);

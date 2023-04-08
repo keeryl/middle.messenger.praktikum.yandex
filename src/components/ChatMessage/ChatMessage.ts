@@ -20,13 +20,15 @@ class ChatMessageBlock extends Block {
 
 
   componentDidUpdate(oldProps: any, newProps: any) {
+    oldProps;
+    newProps;
     return true;
   }
 
 
   render() {
     return `
-      <li class="{{styles.message}} {{#if isMine}} {{styles.message_type_self}} {{/if}}">
+      <li class="{{styles.message}} {{#if isMine}} {{styles.messageTypeSelf}} {{/if}}">
         <p class="{{styles.messageText}}">
           {{message.content}}
         </p>
@@ -37,7 +39,7 @@ class ChatMessageBlock extends Block {
             <div class="{{styles.statusSecondCheck}}"></div>
             {{/if}}
           </div>
-          <time class="{{styles.messageTime}} {{#if isMine}} {{styles.messageTime_type_self}} {{/if}}">
+          <time class="{{styles.messageTime}} {{#if isMine}} {{styles.messageTimeTypeSelf}} {{/if}}">
             {{time}}
           </time>
         </div>

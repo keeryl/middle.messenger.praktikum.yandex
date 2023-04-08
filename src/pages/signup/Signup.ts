@@ -149,6 +149,7 @@ class Signup extends Block {
 
 
   componentDidUpdate(oldProps: any, newProps: any) {
+    oldProps;
     Object.values(this.children).forEach(component => {
       if (component instanceof AuthInput) {
         component.setProps({

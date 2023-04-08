@@ -1,3 +1,4 @@
+import './index.css';
 import AuthController from './controllers/AuthController';
 import Page_404 from './pages/page_404/Page_404';
 import Page_500 from './pages/page_500/Page_500';

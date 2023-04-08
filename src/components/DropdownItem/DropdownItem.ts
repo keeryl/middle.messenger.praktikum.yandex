@@ -17,6 +17,7 @@ class DropdownItem extends Block {
   }
 
   handleClick (e: Event) {
+    e
     this.props.onClick(this.props.id, this.props.login);
   }
 
